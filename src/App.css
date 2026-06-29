@@ -955,9 +955,18 @@ footer::before {
 }
 
 .header .icon-btn {
+  width: 36px;
+  height: 36px;
+  font-size: 15px;
   color: var(--on-logo-bg);
-  border-color: rgba(228, 174, 43, 0.45);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(228, 174, 43, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.header--scrolled .icon-btn {
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
 }
 
 .header .header-cta-btn {
