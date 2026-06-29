@@ -347,6 +347,14 @@ nav {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.ecosystem-section {
+  padding-bottom: 32px;
+}
+
+#solucoes {
+  padding-top: 32px;
+}
+
 .build-grid {
   grid-template-columns: repeat(4, 1fr);
 }

@@ -56,11 +56,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://buildertudo.com/recomeca</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://buildertudo.com/copygenio</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

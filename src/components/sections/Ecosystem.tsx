@@ -5,7 +5,7 @@ import { SectionShell, SectionTitle } from '../ui/SectionTitle'
 
 export function Ecosystem() {
   return (
-    <SectionShell id="ecossistema" ariaLabelledBy="ecossistema-title">
+    <SectionShell id="ecossistema" className="solutions ecosystem-section" ariaLabelledBy="ecossistema-title">
       <Reveal>
         <SectionTitle
           id="ecossistema-title"

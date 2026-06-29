@@ -112,15 +112,6 @@ export const products: Product[] = [
     status: 'Ativo',
     routeKey: 'copygenio',
   },
-  {
-    logo: '💛',
-    name: 'Recomeça+',
-    description: 'Plataforma de apoio e reinício com ferramentas digitais para transformação pessoal e profissional.',
-    category: 'Impacto Social',
-    technologies: ['React', 'Supabase', 'UX/UI'],
-    status: 'Ativo',
-    routeKey: 'recomeca',
-  },
 ]
 
 export const featuredProducts = products.filter((product) => product.featured)
