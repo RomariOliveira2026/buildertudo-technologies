@@ -8,6 +8,7 @@ export const products: Product[] = [
     category: 'Desenvolvimento Digital',
     technologies: ['React', 'TypeScript', 'UX/UI'],
     status: 'Ativo',
+    href: '#studio',
   },
   {
     logo: '🛡️',

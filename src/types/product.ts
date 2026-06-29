@@ -8,6 +8,7 @@ export type Product = {
   technologies: string[]
   status: string
   routeKey?: ProductRouteKey
+  href?: string
   featured?: boolean
 }
 

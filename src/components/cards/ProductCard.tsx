@@ -11,7 +11,7 @@ type ProductCardProps = {
 }
 
 export function ProductCard({ product, variant = 'ecosystem', ctaLabel }: ProductCardProps) {
-  const path = getProductPath(product.routeKey)
+  const path = product.href ?? getProductPath(product.routeKey)
   const isInteractive = Boolean(path)
   const label = ctaLabel ?? (variant === 'featured' ? 'Conhecer Projeto' : 'Saiba mais')
 
@@ -82,7 +82,10 @@ export function ProductCard({ product, variant = 'ecosystem', ctaLabel }: Produc
         href={path}
         data-route={path}
         aria-label={`${label} — ${product.name}`}
-        onClick={(event) => event.preventDefault()}
+        onClick={(event) => {
+          if (path?.startsWith('#')) return
+          event.preventDefault()
+        }}
       >
         {content}
       </motion.a>
