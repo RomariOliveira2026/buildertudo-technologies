@@ -20,7 +20,7 @@
   --hero-gradient: radial-gradient(circle at center, #142163 0%, #0b0f1f 60%);
   --cta-gradient: radial-gradient(circle at center, rgba(228, 174, 43, 0.24), transparent 55%);
   --mockup-gradient: linear-gradient(135deg, #0f1e6a, #182b86);
-  --header-height: 128px;
+  --header-height: 152px;
   --section-y: 72px;
   --section-x: 7%;
 }
@@ -68,7 +68,7 @@ body {
   right: 0;
   z-index: 1000;
   min-height: var(--header-height);
-  padding: 12px var(--section-x);
+  padding: 8px var(--section-x);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -96,7 +96,7 @@ body {
 }
 
 .header--scrolled .site-logo {
-  height: 88px;
+  height: 100px;
 }
 
 .header-actions {
@@ -111,6 +111,8 @@ body {
   gap: 14px;
   text-decoration: none;
   background: transparent;
+  flex-shrink: 0;
+}
 }
 
 .logo--footer {
@@ -597,13 +599,13 @@ footer li {
 
 @media (max-width: 760px) {
   :root {
-    --header-height: 188px;
+    --header-height: 204px;
     --section-y: 56px;
   }
 
   .header .site-logo {
-    height: 88px;
-    max-width: min(420px, 94vw);
+    height: 104px;
+    max-width: min(480px, 96vw);
   }
 
   .site-logo--footer {
@@ -932,9 +934,9 @@ footer::before {
 }
 
 .header .site-logo {
-  height: 108px;
-  max-width: min(580px, 68vw);
-  transition: height 0.4s ease;
+  height: 132px;
+  max-width: min(720px, 78vw);
+  transition: height 0.4s ease, max-width 0.4s ease;
 }
 
 .site-logo--footer {
@@ -1534,7 +1536,7 @@ footer::before {
 }
 
 .header--legal .site-logo {
-  height: 88px;
+  height: 104px;
 }
 
 .legal-back-btn {
