@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import logoOficial from '../../assets/logo-oficial.png'
 import { Footer } from './Footer'
 import { BackToTop, WhatsAppFloat } from '../ui/FloatingActions'
 
@@ -21,10 +20,10 @@ export function LegalLayout({ children, title }: LegalLayoutProps) {
           <Link className="logo" to="/" aria-label="BuilderTudo Technologies - Início">
             <img
               className="site-logo"
-              src={logoOficial}
-              alt="BuilderTudo Technologies"
-              width={580}
-              height={108}
+              src="/logo-oficial.png"
+              alt="BuilderTudo Technologies — Tecnologia que transforma negócios"
+              width={720}
+              height={132}
               decoding="async"
             />
           </Link>

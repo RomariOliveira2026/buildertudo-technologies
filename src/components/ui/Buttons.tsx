@@ -1,7 +1,11 @@
 import { motion, type HTMLMotionProps } from 'framer-motion'
-import { subtleHover, motionTransition } from '../../motion/variants'
+import { motionTransition } from '../../motion/variants'
 
 type ButtonProps = HTMLMotionProps<'a'> & {
+  variant?: 'primary' | 'secondary'
+}
+
+type SubmitButtonProps = HTMLMotionProps<'button'> & {
   variant?: 'primary' | 'secondary'
 }
 
@@ -21,6 +25,28 @@ export function MotionButton({ variant = 'primary', className = '', children, ..
   )
 }
 
+export function MotionSubmitButton({
+  variant = 'primary',
+  className = '',
+  children,
+  ...props
+}: SubmitButtonProps) {
+  const baseClass = variant === 'primary' ? 'primary-btn' : 'secondary-btn'
+
+  return (
+    <motion.button
+      type="submit"
+      className={`${baseClass} ${className}`.trim()}
+      whileHover={{ y: -3, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={motionTransition.soft}
+      {...props}
+    >
+      {children}
+    </motion.button>
+  )
+}
+
 export function MotionIconButton({ className = '', children, ...props }: HTMLMotionProps<'button'>) {
   return (
     <motion.button
@@ -34,5 +60,3 @@ export function MotionIconButton({ className = '', children, ...props }: HTMLMot
     </motion.button>
   )
 }
-
-export { subtleHover }

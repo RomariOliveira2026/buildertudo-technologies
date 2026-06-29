@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+import { PageMeta } from '../components/seo/PageMeta'
 import { Header } from '../components/layouts/Header'
 import { Footer } from '../components/layouts/Footer'
 import { Hero } from '../components/sections/Hero'
@@ -7,6 +8,7 @@ import { observedSections } from '../constants/navigation'
 import { useScrollSpy } from '../hooks/useScrollSpy'
 import { useScrollState } from '../hooks/useScrollState'
 import { useTheme } from '../hooks/useTheme'
+import { DEFAULT_DESCRIPTION, homeStructuredData } from '../lib/seo'
 
 const Numbers = lazy(() => import('../components/sections/Numbers').then((m) => ({ default: m.Numbers })))
 const Ecosystem = lazy(() => import('../components/sections/Ecosystem').then((m) => ({ default: m.Ecosystem })))
@@ -26,6 +28,13 @@ export function HomePage() {
 
   return (
     <>
+      <PageMeta
+        title="Tecnologia que transforma negócios"
+        description={DEFAULT_DESCRIPTION}
+        path="/"
+        structuredData={homeStructuredData}
+      />
+
       <a className="skip-link" href="#home">
         Pular para o conteúdo principal
       </a>

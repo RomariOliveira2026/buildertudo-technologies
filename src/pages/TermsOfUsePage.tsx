@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { PageMeta } from '../components/seo/PageMeta'
 import {
   LEGAL_ECOSYSTEM_PRODUCTS,
   LegalCompanyIdentification,
@@ -10,12 +10,15 @@ import { LegalLayout } from '../components/layouts/LegalLayout'
 import { LEGAL_ROUTES } from '../constants/routes'
 
 export function TermsOfUsePage() {
-  useEffect(() => {
-    document.title = 'Termos de Uso | BuilderTudo Technologies'
-  }, [])
-
   return (
-    <LegalLayout title="Termos de Uso">
+    <>
+      <PageMeta
+        title="Termos de Uso"
+        description="Termos de Uso do site institucional da BuilderTudo Technologies."
+        path="/termos-de-uso"
+      />
+
+      <LegalLayout title="Termos de Uso">
       <p className="legal-intro">
         Estes Termos de Uso regulam o acesso e a utilização do site institucional da{' '}
         <strong>BuilderTudo Technologies</strong>, cujo slogan é{' '}
@@ -181,5 +184,6 @@ export function TermsOfUsePage() {
         <Link to={LEGAL_ROUTES.privacy}>Política de Privacidade</Link>.
       </p>
     </LegalLayout>
+    </>
   )
 }

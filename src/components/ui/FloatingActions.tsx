@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { motionTransition } from '../../motion/variants'
 
 type BackToTopProps = {
@@ -28,16 +29,16 @@ export function WhatsAppFloat() {
   return (
     <motion.a
       className="whatsapp-float"
-      href="https://wa.me/5579999348812"
+      href={buildWhatsAppUrl()}
       target="_blank"
-      rel="noreferrer"
-      aria-label="Falar no WhatsApp"
+      rel="noopener noreferrer"
+      aria-label="Falar no WhatsApp da BuilderTudo Technologies"
       title="Falar no WhatsApp"
       whileHover={{ y: -3, scale: 1.05 }}
       whileTap={{ scale: 0.97 }}
       transition={motionTransition.soft}
     >
-      💬
+      <span aria-hidden="true">💬</span>
     </motion.a>
   )
 }

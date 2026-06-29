@@ -1,0 +1,29 @@
+{
+  "name": "BuilderTudo Technologies",
+  "short_name": "BuilderTudo",
+  "description": "Tecnologia que transforma negócios. Plataformas SaaS, IA, automações e soluções digitais.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0B0F1F",
+  "theme_color": "#0B0F1F",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

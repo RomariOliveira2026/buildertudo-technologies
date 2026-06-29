@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { PageMeta } from '../components/seo/PageMeta'
 import {
   LEGAL_ECOSYSTEM_PRODUCTS,
   LegalCompanyIdentification,
@@ -11,12 +11,15 @@ import { CONTACT } from '../constants/contact'
 import { LEGAL_ROUTES } from '../constants/routes'
 
 export function PrivacyPolicyPage() {
-  useEffect(() => {
-    document.title = 'Política de Privacidade | BuilderTudo Technologies'
-  }, [])
-
   return (
-    <LegalLayout title="Política de Privacidade">
+    <>
+      <PageMeta
+        title="Política de Privacidade"
+        description="Política de Privacidade da BuilderTudo Technologies em conformidade com a LGPD."
+        path="/politica-de-privacidade"
+      />
+
+      <LegalLayout title="Política de Privacidade">
       <p className="legal-intro">
         A <strong>BuilderTudo Technologies</strong>, cujo slogan é{' '}
         <em>Tecnologia que transforma negócios</em>, está comprometida com a proteção
@@ -193,5 +196,6 @@ export function PrivacyPolicyPage() {
         <Link to={LEGAL_ROUTES.terms}>Termos de Uso</Link>.
       </p>
     </LegalLayout>
+    </>
   )
 }

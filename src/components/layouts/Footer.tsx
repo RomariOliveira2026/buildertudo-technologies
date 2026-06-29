@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import logoOficial from '../../assets/logo-oficial.png'
 import { CONTACT } from '../../constants/contact'
 import { navItems } from '../../constants/navigation'
 import { footerProducts } from '../../constants/products'
@@ -14,8 +13,8 @@ export function Footer() {
           <div className="logo logo--footer">
             <img
               className="site-logo site-logo--footer"
-              src={logoOficial}
-              alt="BuilderTudo Technologies"
+              src="/logo-oficial.png"
+              alt="BuilderTudo Technologies — Tecnologia que transforma negócios"
               width={520}
               height={120}
               loading="lazy"

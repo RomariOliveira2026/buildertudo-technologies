@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import logoOficial from '../../assets/logo-oficial.png'
 import { navItems, type NavSectionId } from '../../constants/navigation'
 import { MotionButton, MotionIconButton } from '../ui/Buttons'
 import type { Theme } from '../../hooks/useTheme'
@@ -24,10 +23,10 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
       <a className="logo" href="#home" aria-label="BuilderTudo Technologies - Início">
         <img
           className="site-logo"
-          src={logoOficial}
-          alt="BuilderTudo Technologies"
-          width={580}
-          height={108}
+          src="/logo-oficial.png"
+          alt="BuilderTudo Technologies — Tecnologia que transforma negócios"
+          width={720}
+          height={132}
           decoding="async"
           fetchPriority="high"
         />
