@@ -124,9 +124,9 @@ body {
 .logo { display: flex; flex-shrink: 0; text-decoration: none; }
 
 .site-logo {
-  height: 52px;
+  height: 68px;
   width: auto;
-  max-width: min(280px, 40vw);
+  max-width: min(380px, 46vw);
   object-fit: contain;
   display: block;
 }
@@ -822,9 +822,9 @@ body {
 }
 
 .site-logo--footer {
-  height: 48px;
-  max-width: 220px;
-  margin-bottom: 16px;
+  height: 80px;
+  max-width: min(420px, 100%);
+  margin-bottom: 20px;
 }
 
 .footer__tagline {
@@ -924,7 +924,7 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-.header--legal .site-logo { height: 44px; }
+.header--legal .site-logo { height: 56px; }
 
 .legal-back-btn { font-size: 13px !important; white-space: nowrap; }
 
@@ -1039,7 +1039,8 @@ body {
 
 @media (max-width: 640px) {
   :root { --section-y: 64px; --header-height: 72px; }
-  .site-logo { height: 40px; }
+  .site-logo { height: 52px; max-width: min(300px, 72vw); }
+  .site-logo--footer { height: 64px; }
   .contact-form__grid { grid-template-columns: 1fr; }
   .contact-form { padding: 24px 20px; }
   .footer__grid { grid-template-columns: 1fr; }

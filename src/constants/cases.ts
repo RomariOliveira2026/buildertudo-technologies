@@ -8,8 +8,8 @@ export const CASES = [
     stack: ['React', 'Supabase', 'OpenAI'],
   },
   {
-    id: 'prevpro',
-    product: 'PrevPro',
+    id: 'prevenpro',
+    product: 'PrevenPro',
     industry: 'Compliance',
     result: 'Intelligent prevention and critical process control',
     metrics: ['60% less manual work', 'Real-time alerts', 'Multi-tenant'],

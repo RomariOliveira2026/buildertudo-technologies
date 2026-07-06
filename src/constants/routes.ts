@@ -1,6 +1,6 @@
 export const PRODUCT_ROUTES = {
   blindcare: '/blindcare',
-  prevpro: '/prevpro',
+  prevenpro: '/prevenpro',
   contentfy: '/contentfy',
   voxcraft: '/voxcraft',
   fuelmaster: '/fuelmaster',

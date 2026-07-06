@@ -22,12 +22,12 @@ export const products: Product[] = [
   },
   {
     logo: '📋',
-    name: 'PrevPro',
+    name: 'PrevenPro',
     description: 'Solução inteligente para prevenção, organização e controle de processos críticos.',
     category: 'Compliance',
     technologies: ['Next.js', 'Node.js', 'Firebase', 'Cloudflare'],
     status: 'Ativo',
-    routeKey: 'prevpro',
+    routeKey: 'prevenpro',
     featured: true,
   },
   {
@@ -119,7 +119,7 @@ export const featuredProducts = products.filter((product) => product.featured)
 
 export const footerProductNames = [
   'BlindCare',
-  'PrevPro',
+  'PrevenPro',
   'VoxCraft',
   'ContentFy',
   'FuelMaster',
