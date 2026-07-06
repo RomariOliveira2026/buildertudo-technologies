@@ -10,16 +10,27 @@ import { useScrollState } from '../hooks/useScrollState'
 import { useTheme } from '../hooks/useTheme'
 import { DEFAULT_DESCRIPTION, homeStructuredData } from '../lib/seo'
 
-const Numbers = lazy(() => import('../components/sections/Numbers').then((m) => ({ default: m.Numbers })))
-const Ecosystem = lazy(() => import('../components/sections/Ecosystem').then((m) => ({ default: m.Ecosystem })))
-const Solutions = lazy(() => import('../components/sections/Solutions').then((m) => ({ default: m.Solutions })))
-const Segments = lazy(() => import('../components/sections/Segments').then((m) => ({ default: m.Segments })))
-const Differentials = lazy(() => import('../components/sections/Differentials').then((m) => ({ default: m.Differentials })))
-const Timeline = lazy(() => import('../components/sections/Timeline').then((m) => ({ default: m.Timeline })))
-const Projects = lazy(() => import('../components/sections/Projects').then((m) => ({ default: m.Projects })))
-const Studio = lazy(() => import('../components/sections/Studio').then((m) => ({ default: m.Studio })))
-const StackVisual = lazy(() => import('../components/sections/StackVisual').then((m) => ({ default: m.StackVisual })))
-const CTA = lazy(() => import('../components/sections/CTA').then((m) => ({ default: m.CTA })))
+const PlatformSection = lazy(() =>
+  import('../components/sections/PlatformSection').then((m) => ({ default: m.PlatformSection })),
+)
+const ProductsSection = lazy(() =>
+  import('../components/sections/ProductsSection').then((m) => ({ default: m.ProductsSection })),
+)
+const ServicesSection = lazy(() =>
+  import('../components/sections/ServicesSection').then((m) => ({ default: m.ServicesSection })),
+)
+const ProcessSection = lazy(() =>
+  import('../components/sections/ProcessSection').then((m) => ({ default: m.ProcessSection })),
+)
+const CasesSection = lazy(() =>
+  import('../components/sections/CasesSection').then((m) => ({ default: m.CasesSection })),
+)
+const LabsSection = lazy(() =>
+  import('../components/sections/LabsSection').then((m) => ({ default: m.LabsSection })),
+)
+const FinalCTA = lazy(() =>
+  import('../components/sections/FinalCTA').then((m) => ({ default: m.FinalCTA })),
+)
 
 export function HomePage() {
   const { theme, toggleTheme } = useTheme()
@@ -29,14 +40,14 @@ export function HomePage() {
   return (
     <>
       <PageMeta
-        title="Tecnologia que transforma negócios"
+        title="Technology platform for global companies"
         description={DEFAULT_DESCRIPTION}
         path="/"
         structuredData={homeStructuredData}
       />
 
       <a className="skip-link" href="#home">
-        Pular para o conteúdo principal
+        Skip to main content
       </a>
 
       <main className="page">
@@ -50,16 +61,13 @@ export function HomePage() {
         <Hero />
 
         <Suspense fallback={null}>
-          <Numbers />
-          <Ecosystem />
-          <Solutions />
-          <Segments />
-          <Differentials />
-          <Timeline />
-          <Projects />
-          <Studio />
-          <StackVisual />
-          <CTA />
+          <PlatformSection />
+          <ProductsSection />
+          <ServicesSection />
+          <ProcessSection />
+          <CasesSection />
+          <LabsSection />
+          <FinalCTA />
         </Suspense>
 
         <Footer />

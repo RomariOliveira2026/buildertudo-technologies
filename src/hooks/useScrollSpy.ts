@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import type { SectionId } from '../constants/navigation'
+import type { NavSectionId } from '../constants/navigation'
 
-export function useScrollSpy(sectionIds: readonly SectionId[]) {
-  const [activeSection, setActiveSection] = useState<SectionId>('home')
+export function useScrollSpy(sectionIds: readonly NavSectionId[]) {
+  const [activeSection, setActiveSection] = useState<string>(sectionIds[0] ?? 'platform')
 
   useEffect(() => {
     const sections = sectionIds
@@ -18,7 +18,7 @@ export function useScrollSpy(sectionIds: readonly SectionId[]) {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
 
         if (visible.length > 0) {
-          setActiveSection(visible[0].target.id as SectionId)
+          setActiveSection(visible[0].target.id)
         }
       },
       {

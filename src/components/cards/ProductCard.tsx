@@ -10,17 +10,26 @@ type ProductCardProps = {
   ctaLabel?: string
 }
 
-export function ProductCard({ product, variant = 'ecosystem', ctaLabel }: ProductCardProps) {
+function getInitials(name: string) {
+  return name
+    .split(/\s+/)
+    .map((w) => w[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase()
+}
+
+export function ProductCard({ product, ctaLabel }: ProductCardProps) {
   const path = product.href ?? getProductPath(product.routeKey)
   const isInteractive = Boolean(path)
-  const label = ctaLabel ?? (variant === 'featured' ? 'Conhecer Projeto' : 'Saiba mais')
+  const label = ctaLabel ?? 'Learn more'
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-  const rotateX = useTransform(y, [-0.5, 0.5], [6, -6])
-  const rotateY = useTransform(x, [-0.5, 0.5], [-6, 6])
-  const springX = useSpring(rotateX, { stiffness: 260, damping: 22 })
-  const springY = useSpring(rotateY, { stiffness: 260, damping: 22 })
+  const rotateX = useTransform(y, [-0.5, 0.5], [3, -3])
+  const rotateY = useTransform(x, [-0.5, 0.5], [-3, 3])
+  const springX = useSpring(rotateX, { stiffness: 300, damping: 30 })
+  const springY = useSpring(rotateY, { stiffness: 300, damping: 30 })
 
   const handleMove = (event: MouseEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -33,45 +42,27 @@ export function ProductCard({ product, variant = 'ecosystem', ctaLabel }: Produc
     y.set(0)
   }
 
-  const cardClass = [
-    'product-card',
-    'glass-card',
-    variant === 'ecosystem' ? 'card card--compact ecosystem-card' : 'project-card',
-  ].join(' ')
-
   const content = (
     <>
-      <div className="product-card__glow" aria-hidden="true" />
-      <div className="product-logo" aria-hidden="true">{product.logo}</div>
-      <span className="product-category">{product.category}</span>
+      <div className="product-card__icon" aria-hidden="true">{getInitials(product.name)}</div>
+      <span className="product-card__category">{product.category}</span>
       <h3>{product.name}</h3>
       <p>{product.description}</p>
-
-      {variant === 'featured' && (
-        <ul className="project-tech" aria-label={`Tecnologias de ${product.name}`}>
-          {product.technologies.map((tech) => (
-            <li key={tech}>{tech}</li>
-          ))}
-        </ul>
-      )}
-
-      <span className="product-status">{product.status}</span>
-
+      <span className={`product-card__status product-card__status--${product.status === 'Ativo' ? 'active' : 'evolving'}`}>
+        {product.status === 'Ativo' ? 'Live' : 'In progress'}
+      </span>
       {isInteractive ? (
-        <span className="primary-btn link-btn product-card__cta">{label}</span>
-      ) : (
-        <span className="secondary-btn link-btn product-card__cta product-card__cta--muted">{label}</span>
-      )}
+        <span className="product-card__link">{label} →</span>
+      ) : null}
     </>
   )
 
   const motionProps = {
-    className: cardClass,
-    style: { rotateX: springX, rotateY: springY, transformPerspective: 900 },
+    className: 'product-card',
+    style: { rotateX: springX, rotateY: springY, transformPerspective: 1200 },
     onMouseMove: handleMove,
     onMouseLeave: resetTilt,
-    whileHover: { y: -8, scale: 1.01 },
-    whileTap: { scale: 0.99 },
+    whileHover: { y: -4 },
     transition: motionTransition.soft,
   }
 
@@ -80,7 +71,6 @@ export function ProductCard({ product, variant = 'ecosystem', ctaLabel }: Produc
       <motion.a
         {...motionProps}
         href={path}
-        data-route={path}
         aria-label={`${label} — ${product.name}`}
         onClick={(event) => {
           if (path?.startsWith('#')) return

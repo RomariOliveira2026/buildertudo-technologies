@@ -1,24 +1,21 @@
 export const navItems = [
-  { id: 'ecossistema', label: 'Ecossistema' },
-  { id: 'solucoes', label: 'Soluções' },
-  { id: 'studio', label: 'Studio' },
-  { id: 'tecnologias', label: 'Tecnologias' },
-  { id: 'contato', label: 'Contato' },
-] as const
-
-export const observedSections = [
-  'home',
-  'numeros',
-  'ecossistema',
-  'solucoes',
-  'segmentos',
-  'diferenciais',
-  'processo',
-  'projetos',
-  'studio',
-  'tecnologias',
-  'contato',
+  { id: 'platform', label: 'Platform' },
+  { id: 'products', label: 'Products' },
+  { id: 'services', label: 'Services' },
+  { id: 'process', label: 'Process' },
+  { id: 'cases', label: 'Cases' },
+  { id: 'labs', label: 'Labs' },
+  { id: 'contact', label: 'Contact' },
 ] as const
 
 export type NavSectionId = (typeof navItems)[number]['id']
-export type SectionId = (typeof observedSections)[number]
+
+export const observedSections: NavSectionId[] = [
+  'platform',
+  'products',
+  'services',
+  'process',
+  'cases',
+  'labs',
+  'contact',
+]

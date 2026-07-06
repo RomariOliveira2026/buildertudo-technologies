@@ -4,7 +4,7 @@ import { CONTACT } from '../constants/contact'
 export const SITE_NAME = 'BuilderTudo Technologies'
 export const SITE_SLOGAN = 'Tecnologia que transforma negócios.'
 export const DEFAULT_DESCRIPTION =
-  'BuilderTudo Technologies desenvolve plataformas SaaS, Inteligência Artificial, automações, sistemas web, aplicativos e soluções digitais para empresas.'
+  'BuilderTudo Technologies — full-stack platform company. Framework, Business OS, AI-OS, Engine, 12+ SaaS products. Enterprise-grade engineering for global clients.'
 
 export const DEFAULT_OG_IMAGE = `${env.siteUrl}/logo-oficial.png`
 

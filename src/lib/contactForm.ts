@@ -1,13 +1,14 @@
 export const CONTACT_SERVICES = [
-  'Inteligência Artificial',
-  'Plataforma SaaS',
-  'Sistema Web',
-  'Aplicativo',
-  'Automação',
-  'UX/UI e Identidade Visual',
-  'Consultoria Tecnológica',
-  'BuilderTudo Studio',
-  'Outro',
+  'Platform Engineering',
+  'AI Integration',
+  'SaaS Development',
+  'Web Application',
+  'Mobile Application',
+  'Automation & Integration',
+  'UX/UI & Design System',
+  'Technology Consulting',
+  'Dedicated Squad',
+  'Other',
 ] as const
 
 export type ContactService = (typeof CONTACT_SERVICES)[number]
@@ -34,14 +35,14 @@ export function validateContactForm(data: ContactFormData): ContactFormErrors {
   const email = data.email.trim()
   const message = data.message.trim()
 
-  if (name.length < 3) errors.name = 'Informe seu nome completo.'
-  if (company.length < 2) errors.company = 'Informe o nome da empresa.'
+  if (name.length < 3) errors.name = 'Please enter your full name.'
+  if (company.length < 2) errors.company = 'Please enter your company name.'
   if (!phonePattern.test(phone.replace(/\s/g, ''))) {
-    errors.phone = 'Informe um WhatsApp válido com DDD.'
+    errors.phone = 'Please enter a valid phone number with area code.'
   }
-  if (!emailPattern.test(email)) errors.email = 'Informe um e-mail válido.'
-  if (!data.service) errors.service = 'Selecione o serviço desejado.'
-  if (message.length < 10) errors.message = 'Descreva sua necessidade com pelo menos 10 caracteres.'
+  if (!emailPattern.test(email)) errors.email = 'Please enter a valid email address.'
+  if (!data.service) errors.service = 'Please select a service.'
+  if (message.length < 10) errors.message = 'Please describe your needs (min. 10 characters).'
 
   return errors
 }

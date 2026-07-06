@@ -1,48 +1,56 @@
 import { Link } from 'react-router-dom'
 import { CONTACT } from '../../constants/contact'
+import { ECOSYSTEM_LAYERS } from '../../constants/ecosystem'
 import { navItems } from '../../constants/navigation'
 import { footerProducts } from '../../constants/products'
-import { stackTechnologies } from '../../constants/stack'
-import { BLOG_ROUTES, LEGAL_ROUTES } from '../../constants/routes'
+import { LEGAL_ROUTES } from '../../constants/routes'
+import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 export function Footer() {
   return (
-    <footer className="footer-premium" role="contentinfo">
-      <div className="footer-grid footer-grid--premium">
-        <div className="footer-brand-col">
-          <div className="logo logo--footer">
-            <img
-              className="site-logo site-logo--footer"
-              src="/logo-oficial.png"
-              alt="BuilderTudo Technologies — Tecnologia que transforma negócios"
-              width={520}
-              height={120}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <p className="footer-slogan">Tecnologia que transforma negócios.</p>
-          <p>
-            Empresa de tecnologia que desenvolve plataformas SaaS, Inteligência Artificial,
-            automações, sistemas web, aplicativos e soluções digitais para empresas.
+    <footer className="footer" role="contentinfo">
+      <div className="container footer__grid">
+        <div className="footer__brand">
+          <img
+            className="site-logo site-logo--footer"
+            src="/logo-oficial.png"
+            alt="BuilderTudo Technologies"
+            width={520}
+            height={120}
+            loading="lazy"
+            decoding="async"
+          />
+          <p className="footer__tagline">Technology that transforms businesses.</p>
+          <p className="footer__desc">
+            Full-stack platform company — Framework, AI-OS, Engine and 12+ products.
+            Built in Brazil, ready for the world.
           </p>
         </div>
 
         <div>
-          <h4>Empresa</h4>
+          <h3 className="footer__heading">Platform</h3>
           <ul>
-            {navItems.map((item) => (
-              <li key={item.id}><Link to={`/#${item.id}`}>{item.label}</Link></li>
+            {ECOSYSTEM_LAYERS.slice(0, 4).map((layer) => (
+              <li key={layer.id}>
+                <a href={`#platform`}>{layer.name}</a>
+              </li>
             ))}
-            <li><Link to="/#numeros">Números</Link></li>
-            <li><Link to="/#segmentos">Segmentos</Link></li>
-            <li><Link to="/#diferenciais">Diferenciais</Link></li>
-            <li><a href={BLOG_ROUTES.blog} aria-label="Blog em breve">Blog</a></li>
           </ul>
         </div>
 
         <div>
-          <h4>Produtos</h4>
+          <h3 className="footer__heading">Navigate</h3>
+          <ul>
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a href={`#${item.id}`}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="footer__heading">Products</h3>
           <ul>
             {footerProducts.map((product) => (
               <li key={product.name}>{product.name}</li>
@@ -51,31 +59,30 @@ export function Footer() {
         </div>
 
         <div>
-          <h4>Tecnologias</h4>
+          <h3 className="footer__heading">Contact</h3>
           <ul>
-            {stackTechnologies.slice(0, 6).map((tech) => (
-              <li key={tech}>{tech}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4>Contato</h4>
-          <ul>
-            <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
-            <li><a href={CONTACT.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a></li>
-            <li><a href={CONTACT.github} target="_blank" rel="noreferrer">GitHub</a></li>
-            <li><a href={CONTACT.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
-            <li><a href={CONTACT.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
+            <li>
+              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+            </li>
+            <li>
+              <a href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
+                WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+            </li>
           </ul>
         </div>
       </div>
 
-      <div className="footer-bottom footer-bottom--premium">
-        <p>© 2026 BuilderTudo Technologies. Todos os direitos reservados.</p>
-        <div className="footer-legal">
-          <Link to={LEGAL_ROUTES.privacy}>Política de Privacidade</Link>
-          <Link to={LEGAL_ROUTES.terms}>Termos de Uso</Link>
+      <div className="container footer__bottom">
+        <p>© {new Date().getFullYear()} BuilderTudo Technologies. All rights reserved.</p>
+        <div className="footer__legal">
+          <Link to={LEGAL_ROUTES.privacy}>Privacy Policy</Link>
+          <Link to={LEGAL_ROUTES.terms}>Terms of Use</Link>
         </div>
       </div>
     </footer>

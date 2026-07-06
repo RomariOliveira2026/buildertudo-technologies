@@ -47,7 +47,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
     if (hasContactFormErrors(validation)) {
       setErrors(validation)
       setStatus('error')
-      setFeedback('Revise os campos destacados antes de enviar.')
+      setFeedback('Please review the highlighted fields.')
       return
     }
 
@@ -74,12 +74,12 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 
       setStatus('success')
-      setFeedback('Solicitação registrada! Abrimos o WhatsApp para você concluir o contato.')
+      setFeedback('Request received! We opened WhatsApp so you can complete your message.')
       setForm(initialState)
       setErrors({})
     } catch {
       setStatus('error')
-      setFeedback('Não foi possível enviar agora. Tente novamente ou fale conosco pelo WhatsApp.')
+      setFeedback('Unable to send right now. Try again or contact us via WhatsApp.')
     }
   }
 
@@ -93,7 +93,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
     >
       <div className="contact-form__grid">
         <div className="contact-form__field">
-          <label htmlFor={`${id}-name`}>Nome *</label>
+          <label htmlFor={`${id}-name`}>Name *</label>
           <input
             id={`${id}-name`}
             name="name"
@@ -109,7 +109,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field">
-          <label htmlFor={`${id}-company`}>Empresa *</label>
+          <label htmlFor={`${id}-company`}>Company *</label>
           <input
             id={`${id}-company`}
             name="company"
@@ -125,7 +125,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field">
-          <label htmlFor={`${id}-phone`}>WhatsApp *</label>
+          <label htmlFor={`${id}-phone`}>Phone / WhatsApp *</label>
           <input
             id={`${id}-phone`}
             name="phone"
@@ -143,7 +143,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field">
-          <label htmlFor={`${id}-email`}>E-mail *</label>
+          <label htmlFor={`${id}-email`}>Email *</label>
           <input
             id={`${id}-email`}
             name="email"
@@ -159,7 +159,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field contact-form__field--full">
-          <label htmlFor={`${id}-service`}>Serviço desejado *</label>
+          <label htmlFor={`${id}-service`}>Service needed *</label>
           <select
             id={`${id}-service`}
             name="service"
@@ -169,7 +169,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
             aria-describedby={errors.service ? `${id}-service-error` : undefined}
             required
           >
-            <option value="">Selecione uma opção</option>
+            <option value="">Select an option</option>
             {CONTACT_SERVICES.map((service) => (
               <option key={service} value={service}>
                 {service}
@@ -180,7 +180,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field contact-form__field--full">
-          <label htmlFor={`${id}-message`}>Mensagem *</label>
+          <label htmlFor={`${id}-message`}>Message *</label>
           <textarea
             id={`${id}-message`}
             name="message"
@@ -200,7 +200,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
           className="contact-form__submit"
           aria-busy={status === 'submitting'}
         >
-          {status === 'submitting' ? 'Enviando...' : 'Solicitar orçamento'}
+          {status === 'submitting' ? 'Sending...' : 'Request a quote'}
         </MotionSubmitButton>
       </div>
 
