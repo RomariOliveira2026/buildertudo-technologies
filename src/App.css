@@ -131,6 +131,11 @@ body {
   display: block;
 }
 
+.header .site-logo {
+  height: 82px;
+  max-width: min(520px, 58vw);
+}
+
 .header nav {
   display: flex;
   gap: 4px;
@@ -924,7 +929,7 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-.header--legal .site-logo { height: 56px; }
+.header--legal .site-logo { height: 64px; }
 
 .legal-back-btn { font-size: 13px !important; white-space: nowrap; }
 
@@ -1039,6 +1044,7 @@ body {
 
 @media (max-width: 640px) {
   :root { --section-y: 64px; --header-height: 72px; }
+  .header .site-logo { height: 58px; max-width: min(340px, 78vw); }
   .site-logo { height: 52px; max-width: min(300px, 72vw); }
   .site-logo--footer { height: 64px; }
   .contact-form__grid { grid-template-columns: 1fr; }
