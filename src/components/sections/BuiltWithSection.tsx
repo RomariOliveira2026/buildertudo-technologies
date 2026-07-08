@@ -73,7 +73,7 @@ export function BuiltWithSection() {
 
       <Reveal>
         <div className="section-cta-row">
-          <MotionButton href="#contact">Start a project</MotionButton>
+          <MotionButton href="/#contact">Start a project</MotionButton>
           <MotionButton href="/live" variant="secondary">View live status</MotionButton>
         </div>
       </Reveal>

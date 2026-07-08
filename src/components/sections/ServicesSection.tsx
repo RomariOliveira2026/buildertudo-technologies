@@ -47,7 +47,7 @@ export function ServicesSection() {
 
       <Reveal>
         <div className="section-cta-row">
-          <MotionButton href="#contact">Start a project</MotionButton>
+          <MotionButton href="/#contact">Start a project</MotionButton>
           <MotionButton href="mailto:contato@buildertudo.com?subject=Book%20a%20Discovery%20Call" variant="secondary">
             Book a discovery call
           </MotionButton>

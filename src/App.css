@@ -75,6 +75,13 @@ body {
   max-width: var(--container-docs);
 }
 
+/* Home page — same wide measure everywhere (matches local dev layout) */
+.page:not(.subpage) .section > .container,
+.page:not(.subpage) .final-cta .container,
+.page:not(.subpage) .footer .container {
+  max-width: var(--container-docs);
+}
+
 /* Skip link & focus */
 .skip-link {
   position: absolute;
