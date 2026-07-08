@@ -22,6 +22,7 @@
   --radius: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
+  --scale: 1.06;
   --header-height: 124px;
   --container: min(1760px, 98vw);
   --container-docs: min(1760px, 98vw);
@@ -49,14 +50,17 @@
   --shadow: 0 24px 64px rgba(11, 15, 31, 0.08);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  font-size: calc(16px * var(--scale));
+}
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background 0.3s ease, color 0.3s ease;
@@ -161,10 +165,10 @@ body {
 }
 
 .header nav a {
-  padding: 10px 14px;
+  padding: 11px 16px;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   border-radius: 8px;
   transition: color var(--transition), background var(--transition);
@@ -225,7 +229,7 @@ body {
   padding: 10px 20px;
   border-radius: 8px;
   font-family: var(--font);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
