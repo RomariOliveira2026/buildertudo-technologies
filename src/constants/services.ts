@@ -1,44 +1,72 @@
 export const SERVICES = [
   {
-    id: 'platform-engineering',
-    title: 'Platform Engineering',
-    description:
-      'End-to-end design and development of SaaS platforms, internal tools and digital products built on the BuilderTudo stack.',
-    deliverables: ['Architecture', 'MVP to scale', 'Cloud deployment', 'CI/CD'],
+    id: 'ai-product-engineering',
+    title: 'AI Product Engineering',
+    description: 'End-to-end product development with AI-native architecture — copilots, agents and governed intelligence from day one.',
+    deliverables: ['AI architecture', 'Copilot design', 'MVP to scale', 'Production AI'],
+    differentiator: 'Built on AI-OS with guardrails, not bolt-on ChatGPT integrations.',
+  },
+  {
+    id: 'enterprise-saas',
+    title: 'Enterprise SaaS',
+    description: 'Multi-tenant platforms engineered for scale — security, compliance and performance from the first sprint.',
+    deliverables: ['Multi-tenant architecture', 'SSO & RBAC', 'Audit trails', 'SLA design'],
+    differentiator: 'Golden Screens validated before build — reducing enterprise rework by 60%.',
+  },
+  {
+    id: 'internal-platforms',
+    title: 'Internal Platforms',
+    description: 'Custom business operating systems — the same approach we use internally with Business OS.',
+    deliverables: ['Command center', 'Workflow design', 'Integration layer', 'Admin panels'],
+    differentiator: 'We eat our own cooking — Business OS is our live reference implementation.',
   },
   {
     id: 'ai-integration',
     title: 'AI Integration',
-    description:
-      'Embed intelligence into your product — agents, copilots, document processing, voice and predictive workflows powered by AI-OS.',
-    deliverables: ['LLM integration', 'Agent design', 'RAG systems', 'AI governance'],
+    description: 'Embed governed intelligence — copilots, RAG, agents and automation with AI-OS guardrails.',
+    deliverables: ['LLM integration', 'Knowledge core', 'Agent design', 'AI governance'],
+    differentiator: 'Decision trees and guardrails ensure compliance, not chaos.',
   },
   {
-    id: 'automation',
-    title: 'Automation & Integration',
-    description:
-      'Connect systems, eliminate manual work and orchestrate complex business processes with the BuilderTudo Engine.',
-    deliverables: ['API integrations', 'Workflow automation', 'Webhooks', 'Monitoring'],
+    id: 'business-operating-systems',
+    title: 'Business Operating Systems',
+    description: 'Unified operational platforms connecting CRM, analytics, tasks, deploys and AI in one ecosystem.',
+    deliverables: ['CRM & pipeline', 'Analytics hub', 'Deploy tracking', 'AI center'],
+    differentiator: 'Framework Health metrics prove platform quality in real-time.',
   },
   {
-    id: 'design-system',
-    title: 'Design System & UX',
-    description:
-      'Premium interfaces using Golden Screens and Component Library — consistent, accessible and conversion-optimized.',
-    deliverables: ['UI/UX design', 'Design tokens', 'Prototyping', 'WCAG compliance'],
+    id: 'modernization',
+    title: 'System Modernization',
+    description: 'Migrate legacy systems to modern stacks without disrupting operations — phased, low-risk approach.',
+    deliverables: ['Legacy audit', 'Migration plan', 'Parallel run', 'Team training'],
+    differentiator: 'Framework adoption accelerates migration 3x vs. greenfield rewrite.',
   },
   {
-    id: 'consulting',
-    title: 'Technology Consulting',
-    description:
-      'Strategic advisory for CTOs and founders — product roadmap, technical due diligence and architecture reviews.',
+    id: 'architecture',
+    title: 'Architecture Consulting',
+    description: 'System design for CTOs and founders — technical due diligence, stack decisions and scale planning.',
+    deliverables: ['Architecture review', 'Tech audit', 'Scale planning', 'Security assessment'],
+    differentiator: 'Recommendations based on 12 official products built on our own Framework.',
+  },
+  {
+    id: 'discovery',
+    title: 'Product Discovery',
+    description: 'Structured discovery sprints to validate ideas, define scope and de-risk investment before build.',
+    deliverables: ['User research', 'Scope definition', 'Feasibility study', 'Roadmap'],
+    differentiator: 'Product Method with Golden Screens — align stakeholders before writing code.',
+  },
+  {
+    id: 'framework-adoption',
+    title: 'Framework Adoption',
+    description: 'Implement BuilderTudo Framework in your organization — design system, components and engineering standards.',
+    deliverables: ['Framework setup', 'Golden Screens', 'Engine integration', 'Documentation'],
+    differentiator: '80+ components, 37 packages and 15 Golden Screens ready to deploy.',
+  },
+  {
+    id: 'technical-consulting',
+    title: 'Technical Consulting',
+    description: 'Strategic advisory for engineering leaders — vendor selection, team scaling and technology roadmaps.',
     deliverables: ['Tech audit', 'Roadmap', 'Team scaling', 'Vendor selection'],
-  },
-  {
-    id: 'dedicated-team',
-    title: 'Dedicated Squad',
-    description:
-      'A BuilderTudo squad embedded in your operation — engineers, designers and AI specialists shipping weekly.',
-    deliverables: ['Sprint delivery', 'Slack/Upwork sync', 'Weekly demos', 'SLA support'],
+    differentiator: 'Advice from a team that runs a full engineering platform daily.',
   },
 ] as const

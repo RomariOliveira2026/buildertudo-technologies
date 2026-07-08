@@ -10,27 +10,13 @@ import { useScrollState } from '../hooks/useScrollState'
 import { useTheme } from '../hooks/useTheme'
 import { DEFAULT_DESCRIPTION, homeStructuredData } from '../lib/seo'
 
-const PlatformSection = lazy(() =>
-  import('../components/sections/PlatformSection').then((m) => ({ default: m.PlatformSection })),
-)
-const ProductsSection = lazy(() =>
-  import('../components/sections/ProductsSection').then((m) => ({ default: m.ProductsSection })),
-)
-const ServicesSection = lazy(() =>
-  import('../components/sections/ServicesSection').then((m) => ({ default: m.ServicesSection })),
-)
-const ProcessSection = lazy(() =>
-  import('../components/sections/ProcessSection').then((m) => ({ default: m.ProcessSection })),
-)
-const CasesSection = lazy(() =>
-  import('../components/sections/CasesSection').then((m) => ({ default: m.CasesSection })),
-)
-const LabsSection = lazy(() =>
-  import('../components/sections/LabsSection').then((m) => ({ default: m.LabsSection })),
-)
-const FinalCTA = lazy(() =>
-  import('../components/sections/FinalCTA').then((m) => ({ default: m.FinalCTA })),
-)
+const CredibilitySection = lazy(() => import('../components/sections/CredibilitySection').then((m) => ({ default: m.CredibilitySection })))
+const PlatformSection = lazy(() => import('../components/sections/PlatformSection').then((m) => ({ default: m.PlatformSection })))
+const BusinessOSSection = lazy(() => import('../components/sections/BusinessOSSection').then((m) => ({ default: m.BusinessOSSection })))
+const BuiltWithSection = lazy(() => import('../components/sections/BuiltWithSection').then((m) => ({ default: m.BuiltWithSection })))
+const ProcessSection = lazy(() => import('../components/sections/ProcessSection').then((m) => ({ default: m.ProcessSection })))
+const ServicesSection = lazy(() => import('../components/sections/ServicesSection').then((m) => ({ default: m.ServicesSection })))
+const FinalCTA = lazy(() => import('../components/sections/FinalCTA').then((m) => ({ default: m.FinalCTA })))
 
 export function HomePage() {
   const { theme, toggleTheme } = useTheme()
@@ -40,38 +26,29 @@ export function HomePage() {
   return (
     <>
       <PageMeta
-        title="Technology platform for global companies"
+        title="Proprietary AI engineering platform for global companies"
         description={DEFAULT_DESCRIPTION}
         path="/"
         structuredData={homeStructuredData}
       />
 
-      <a className="skip-link" href="#home">
-        Skip to main content
-      </a>
+      <a className="skip-link" href="#home">Skip to main content</a>
 
       <main className="page">
-        <Header
-          headerScrolled={headerScrolled}
-          activeSection={activeSection}
-          theme={theme}
-          onToggleTheme={toggleTheme}
-        />
-
+        <Header headerScrolled={headerScrolled} activeSection={activeSection} theme={theme} onToggleTheme={toggleTheme} />
         <Hero />
 
         <Suspense fallback={null}>
+          <CredibilitySection />
           <PlatformSection />
-          <ProductsSection />
-          <ServicesSection />
+          <BusinessOSSection />
+          <BuiltWithSection />
           <ProcessSection />
-          <CasesSection />
-          <LabsSection />
+          <ServicesSection />
           <FinalCTA />
         </Suspense>
 
         <Footer />
-
         <WhatsAppFloat />
         <BackToTop visible={showBackToTop} onClick={scrollToTop} />
       </main>

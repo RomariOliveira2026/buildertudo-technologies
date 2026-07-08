@@ -1,6 +1,8 @@
-import { CASES } from '../../constants/cases'
-import { Reveal, StaggerItem, StaggerReveal } from '../ui/Reveal'
+import { Link } from 'react-router-dom'
+import { products } from '../../constants/products'
+import { Reveal } from '../ui/Reveal'
 import { Section, SectionHeader } from '../ui/Section'
+import { MotionButton } from '../ui/Buttons'
 
 export function CasesSection() {
   return (
@@ -9,34 +11,27 @@ export function CasesSection() {
         <SectionHeader
           id="cases-title"
           eyebrow="Cases"
-          title="Results that speak for themselves"
-          description="Selected implementations across healthcare, compliance, AI and enterprise — built on BuilderTudo and deployed to production."
+          title="Deep dives into our products"
+          description="Each BuilderTudo product has a full case study — problem, architecture, AI, results and roadmap."
         />
       </Reveal>
 
-      <StaggerReveal className="cases-grid">
-        {CASES.map((item) => (
-          <StaggerItem key={item.id}>
-            <article className="case-card">
-              <div className="case-card__meta">
-                <span className="badge badge--outline">{item.industry}</span>
-                <h3>{item.product}</h3>
-              </div>
-              <p className="case-card__result">{item.result}</p>
-              <ul className="case-card__metrics" aria-label={`${item.product} results`}>
-                {item.metrics.map((m) => (
-                  <li key={m}>{m}</li>
-                ))}
-              </ul>
-              <div className="case-card__stack">
-                {item.stack.map((tech) => (
-                  <span key={tech}>{tech}</span>
-                ))}
-              </div>
-            </article>
-          </StaggerItem>
+      <div className="cases-preview-grid">
+        {products.filter((p) => p.featured).map((product) => (
+          <Link key={product.slug} className="case-preview-card" to={`/cases/${product.slug}`}>
+            <span className="case-preview-card__logo" aria-hidden="true">{product.logo}</span>
+            <h3>{product.name}</h3>
+            <p>{product.objective}</p>
+            <span className="case-preview-card__link">Read case study →</span>
+          </Link>
         ))}
-      </StaggerReveal>
+      </div>
+
+      <Reveal>
+        <div className="section-cta-row">
+          <MotionButton href="/#built-with">View all products</MotionButton>
+        </div>
+      </Reveal>
     </Section>
   )
 }

@@ -2,19 +2,23 @@ import { motion, type HTMLMotionProps } from 'framer-motion'
 import { motionTransition } from '../../motion/variants'
 
 type ButtonProps = HTMLMotionProps<'a'> & {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'ghost'
 }
 
 type SubmitButtonProps = HTMLMotionProps<'button'> & {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'ghost'
+}
+
+function getButtonClass(variant: ButtonProps['variant']) {
+  if (variant === 'secondary') return 'secondary-btn link-btn'
+  if (variant === 'ghost') return 'ghost-btn link-btn'
+  return 'primary-btn link-btn'
 }
 
 export function MotionButton({ variant = 'primary', className = '', children, ...props }: ButtonProps) {
-  const baseClass = variant === 'primary' ? 'primary-btn link-btn' : 'secondary-btn link-btn'
-
   return (
     <motion.a
-      className={`${baseClass} ${className}`.trim()}
+      className={`${getButtonClass(variant)} ${className}`.trim()}
       whileHover={{ y: -3, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={motionTransition.soft}

@@ -2,31 +2,41 @@ export const BUILDER_PROCESS = [
   {
     step: '01',
     title: 'Discovery',
-    description: 'Deep dive into business goals, users, constraints and success metrics.',
+    description: 'Business goals, users, constraints and success metrics — a structured, senior intake.',
   },
   {
     step: '02',
-    title: 'Architecture',
-    description: 'System design on BuilderTudo Framework — stack, integrations, security and scale plan.',
+    title: 'Product Method',
+    description: 'Scope, priorities and delivery plan using our proprietary product methodology.',
   },
   {
     step: '03',
-    title: 'Design',
-    description: 'Golden Screens and Component Library applied to flows, wireframes and prototypes.',
+    title: 'Architecture',
+    description: 'System design — stack, security, data model, integrations and scale plan.',
   },
   {
     step: '04',
-    title: 'Build',
-    description: 'Agile sprints with AI-OS and Engine — continuous delivery with transparent progress.',
+    title: 'AI-OS',
+    description: 'Intelligence layer design — copilots, guardrails and knowledge architecture.',
   },
   {
     step: '05',
-    title: 'Launch',
-    description: 'Production deployment, monitoring, documentation and team handoff.',
+    title: 'Engine',
+    description: 'Automation, workflows and integration layer configured for execution at scale.',
   },
   {
     step: '06',
-    title: 'Scale',
-    description: 'Performance optimization, feature evolution and dedicated support.',
+    title: 'Golden Screens',
+    description: 'Reference UI implementations validated before full development begins.',
+  },
+  {
+    step: '07',
+    title: 'Deploy',
+    description: 'Production release with monitoring, documentation and clean handoff.',
+  },
+  {
+    step: '08',
+    title: 'Evolution',
+    description: 'Continuous improvement, feature evolution and dedicated engineering support.',
   },
 ] as const

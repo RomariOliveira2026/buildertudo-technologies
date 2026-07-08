@@ -1,6 +1,20 @@
 import { SERVICES } from '../../constants/services'
 import { Reveal, StaggerItem, StaggerReveal } from '../ui/Reveal'
 import { Section, SectionHeader } from '../ui/Section'
+import { MotionButton } from '../ui/Buttons'
+
+const HOME_SERVICE_IDS = [
+  'ai-product-engineering',
+  'enterprise-saas',
+  'business-operating-systems',
+  'ai-integration',
+  'internal-platforms',
+  'architecture',
+] as const
+
+const HOME_SERVICES = HOME_SERVICE_IDS.map((id) => SERVICES.find((s) => s.id === id)).filter(
+  (s): s is (typeof SERVICES)[number] => Boolean(s),
+)
 
 export function ServicesSection() {
   return (
@@ -9,17 +23,18 @@ export function ServicesSection() {
         <SectionHeader
           id="services-title"
           eyebrow="Services"
-          title="High-value engagements for global clients"
-          description="From Upwork projects to enterprise contracts — we deliver with transparent sprints, senior engineers and the full BuilderTudo platform behind every line of code."
+          title="Platform engineering, not programming"
+          description="We sell engineering capability backed by a proprietary platform — every engagement inherits Framework, AI-OS and Business OS."
         />
       </Reveal>
 
       <StaggerReveal className="services-grid">
-        {SERVICES.map((service) => (
+        {HOME_SERVICES.map((service) => (
           <StaggerItem key={service.id}>
             <article className="service-card">
               <h3>{service.title}</h3>
               <p>{service.description}</p>
+              <p className="service-card__diff">{service.differentiator}</p>
               <ul aria-label={`${service.title} deliverables`}>
                 {service.deliverables.map((item) => (
                   <li key={item}>{item}</li>
@@ -29,6 +44,16 @@ export function ServicesSection() {
           </StaggerItem>
         ))}
       </StaggerReveal>
+
+      <Reveal>
+        <div className="section-cta-row">
+          <MotionButton href="#contact">Start a project</MotionButton>
+          <MotionButton href="mailto:contato@buildertudo.com?subject=Book%20a%20Discovery%20Call" variant="secondary">
+            Book a discovery call
+          </MotionButton>
+          <MotionButton href="/framework" variant="ghost">Explore the Framework</MotionButton>
+        </div>
+      </Reveal>
     </Section>
   )
 }

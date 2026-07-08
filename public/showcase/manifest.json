@@ -1,0 +1,19 @@
+{
+  "screens": [
+    "ai-center",
+    "analytics",
+    "ceo-copilot",
+    "command-center",
+    "crm",
+    "deploy",
+    "framework-health",
+    "framework",
+    "products-hub",
+    "settings",
+    "studio",
+    "tasks"
+  ],
+  "products": [],
+  "format": "webp",
+  "capturedAt": "2026-07-07T15:13:43.410Z"
+}

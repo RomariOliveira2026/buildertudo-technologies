@@ -1,6 +1,8 @@
 import type { MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import type { Product, ProductCardVariant } from '../../types/product'
+import { getProductStatusLabel } from '../../types/product'
 import { getProductPath } from '../../utils/productPath'
 import { motionTransition } from '../../motion/variants'
 
@@ -20,9 +22,9 @@ function getInitials(name: string) {
 }
 
 export function ProductCard({ product, ctaLabel }: ProductCardProps) {
-  const path = product.href ?? getProductPath(product.routeKey)
+  const path = product.href ?? getProductPath(product.routeKey, product.slug)
   const isInteractive = Boolean(path)
-  const label = ctaLabel ?? 'Learn more'
+  const label = ctaLabel ?? 'View product'
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -44,13 +46,29 @@ export function ProductCard({ product, ctaLabel }: ProductCardProps) {
 
   const content = (
     <>
-      <div className="product-card__icon" aria-hidden="true">{getInitials(product.name)}</div>
+      <div className="product-card__top">
+        <div className="product-card__icon" aria-hidden="true">{product.logo || getInitials(product.name)}</div>
+        <div className="product-card__meta">
+          <span className={`product-card__status product-card__status--${product.status}`}>
+            {getProductStatusLabel(product.status)}
+          </span>
+          <span className="product-card__health" title="Health score">{product.healthScore}%</span>
+        </div>
+      </div>
       <span className="product-card__category">{product.category}</span>
       <h3>{product.name}</h3>
       <p>{product.description}</p>
-      <span className={`product-card__status product-card__status--${product.status === 'Ativo' ? 'active' : 'evolving'}`}>
-        {product.status === 'Ativo' ? 'Live' : 'In progress'}
-      </span>
+      <ul className="product-card__tech" aria-label="Technologies">
+        {product.technologies.slice(0, 4).map((tech) => (
+          <li key={tech}>{tech}</li>
+        ))}
+      </ul>
+      {product.roadmap.length > 0 ? (
+        <div className="product-card__roadmap">
+          <span className="product-card__roadmap-label">Next</span>
+          <span>{product.roadmap[0]}</span>
+        </div>
+      ) : null}
       {isInteractive ? (
         <span className="product-card__link">{label} →</span>
       ) : null}
@@ -68,17 +86,11 @@ export function ProductCard({ product, ctaLabel }: ProductCardProps) {
 
   if (isInteractive && path) {
     return (
-      <motion.a
-        {...motionProps}
-        href={path}
-        aria-label={`${label} — ${product.name}`}
-        onClick={(event) => {
-          if (path?.startsWith('#')) return
-          event.preventDefault()
-        }}
-      >
-        {content}
-      </motion.a>
+      <motion.div {...motionProps}>
+        <Link className="product-card__link-wrap" to={path} aria-label={`${label} — ${product.name}`}>
+          {content}
+        </Link>
+      </motion.div>
     )
   }
 

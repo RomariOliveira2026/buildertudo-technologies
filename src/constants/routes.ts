@@ -1,16 +1,26 @@
 export const PRODUCT_ROUTES = {
-  blindcare: '/blindcare',
-  prevenpro: '/prevenpro',
-  contentfy: '/contentfy',
-  voxcraft: '/voxcraft',
-  fuelmaster: '/fuelmaster',
-  fui: '/fui',
-  proodonto: '/proodonto',
-  jurismind: '/jurismind',
-  construfy: '/construfy',
-  auditeia: '/auditeia',
-  recomeca: '/recomeca',
-  copygenio: '/copygenio',
+  contentfy: '/products/contentfy',
+  fui: '/products/fui',
+  jurismind: '/products/jurismind',
+  blindcare: '/products/blindcare',
+  professoria: '/products/professoria',
+  voxcraft: '/products/voxcraft',
+  prevenpro: '/products/prevenpro',
+  fuelmaster: '/products/fuelmaster',
+  diagramafy: '/products/diagramafy',
+  respondfy: '/products/respondfy',
+  ispmind: '/products/ispmind',
+  proodonto: '/products/proodonto-smart',
+} as const
+
+export const PAGE_ROUTES = {
+  live: '/live',
+  labs: '/labs',
+  framework: '/framework',
+  method: '/method',
+  businessOs: '/business-os',
+  cases: '/cases',
+  products: '/products',
 } as const
 
 export const LEGAL_ROUTES = {
@@ -25,6 +35,7 @@ export const BLOG_ROUTES = {
 } as const
 
 export type ProductRouteKey = keyof typeof PRODUCT_ROUTES
+export type PageRouteKey = keyof typeof PAGE_ROUTES
 export type BlogRouteKey = keyof typeof BLOG_ROUTES
 
 export const SITE_URL = 'https://buildertudo.com'

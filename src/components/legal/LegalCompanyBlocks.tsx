@@ -105,4 +105,4 @@ export function LegalContactDetails() {
 }
 
 export const LEGAL_ECOSYSTEM_PRODUCTS =
-  'BlindCare, PrevenPro, VoxCraft, ContentFy, JurisMind, FuelMaster, ConstruFy, AuditeIA, ProOdonto Smart, Fui'
+  'ContentFy, Fui, JurisMind, BlindCare, ProfessorIA, VoxCraft, PrevenPro, FuelMaster, DiagramaFy, WineXpertsIA, RespondFy, ISPMind'

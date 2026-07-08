@@ -2,8 +2,7 @@ import { products } from '../../constants/products'
 import { ProductCard } from '../cards/ProductCard'
 import { Reveal, StaggerItem, StaggerReveal } from '../ui/Reveal'
 import { Section, SectionHeader } from '../ui/Section'
-
-const displayProducts = products.filter((p) => p.name !== 'BuilderTudo Studio')
+import { MotionButton } from '../ui/Buttons'
 
 export function ProductsSection() {
   return (
@@ -12,18 +11,25 @@ export function ProductsSection() {
         <SectionHeader
           id="products-title"
           eyebrow="Products"
-          title="Proprietary products, real market traction"
-          description="SaaS platforms built on the BuilderTudo stack — live, evolving and designed for vertical markets with high growth potential."
+          title="12 SaaS products. One engineering platform."
+          description="Every product is built on BuilderTudo Framework — with health scores, roadmaps and production-grade architecture from day one."
         />
       </Reveal>
 
       <StaggerReveal className="products-grid">
-        {displayProducts.map((product) => (
-          <StaggerItem key={product.name}>
-            <ProductCard product={product} variant="ecosystem" />
+        {products.map((product) => (
+          <StaggerItem key={product.slug}>
+            <ProductCard product={product} />
           </StaggerItem>
         ))}
       </StaggerReveal>
+
+      <Reveal>
+        <div className="section-cta-row">
+          <MotionButton href="#contact">Start a project</MotionButton>
+          <MotionButton href="#cases" variant="secondary">View case studies</MotionButton>
+        </div>
+      </Reveal>
     </Section>
   )
 }

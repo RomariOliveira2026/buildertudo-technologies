@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom'
 import { CONTACT } from '../../constants/contact'
-import { ECOSYSTEM_LAYERS } from '../../constants/ecosystem'
-import { navItems } from '../../constants/navigation'
-import { footerProducts } from '../../constants/products'
+import { footerLinks } from '../../constants/navigation'
+import { products } from '../../constants/products'
 import { LEGAL_ROUTES } from '../../constants/routes'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 export function Footer() {
   return (
     <footer className="footer" role="contentinfo">
-      <div className="container footer__grid">
+      <div className="container footer__grid footer__grid--v3">
         <div className="footer__brand">
           <img
             className="site-logo site-logo--footer"
@@ -20,30 +19,30 @@ export function Footer() {
             loading="lazy"
             decoding="async"
           />
-          <p className="footer__tagline">Technology that transforms businesses.</p>
+          <p className="footer__tagline">Digital product engineering platform.</p>
           <p className="footer__desc">
-            Full-stack platform company — Framework, AI-OS, Engine and 12+ products.
-            Built in Brazil, ready for the world.
+            Framework, Business OS, AI-OS, Engine and 12 official products.
+            Built in Brazil. Ready for the world.
           </p>
         </div>
 
         <div>
-          <h3 className="footer__heading">Platform</h3>
+          <h3 className="footer__heading">Company</h3>
           <ul>
-            {ECOSYSTEM_LAYERS.slice(0, 4).map((layer) => (
-              <li key={layer.id}>
-                <a href={`#platform`}>{layer.name}</a>
+            {footerLinks.company.map((link) => (
+              <li key={link.label}>
+                <Link to={link.href}>{link.label}</Link>
               </li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h3 className="footer__heading">Navigate</h3>
+          <h3 className="footer__heading">Platform</h3>
           <ul>
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <a href={`#${item.id}`}>{item.label}</a>
+            {footerLinks.platform.map((link) => (
+              <li key={link.label}>
+                <Link to={link.href}>{link.label}</Link>
               </li>
             ))}
           </ul>
@@ -52,38 +51,42 @@ export function Footer() {
         <div>
           <h3 className="footer__heading">Products</h3>
           <ul>
-            {footerProducts.map((product) => (
-              <li key={product.name}>{product.name}</li>
+            {products.slice(0, 6).map((product) => (
+              <li key={product.slug}>{product.name}</li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h3 className="footer__heading">Contact</h3>
+          <h3 className="footer__heading">Connect</h3>
           <ul>
-            <li>
-              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-            </li>
-            <li>
-              <a href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                WhatsApp
-              </a>
-            </li>
-            <li>
-              <a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">
-                LinkedIn
-              </a>
-            </li>
+            <li><Link to="/#contact">Start a Project</Link></li>
+            <li><a href={CONTACT.meeting}>Book a Call</a></li>
+            <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
+            <li><a href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><a href={CONTACT.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href={CONTACT.upwork} target="_blank" rel="noopener noreferrer">Upwork</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="footer__heading">Resources</h3>
+          <ul>
+            {footerLinks.resources.map((link) => (
+              <li key={link.label}>
+                <Link to={link.href}>{link.label}</Link>
+              </li>
+            ))}
+            <li><Link to={LEGAL_ROUTES.privacy}>Privacy Policy</Link></li>
+            <li><Link to={LEGAL_ROUTES.terms}>Terms of Use</Link></li>
           </ul>
         </div>
       </div>
 
       <div className="container footer__bottom">
         <p>© {new Date().getFullYear()} BuilderTudo Technologies. All rights reserved.</p>
-        <div className="footer__legal">
-          <Link to={LEGAL_ROUTES.privacy}>Privacy Policy</Link>
-          <Link to={LEGAL_ROUTES.terms}>Terms of Use</Link>
-        </div>
+        <p className="footer__mission">Platform engineering · AI-native · Enterprise-ready</p>
       </div>
     </footer>
   )

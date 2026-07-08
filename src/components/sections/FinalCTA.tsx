@@ -23,17 +23,11 @@ export function FinalCTA() {
             <ContactForm id="commercial-contact-form" />
           </motion.div>
 
-          <motion.div
-            className="final-cta__alt"
-            variants={fadeUp}
-            transition={{ ...motionTransition.soft, delay: 0.16 }}
-          >
-            <MotionButton href={buildWhatsAppUrl()} variant="secondary">
-              WhatsApp direct
-            </MotionButton>
-            <MotionButton href="mailto:contato@buildertudo.com" variant="secondary">
-              contato@buildertudo.com
-            </MotionButton>
+          <motion.div className="final-cta__alt" variants={fadeUp} transition={{ ...motionTransition.soft, delay: 0.16 }}>
+            <MotionButton href="#commercial-contact-form">Start a project</MotionButton>
+            <MotionButton href="mailto:contato@buildertudo.com?subject=Book%20a%20Discovery%20Call" variant="secondary">Book a discovery call</MotionButton>
+            <MotionButton href="/framework" variant="secondary">Explore Framework</MotionButton>
+            <MotionButton href={buildWhatsAppUrl()} variant="ghost">WhatsApp</MotionButton>
           </motion.div>
         </Reveal>
       </div>

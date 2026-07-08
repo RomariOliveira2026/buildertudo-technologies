@@ -39,15 +39,15 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
 
       <nav aria-label="Main navigation" className="header__nav">
         {navItems.map((item) => (
-          <a
+          <Link
             key={item.id}
-            href={`#${item.id}`}
+            to={`/#${item.id}`}
             className={isNavActive(item.id) ? 'is-active' : undefined}
             aria-current={isNavActive(item.id) ? 'true' : undefined}
             onClick={closeMenu}
           >
             {item.label}
-          </a>
+          </Link>
         ))}
       </nav>
 
@@ -72,7 +72,7 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
           {theme === 'dark' ? '☀' : '☾'}
         </MotionIconButton>
 
-        <MotionButton href="#contact" className="header-cta-btn">
+        <MotionButton href="/#contact" className="header-cta-btn">
           Start a project
         </MotionButton>
       </div>

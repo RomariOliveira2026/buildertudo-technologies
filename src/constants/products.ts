@@ -1,134 +1,56 @@
+import { PRODUCT_CATALOG } from '../content/products'
 import type { Product } from '../types/product'
+import type { ProductRouteKey } from './routes'
 
-export const products: Product[] = [
-  {
-    logo: '🎨',
-    name: 'BuilderTudo Studio',
-    description: 'Divisão de desenvolvimento sob demanda: sites, sistemas, identidade visual e soluções digitais.',
-    category: 'Desenvolvimento Digital',
-    technologies: ['React', 'TypeScript', 'UX/UI'],
-    status: 'Ativo',
-    href: '#studio',
-  },
-  {
-    logo: '🛡️',
-    name: 'BlindCare',
-    description: 'Plataforma de gestão e cuidado com foco em segurança, acompanhamento e experiência premium.',
-    category: 'Saúde',
-    technologies: ['React', 'TypeScript', 'Supabase', 'OpenAI'],
-    status: 'Ativo',
-    routeKey: 'blindcare',
-    featured: true,
-  },
-  {
-    logo: '📋',
-    name: 'PrevenPro',
-    description: 'Solução inteligente para prevenção, organização e controle de processos críticos.',
-    category: 'Compliance',
-    technologies: ['Next.js', 'Node.js', 'Firebase', 'Cloudflare'],
-    status: 'Ativo',
-    routeKey: 'prevenpro',
-    featured: true,
-  },
-  {
-    logo: '🎙️',
-    name: 'VoxCraft',
-    description: 'Tecnologia de voz e comunicação para experiências digitais mais humanas e eficientes.',
-    category: 'IA & Voz',
-    technologies: ['React', 'Node.js', 'OpenAI', 'APIs'],
-    status: 'Ativo',
-    routeKey: 'voxcraft',
-    featured: true,
-  },
-  {
-    logo: '✍️',
-    name: 'ContentFy',
-    description: 'Plataforma para criação, gestão e distribuição de conteúdo em escala.',
-    category: 'Marketing Tech',
-    technologies: ['React', 'TypeScript', 'OpenAI', 'Vercel'],
-    status: 'Em evolução',
-    routeKey: 'contentfy',
-    featured: true,
-  },
-  {
-    logo: '⛽',
-    name: 'FuelMaster',
-    description: 'Sistema de controle e inteligência operacional para gestão de combustível e frota.',
-    category: 'Logística',
-    technologies: ['React', 'Node.js', 'Supabase'],
-    status: 'Ativo',
-    routeKey: 'fuelmaster',
-  },
-  {
-    logo: '🔍',
-    name: 'AuditeIA',
-    description: 'Auditoria inteligente com IA para análise, conformidade e tomada de decisão.',
-    category: 'Inteligência Artificial',
-    technologies: ['Python', 'OpenAI', 'APIs', 'Cloudflare'],
-    status: 'Ativo',
-    routeKey: 'auditeia',
-  },
-  {
-    logo: '🏗️',
-    name: 'ConstruFy',
-    description: 'Plataforma digital para construção civil, obras e gestão de projetos.',
-    category: 'Construção',
-    technologies: ['React', 'TypeScript', 'Firebase'],
-    status: 'Ativo',
-    routeKey: 'construfy',
-  },
-  {
-    logo: '⚖️',
-    name: 'JurisMind',
-    description: 'Inteligência jurídica para organização documental, fluxos e produtividade legal.',
-    category: 'Jurídico',
-    technologies: ['Next.js', 'OpenAI', 'Supabase'],
-    status: 'Ativo',
-    routeKey: 'jurismind',
-  },
-  {
-    logo: '🦷',
-    name: 'ProOdonto Smart',
-    description: 'Ecossistema smart para clínicas odontológicas com gestão e experiência do paciente.',
-    category: 'Saúde',
-    technologies: ['React', 'TypeScript', 'Firebase'],
-    status: 'Ativo',
-    routeKey: 'proodonto',
-  },
-  {
-    logo: '🚀',
-    name: 'Fui App',
-    description: 'Solução digital inovadora para jornadas, mobilidade e experiências conectadas.',
-    category: 'Mobilidade',
-    technologies: ['React Native', 'Node.js', 'APIs'],
-    status: 'Em evolução',
-    routeKey: 'fui',
-  },
-  {
-    logo: '✨',
-    name: 'Copygênio',
-    description: 'Plataforma de copywriting e conteúdo inteligente com IA para marcas e negócios digitais.',
-    category: 'Marketing Tech',
-    technologies: ['React', 'OpenAI', 'TypeScript', 'Vercel'],
-    status: 'Ativo',
-    routeKey: 'copygenio',
-  },
-]
+const SLUG_TO_ROUTE: Record<string, ProductRouteKey> = {
+  contentfy: 'contentfy',
+  fui: 'fui',
+  jurismind: 'jurismind',
+  blindcare: 'blindcare',
+  professoria: 'professoria',
+  voxcraft: 'voxcraft',
+  prevenpro: 'prevenpro',
+  fuelmaster: 'fuelmaster',
+  diagramafy: 'diagramafy',
+  respondfy: 'respondfy',
+  ispmind: 'ispmind',
+  'proodonto-smart': 'proodonto',
+}
 
-export const featuredProducts = products.filter((product) => product.featured)
+function toProduct(entry: (typeof PRODUCT_CATALOG)[number]): Product {
+  const goldenLayer = entry.architectureLayers.find((l) => l.id === 'golden-screens')
+  const goldenScreens = goldenLayer
+    ? goldenLayer.description.split(' · ').filter(Boolean)
+    : []
 
-export const footerProductNames = [
-  'BlindCare',
-  'PrevenPro',
-  'VoxCraft',
-  'ContentFy',
-  'FuelMaster',
-  'AuditeIA',
-  'ProOdonto Smart',
-  'Copygênio',
-  'Fui App',
-] as const
+  return {
+    logo: entry.logo,
+    name: entry.name,
+    slug: entry.slug,
+    description: entry.description,
+    objective: entry.solution,
+    category: entry.category,
+    technologies: entry.stack.filter((t) => !['Framework', 'AI-OS', 'Engine'].includes(t)),
+    status: entry.status,
+    healthScore: entry.healthScore,
+    roadmap: entry.roadmap.map((r) => r.title),
+    architecture: entry.architectureSummary,
+    goldenScreens,
+    aiFeatures: entry.aiFeatures,
+    learnings: entry.benefits,
+    routeKey: SLUG_TO_ROUTE[entry.slug],
+    featured: entry.featured,
+    href: `/products/${entry.slug}`,
+  }
+}
 
-export const footerProducts = footerProductNames
-  .map((name) => products.find((product) => product.name === name))
-  .filter((product): product is Product => product !== undefined)
+/** Official product list — sourced from src/content/products.ts */
+export const products: Product[] = PRODUCT_CATALOG.map(toProduct)
+
+export const featuredProducts = products.filter((p) => p.featured)
+export const footerProductNames = products.map((p) => p.name)
+export const footerProducts = products
+
+export function getProductBySlug(slug: string) {
+  return products.find((p) => p.slug === slug)
+}
