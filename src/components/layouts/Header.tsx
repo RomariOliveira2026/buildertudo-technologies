@@ -25,56 +25,58 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Link className="logo" to="/#home" aria-label="BuilderTudo Technologies — Home">
-        <img
-          className="site-logo"
-          src="/logo-oficial.png"
-          alt="BuilderTudo Technologies"
-          width={720}
-          height={132}
-          decoding="async"
-          fetchPriority="high"
-        />
-      </Link>
+      <div className="header__inner container container--wide">
+        <Link className="logo" to="/#home" aria-label="BuilderTudo Technologies — Home">
+          <img
+            className="site-logo"
+            src="/logo-oficial.png"
+            alt="BuilderTudo Technologies"
+            width={720}
+            height={132}
+            decoding="async"
+            fetchPriority="high"
+          />
+        </Link>
 
-      <nav aria-label="Main navigation" className="header__nav">
-        {navItems.map((item) => (
-          <Link
-            key={item.id}
-            to={`/#${item.id}`}
-            className={isNavActive(item.id) ? 'is-active' : undefined}
-            aria-current={isNavActive(item.id) ? 'true' : undefined}
-            onClick={closeMenu}
-          >
-            {item.label}
-          </Link>
-        ))}
-      </nav>
+        <nav aria-label="Main navigation" className="header__nav">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              to={`/#${item.id}`}
+              className={isNavActive(item.id) ? 'is-active' : undefined}
+              aria-current={isNavActive(item.id) ? 'true' : undefined}
+              onClick={closeMenu}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
 
-      <button
-        type="button"
-        className="header__menu-btn"
-        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={menuOpen}
-        onClick={() => setMenuOpen((open) => !open)}
-      >
-        {menuOpen ? '✕' : '☰'}
-      </button>
-
-      <div className="header-actions">
-        <MotionIconButton
+        <button
           type="button"
-          className="theme-toggle"
-          onClick={onToggleTheme}
-          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          className="header__menu-btn"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
         >
-          {theme === 'dark' ? '☀' : '☾'}
-        </MotionIconButton>
+          {menuOpen ? '✕' : '☰'}
+        </button>
 
-        <MotionButton href="/#contact" className="header-cta-btn">
-          Start a project
-        </MotionButton>
+        <div className="header-actions">
+          <MotionIconButton
+            type="button"
+            className="theme-toggle"
+            onClick={onToggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          >
+            {theme === 'dark' ? '☀' : '☾'}
+          </MotionIconButton>
+
+          <MotionButton href="/#contact" className="header-cta-btn">
+            Start a project
+          </MotionButton>
+        </div>
       </div>
     </motion.header>
   )

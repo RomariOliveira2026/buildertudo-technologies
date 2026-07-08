@@ -22,11 +22,11 @@
   --radius: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
-  --header-height: 104px;
-  --container: 1200px;
-  --container-docs: min(1560px, 96vw);
+  --header-height: 124px;
+  --container: min(1760px, 98vw);
+  --container-docs: min(1760px, 98vw);
   --section-y: 96px;
-  --section-x: clamp(20px, 5vw, 64px);
+  --section-x: clamp(12px, 2vw, 32px);
   --font: 'Inter', system-ui, -apple-system, sans-serif;
   --transition: 0.2s ease;
 }
@@ -66,7 +66,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: var(--container);
+  max-width: var(--container-docs);
   margin: 0 auto;
   padding: 0 var(--section-x);
 }
@@ -75,7 +75,7 @@ body {
   max-width: var(--container-docs);
 }
 
-/* Home page — same wide measure everywhere (matches local dev layout) */
+/* Legacy alias — home sections already inherit global wide container */
 .page:not(.subpage) .section > .container,
 .page:not(.subpage) .final-cta .container,
 .page:not(.subpage) .footer .container {
@@ -116,16 +116,21 @@ body {
   inset: 0 0 auto;
   z-index: 1000;
   height: var(--header-height);
-  padding: 0 var(--section-x);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  padding: 0;
   background: var(--header-bg);
   border-bottom: 1px solid transparent;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(16px, 2vw, 32px);
+  height: 100%;
+  width: 100%;
 }
 
 .header--scrolled {
@@ -136,16 +141,16 @@ body {
 .logo { display: flex; flex-shrink: 0; text-decoration: none; }
 
 .site-logo {
-  height: 68px;
+  height: 76px;
   width: auto;
-  max-width: min(380px, 46vw);
+  max-width: min(420px, 48vw);
   object-fit: contain;
   display: block;
 }
 
 .header .site-logo {
-  height: 100px;
-  max-width: min(560px, 62vw);
+  height: 118px;
+  max-width: min(680px, 72vw);
 }
 
 .header nav {
@@ -156,10 +161,10 @@ body {
 }
 
 .header nav a {
-  padding: 8px 12px;
+  padding: 10px 14px;
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   border-radius: 8px;
   transition: color var(--transition), background var(--transition);
@@ -1109,8 +1114,8 @@ body {
 }
 
 .site-logo--footer {
-  height: 100px;
-  max-width: min(480px, 100%);
+  height: 118px;
+  max-width: min(560px, 100%);
   margin-bottom: 20px;
 }
 
@@ -1211,7 +1216,11 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-.header--legal .site-logo { height: 76px; }
+.header--legal .header__inner {
+  justify-content: space-between;
+}
+
+.header--legal .site-logo { height: 88px; }
 
 .legal-back-btn { font-size: 13px !important; white-space: nowrap; }
 
@@ -1324,10 +1333,10 @@ body {
 }
 
 @media (max-width: 640px) {
-  :root { --section-y: 64px; --header-height: 84px; }
-  .header .site-logo { height: 72px; max-width: min(380px, 82vw); }
-  .site-logo { height: 52px; max-width: min(300px, 72vw); }
-  .site-logo--footer { height: 80px; }
+  :root { --section-y: 64px; --header-height: 96px; }
+  .header .site-logo { height: 80px; max-width: min(420px, 86vw); }
+  .site-logo { height: 56px; max-width: min(320px, 76vw); }
+  .site-logo--footer { height: 92px; }
   .contact-form__grid { grid-template-columns: 1fr; }
   .contact-form { padding: 24px 20px; }
   .footer__grid { grid-template-columns: 1fr; }

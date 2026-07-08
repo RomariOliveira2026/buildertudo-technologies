@@ -17,20 +17,22 @@ export function LegalLayout({ children, title }: LegalLayoutProps) {
 
       <main className="page legal-page">
         <header className="header header--legal">
-          <Link className="logo" to="/" aria-label="BuilderTudo Technologies - Início">
-            <img
-              className="site-logo"
-              src="/logo-oficial.png"
-              alt="BuilderTudo Technologies — Tecnologia que transforma negócios"
-              width={720}
-              height={132}
-              decoding="async"
-            />
-          </Link>
+          <div className="header__inner container container--wide">
+            <Link className="logo" to="/" aria-label="BuilderTudo Technologies - Início">
+              <img
+                className="site-logo"
+                src="/logo-oficial.png"
+                alt="BuilderTudo Technologies — Tecnologia que transforma negócios"
+                width={720}
+                height={132}
+                decoding="async"
+              />
+            </Link>
 
-          <Link className="secondary-btn link-btn legal-back-btn" to="/">
-            Voltar ao site
-          </Link>
+            <Link className="secondary-btn link-btn legal-back-btn" to="/">
+              Voltar ao site
+            </Link>
+          </div>
         </header>
 
         <article className="legal-content" id="legal-content" aria-labelledby="legal-title">
