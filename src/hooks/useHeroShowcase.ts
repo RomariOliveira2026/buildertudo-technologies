@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import type { ScreenId } from '../constants/screenshots'
 import { HERO_SHOWCASE_SEQUENCE, PLATFORM_SCREENS, getScreenImagePath } from '../constants/screenshots'
+import { loadShowcaseManifest } from './useShowcaseAssets'
 
 const INTERVAL_MS = 4500
 
@@ -18,16 +19,27 @@ async function checkScreen(id: ScreenId) {
   return probe(getScreenImagePath(id, 'png'))
 }
 
+async function resolveAvailableScreens(): Promise<ScreenId[]> {
+  const manifest = await loadShowcaseManifest()
+  if (manifest.screens.length > 0) {
+    const manifestSet = new Set(manifest.screens)
+    const fromManifest = HERO_SHOWCASE_SEQUENCE.filter((id) => manifestSet.has(id))
+    if (fromManifest.length > 0) return fromManifest
+  }
+
+  const results = await Promise.all(
+    HERO_SHOWCASE_SEQUENCE.map(async (id) => ((await checkScreen(id)) ? id : null)),
+  )
+  return [...new Set(results.filter((id): id is ScreenId => id !== null))]
+}
+
 export function useHeroShowcase() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const [availableIds, setAvailableIds] = useState<ScreenId[]>([])
 
   useEffect(() => {
-    Promise.all(
-      HERO_SHOWCASE_SEQUENCE.map(async (id) => ((await checkScreen(id)) ? id : null)),
-    ).then((results) => {
-      const unique = [...new Set(results.filter((id): id is ScreenId => id !== null))]
+    resolveAvailableScreens().then((unique) => {
       setAvailableIds(unique)
       setActiveIndex(0)
     })

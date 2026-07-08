@@ -431,6 +431,10 @@ body {
   line-height: 1.65;
 }
 
+#platform .container {
+  max-width: var(--container-docs);
+}
+
 #platform .section-header {
   max-width: min(1080px, 100%);
 }
@@ -439,6 +443,24 @@ body {
   #platform .section-header h2 {
     white-space: nowrap;
     font-size: clamp(1.7rem, 2.35vw, 2.2rem);
+  }
+}
+
+.platform-pillars {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .platform-pillars {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .platform-pillars {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -1416,12 +1438,6 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 48px;
-}
-
-.platform-pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
 }
 
 .platform-pillar {
