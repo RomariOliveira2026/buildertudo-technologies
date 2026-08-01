@@ -3426,12 +3426,13 @@ body {
 .hero__inner--enterprise {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
   gap: clamp(20px, 3vw, 40px);
-  align-items: center;
+  align-items: start;
 }
 
 .hero--enterprise .hero__content {
   padding: 6px 12px 0 0;
   max-width: 100%;
+  justify-content: flex-start;
 }
 
 .hero__enterprise-badges {
@@ -3494,8 +3495,10 @@ body {
 }
 
 .hero--enterprise .hero__actions {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   gap: 14px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero--enterprise .hero__actions .btn--lg {
@@ -3507,7 +3510,7 @@ body {
 .hero__stats--premium {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  margin-top: -48px;
+  margin-top: 0;
   margin-bottom: 20px;
   position: relative;
   z-index: 1;
@@ -3584,8 +3587,8 @@ body {
   transform: perspective(1400px) rotateY(-5deg) rotateX(2deg);
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: visible;
-  align-self: center;
-  margin-top: -8px;
+  align-self: start;
+  margin-top: calc(6px + 28px + 18px);
 }
 
 .hero--enterprise .hero__visual:hover {
