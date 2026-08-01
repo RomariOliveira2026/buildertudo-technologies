@@ -1,79 +1,45 @@
-import { useState } from 'react'
 import { PageMeta } from '../components/seo/PageMeta'
-import { PageLayout, SubPageHero } from '../components/layouts/PageLayout'
-import { BUSINESS_OS_MODULES } from '../constants/platform'
-import { PlatformScreenshot } from '../components/ui/PlatformScreenshot'
-import type { ScreenId } from '../constants/screenshots'
+import { PageLayout } from '../components/layouts/PageLayout'
+import { BusinessOSShowcase } from '../components/business-os'
 import { MotionButton } from '../components/ui/Buttons'
 
-const MODULE_SCREENS: Record<string, ScreenId> = {
-  'command-center': 'command-center',
-  'ceo-copilot': 'ceo-copilot',
-  crm: 'crm',
-  analytics: 'analytics',
-  'products-hub': 'products-hub',
-  'framework-health': 'framework-health',
-  'ai-center': 'ai-center',
-  studio: 'studio',
-  tasks: 'tasks',
-  deploys: 'deploy',
-  runtime: 'command-center',
-  settings: 'settings',
-}
-
 export function BusinessOSPage() {
-  const [activeId, setActiveId] = useState(BUSINESS_OS_MODULES[0]?.id ?? 'command-center')
-  const active = BUSINESS_OS_MODULES.find((m) => m.id === activeId) ?? BUSINESS_OS_MODULES[0]
-
   return (
-    <PageLayout className="subpage">
+    <PageLayout className="subpage subpage--business-os">
       <PageMeta
-        title="Business OS — Internal Operating System"
-        description="The operating system BuilderTudo uses daily — CRM, analytics, deploys, AI center and framework health."
+        title="Business OS — Enterprise Operating System"
+        description="The enterprise operating system BuilderTudo uses daily — Command Center, AI Copilot, products, analytics and Framework health in one platform."
         path="/business-os"
       />
-      <SubPageHero
-        eyebrow="Business OS"
-        title="The OS that runs BuilderTudo"
-        description="Every evolution of our Framework is born from daily use of Business OS. CRM, analytics, deploys, AI center — all in one platform."
-      />
 
-      <section className="subpage-section">
-        <div className="container">
-          <div className="business-os-page">
-            <nav className="business-os-page__nav">
-              {BUSINESS_OS_MODULES.map((mod) => (
-                <button
-                  key={mod.id}
-                  type="button"
-                  className={`business-os-page__nav-item${activeId === mod.id ? ' business-os-page__nav-item--active' : ''}`}
-                  onClick={() => setActiveId(mod.id)}
-                >
-                  <span aria-hidden="true">{mod.icon}</span>
-                  {mod.name}
-                </button>
-              ))}
-            </nav>
-            <div className="business-os-page__detail">
-              <h2>{active.name}</h2>
-              <p>{active.description}</p>
-              <PlatformScreenshot screenId={MODULE_SCREENS[active.id] ?? 'command-center'} />
-            </div>
-          </div>
+      <section className="bos-page-hero">
+        <div className="container container--wide">
+          <span className="badge badge--gold">Business OS</span>
+          <h1>The operating system behind every BuilderTudo product</h1>
+          <p>
+            Enterprise-grade command center, live activity, AI Copilot, product portfolio,
+            analytics and Framework health — the platform we run our company on.
+          </p>
         </div>
       </section>
 
-      <section className="subpage-section subpage-section--alt">
+      <section className="bos-page-showcase" aria-label="Business OS interactive showcase">
+        <div className="container container--wide">
+          <BusinessOSShowcase />
+        </div>
+      </section>
+
+      <section className="bos-page-cta">
         <div className="container">
-          <h2>Framework evolution from daily operations</h2>
-          <p className="subpage-lead">
-            Business OS feeds Framework Health metrics, deploy timelines and product roadmaps back into
-            the Framework — creating a continuous improvement loop that benefits every client project.
+          <h2>Built on Business OS. Delivered to your company.</h2>
+          <p>
+            Every client project inherits the same operational platform — CRM, analytics,
+            AI governance and Framework health from day one.
           </p>
           <div className="section-cta-row">
-            <MotionButton href="/framework">Explore Framework</MotionButton>
-            <MotionButton href="/live" variant="secondary">View live metrics</MotionButton>
-            <MotionButton href="/#contact" variant="ghost">Start a project</MotionButton>
+            <MotionButton href="/#contact">Start Your Project</MotionButton>
+            <MotionButton href="/framework" variant="secondary">Explore Framework</MotionButton>
+            <MotionButton href="/live" variant="ghost">View live metrics</MotionButton>
           </div>
         </div>
       </section>

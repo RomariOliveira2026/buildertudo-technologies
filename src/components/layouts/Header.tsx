@@ -74,7 +74,7 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
           </MotionIconButton>
 
           <MotionButton href="/#contact" className="header-cta-btn">
-            Start a project
+            Start Your Project
           </MotionButton>
         </div>
       </div>

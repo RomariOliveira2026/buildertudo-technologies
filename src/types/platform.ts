@@ -9,7 +9,7 @@ export type PlatformMetrics = {
 }
 
 export type MetricItem = {
-  id: keyof PlatformMetrics | 'aiNativeLabel'
+  id: keyof PlatformMetrics | 'enterprise'
   value: string
   label: string
 }

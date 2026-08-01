@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { PageMeta } from '../components/seo/PageMeta'
 import { Header } from '../components/layouts/Header'
+import { StatusBar } from '../components/layouts/StatusBar'
 import { Footer } from '../components/layouts/Footer'
 import { Hero } from '../components/sections/Hero'
 import { BackToTop, WhatsAppFloat } from '../components/ui/FloatingActions'
@@ -11,6 +12,7 @@ import { useTheme } from '../hooks/useTheme'
 import { DEFAULT_DESCRIPTION, homeStructuredData } from '../lib/seo'
 
 const CredibilitySection = lazy(() => import('../components/sections/CredibilitySection').then((m) => ({ default: m.CredibilitySection })))
+const PurposeSection = lazy(() => import('../components/sections/PurposeSection').then((m) => ({ default: m.PurposeSection })))
 const PlatformSection = lazy(() => import('../components/sections/PlatformSection').then((m) => ({ default: m.PlatformSection })))
 const BusinessOSSection = lazy(() => import('../components/sections/BusinessOSSection').then((m) => ({ default: m.BusinessOSSection })))
 const BuiltWithSection = lazy(() => import('../components/sections/BuiltWithSection').then((m) => ({ default: m.BuiltWithSection })))
@@ -34,11 +36,13 @@ export function HomePage() {
 
       <a className="skip-link" href="#home">Skip to main content</a>
 
-      <main className="page">
+      <main className="page page--home">
+        <StatusBar />
         <Header headerScrolled={headerScrolled} activeSection={activeSection} theme={theme} onToggleTheme={toggleTheme} />
         <Hero />
 
         <Suspense fallback={null}>
+          <PurposeSection />
           <CredibilitySection />
           <PlatformSection />
           <BusinessOSSection />

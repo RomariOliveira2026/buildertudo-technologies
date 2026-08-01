@@ -19,8 +19,8 @@ export function MotionButton({ variant = 'primary', className = '', children, ..
   return (
     <motion.a
       className={`${getButtonClass(variant)} ${className}`.trim()}
-      whileHover={{ y: -3, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ y: -2, scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
       transition={motionTransition.soft}
       {...props}
     >
@@ -41,8 +41,8 @@ export function MotionSubmitButton({
     <motion.button
       type="submit"
       className={`${baseClass} ${className}`.trim()}
-      whileHover={{ y: -3, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ y: -2, scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
       transition={motionTransition.soft}
       {...props}
     >

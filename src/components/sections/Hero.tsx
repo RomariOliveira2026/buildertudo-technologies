@@ -1,67 +1,101 @@
 import { motion } from 'framer-motion'
 import { MotionButton } from '../ui/Buttons'
 import { HeroShowcase } from './HeroShowcase'
+import { HeroTechStrip } from './HeroTechStrip'
+import { HeroPerformanceStrip } from './HeroPerformanceStrip'
 import { usePlatformMetrics } from '../../hooks/usePlatformMetrics'
+import { HERO_ENTERPRISE_BADGES, HERO_POWERED_BY } from '../../constants/hero'
 import { fadeUp, heroStagger, motionTransition } from '../../motion/variants'
+
+const STAT_ICONS: Record<string, string> = {
+  products: '◆',
+  components: '⬡',
+  aiNative: '◎',
+  frameworkHealth: '◈',
+  goldenScreens: '◇',
+  enterprise: '★',
+}
 
 export function Hero() {
   const { items } = usePlatformMetrics()
 
   return (
-    <section className="hero" id="home" aria-labelledby="hero-title">
+    <section className="hero hero--enterprise" id="home" aria-labelledby="hero-title">
       <div className="hero__grid-bg" aria-hidden="true" />
       <div className="hero__glow hero__glow--1" aria-hidden="true" />
       <div className="hero__glow hero__glow--2" aria-hidden="true" />
+      <div className="hero__glow hero__glow--3" aria-hidden="true" />
+      <div className="hero__radial" aria-hidden="true" />
 
       <div className="container container--wide hero__wrap">
-        <div className="hero__inner hero__inner--v4">
+        <div className="hero__inner hero__inner--enterprise">
           <motion.div
             className="hero__content"
             initial="hidden"
             animate="visible"
             variants={heroStagger}
           >
-            <motion.div className="hero__badges" variants={fadeUp} transition={motionTransition.soft}>
-              <span className="badge badge--gold">Product Engineering Company</span>
-              <span className="badge badge--outline">Framework · AI-OS · Engine · Business OS</span>
-            </motion.div>
+            <motion.ul className="hero__enterprise-badges" variants={fadeUp} transition={motionTransition.soft}>
+              {HERO_ENTERPRISE_BADGES.map((badge) => (
+                <li key={badge.id}>
+                  <span className="hero__enterprise-check" aria-hidden="true">✓</span>
+                  {badge.label}
+                </li>
+              ))}
+            </motion.ul>
 
             <motion.h1 id="hero-title" variants={fadeUp} transition={motionTransition.soft}>
-              We build our own products on a proprietary engineering platform.
+              From idea to production. We build AI-powered SaaS platforms that scale.
             </motion.h1>
 
             <motion.p className="hero__lead" variants={fadeUp} transition={motionTransition.soft}>
-              BuilderTudo is a Product Engineering Company. Our Framework, AI-OS, Engine and Business OS
-              power a real portfolio of live SaaS products — and every client inherits the same platform:
-              faster delivery, enterprise consistency and governed AI.
+              BuilderTudo Technologies is a Product Engineering Company specialized in AI-powered SaaS
+              platforms. We design, build and deploy enterprise-grade products using our proprietary
+              Framework, AI Engine and Business OS.
+            </motion.p>
+
+            <motion.p className="hero__powered-by" variants={fadeUp} transition={motionTransition.soft}>
+              {HERO_POWERED_BY}
             </motion.p>
 
             <motion.div className="hero__actions" variants={fadeUp} transition={motionTransition.soft}>
-              <MotionButton href="/#contact" className="btn--lg">Start a project</MotionButton>
-              <MotionButton href="/#platform" variant="secondary" className="btn--lg">Explore the platform</MotionButton>
+              <MotionButton href="/#contact" className="btn--lg">Start Your Project</MotionButton>
+              <MotionButton href="/#platform" variant="secondary" className="btn--lg">Explore Platform</MotionButton>
             </motion.div>
 
             <motion.ul
-              className="hero__stats"
+              className="hero__stats hero__stats--premium"
               variants={fadeUp}
               transition={motionTransition.soft}
               aria-label="Platform metrics"
             >
               {items.map((item) => (
-                <li key={item.id}>
+                <motion.li
+                  key={item.id}
+                  className="hero__stat-card"
+                  whileHover={{ y: -2, scale: 1.01 }}
+                  transition={motionTransition.soft}
+                >
+                  <span className="hero__stat-icon" aria-hidden="true">
+                    {STAT_ICONS[item.id] ?? '●'}
+                  </span>
                   <strong>{item.value}</strong>
                   <span>{item.label}</span>
-                </li>
+                </motion.li>
               ))}
             </motion.ul>
+
+            <HeroTechStrip />
+            <HeroPerformanceStrip />
           </motion.div>
 
           <motion.div
             className="hero__visual"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 32, rotateY: -6 }}
+            animate={{ opacity: 1, y: 0, rotateY: 0 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
+            <div className="hero__visual-glow" aria-hidden="true" />
             <HeroShowcase />
           </motion.div>
         </div>

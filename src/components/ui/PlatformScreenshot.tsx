@@ -10,6 +10,7 @@ type PlatformScreenshotProps = {
   doc?: boolean
   expandable?: boolean
   zoomOnHover?: boolean
+  priority?: boolean
   className?: string
 }
 
@@ -20,6 +21,7 @@ export function PlatformScreenshot({
   doc = false,
   expandable,
   zoomOnHover = true,
+  priority = false,
   className = '',
 }: PlatformScreenshotProps) {
   const meta = PLATFORM_SCREENS[screenId]
@@ -59,8 +61,9 @@ export function PlatformScreenshot({
             <img
               src={src}
               alt={`${meta.name} — BuilderTudo Business OS`}
-              loading="lazy"
+              loading={priority ? 'eager' : 'lazy'}
               decoding="async"
+              fetchPriority={priority ? 'high' : undefined}
               width={1440}
               height={900}
             />
@@ -74,8 +77,9 @@ export function PlatformScreenshot({
             <img
               src={src}
               alt={`${meta.name} — BuilderTudo Business OS`}
-              loading="lazy"
+              loading={priority ? 'eager' : 'lazy'}
               decoding="async"
+              fetchPriority={priority ? 'high' : undefined}
               width={1440}
               height={900}
             />

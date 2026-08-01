@@ -13,11 +13,11 @@ export const STATIC_PLATFORM_METRICS: PlatformMetrics = {
 
 export function formatPlatformMetrics(metrics: PlatformMetrics) {
   return [
-    { id: 'products' as const, value: String(metrics.products), label: 'Products' },
-    { id: 'packages' as const, value: String(metrics.packages), label: 'Packages' },
-    { id: 'components' as const, value: `${metrics.components}+`, label: 'Components' },
-    { id: 'goldenScreens' as const, value: String(metrics.goldenScreens), label: 'Golden Screens' },
+    { id: 'products' as const, value: String(metrics.products), label: 'Live SaaS Products' },
+    { id: 'components' as const, value: `${metrics.components}+`, label: 'Reusable Components' },
+    { id: 'aiNative' as const, value: '100%', label: 'AI Native Architecture' },
     { id: 'frameworkHealth' as const, value: `${metrics.frameworkHealth}%`, label: 'Framework Health' },
-    { id: 'aiNativeLabel' as const, value: '100%', label: 'AI Native' },
+    { id: 'goldenScreens' as const, value: String(metrics.goldenScreens), label: 'Premium UI Systems' },
+    { id: 'enterprise' as const, value: 'Enterprise', label: 'Ready' },
   ]
 }

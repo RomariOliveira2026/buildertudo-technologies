@@ -55,7 +55,7 @@ export const PLATFORM_SCREENS: Record<ScreenId, ScreenMeta> = {
   },
   'command-center': {
     id: 'command-center',
-    name: 'Command Center',
+    name: 'Executive Dashboard',
     demoUrl: '/',
     category: 'business-os',
   },
@@ -103,13 +103,13 @@ export const PLATFORM_SCREENS: Record<ScreenId, ScreenMeta> = {
   },
   deploy: {
     id: 'deploy',
-    name: 'Deploy Timeline',
+    name: 'Deploys',
     demoUrl: '/framework',
     category: 'business-os',
   },
   'ceo-copilot': {
     id: 'ceo-copilot',
-    name: 'CEO Copilot',
+    name: 'AI Copilot',
     demoUrl: '/ai-center/ceo',
     category: 'business-os',
   },
@@ -122,14 +122,17 @@ export const PLATFORM_SCREENS: Record<ScreenId, ScreenMeta> = {
 }
 
 export const HERO_SHOWCASE_SEQUENCE: ScreenId[] = [
-  'framework',
   'command-center',
+  'analytics',
+  'deploy',
   'ai-center',
   'crm',
   'products-hub',
-  'analytics',
   'studio',
-  'deploy',
+  'framework-health',
+  'ceo-copilot',
+  'tasks',
+  'framework',
 ]
 
 /** Screens confirmed available — updated by capture script into showcase/manifest.json */

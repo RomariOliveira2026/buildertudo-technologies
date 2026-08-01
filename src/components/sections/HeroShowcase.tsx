@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { PlatformScreenshot } from '../ui/PlatformScreenshot'
 import { useHeroShowcase } from '../../hooks/useHeroShowcase'
+import { HERO_MOCKUP_OVERLAYS } from '../../constants/hero'
 import { motionTransition } from '../../motion/variants'
 import { MotionButton } from '../ui/Buttons'
 
@@ -22,7 +23,7 @@ export function HeroShowcase() {
 
   return (
     <div
-      className="hero-showcase"
+      className="hero-showcase hero-showcase--enterprise"
       onMouseEnter={pause}
       onMouseLeave={resume}
       aria-label="Platform showcase"
@@ -30,7 +31,7 @@ export function HeroShowcase() {
       <div className="hero-showcase__stage">
         <header className="hero-showcase__header">
           <div className="hero-showcase__header-copy">
-            <span className="hero-showcase__eyebrow">Live platform demo</span>
+            <span className="hero-showcase__eyebrow">Business OS · Live Demo</span>
             <h2 className="hero-showcase__title">{active?.name ?? 'Business OS'}</h2>
           </div>
           {active ? (
@@ -66,10 +67,25 @@ export function HeroShowcase() {
                 exit={{ opacity: 0, y: -10, scale: 0.99 }}
                 transition={motionTransition.soft}
               >
-                <PlatformScreenshot screenId={activeId} zoomOnHover={false} />
+                <PlatformScreenshot screenId={activeId} zoomOnHover={false} priority />
               </motion.div>
             ) : null}
           </AnimatePresence>
+
+          <div className="hero-showcase__overlays" aria-hidden="true">
+            {HERO_MOCKUP_OVERLAYS.map((chip, index) => (
+              <motion.div
+                key={chip.id}
+                className="hero-showcase__overlay-chip"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 + index * 0.06, duration: 0.4 }}
+              >
+                <span className="hero-showcase__overlay-label">{chip.label}</span>
+                <strong>{chip.value}</strong>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         <footer className="hero-showcase__footer">
