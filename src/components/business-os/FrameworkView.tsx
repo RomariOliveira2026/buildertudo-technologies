@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion'
-import { BOS_FRAMEWORK_BADGES, BOS_FRAMEWORK_STATS } from '../../content/business-os-showcase'
+import {
+  BOS_FRAMEWORK_BADGES,
+  BOS_FRAMEWORK_HEALTH_SCORE,
+  BOS_FRAMEWORK_STATS,
+} from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
+import { FrameworkHealthRing } from './FrameworkHealthRing'
+import { InfrastructurePanel } from './InfrastructurePanel'
+
+const cardHover = { y: -2, scale: 1.01 }
 
 export function FrameworkView() {
   return (
@@ -19,14 +27,9 @@ export function FrameworkView() {
           animate={{ opacity: 1, scale: 1 }}
           transition={motionTransition.soft}
         >
-          <span className="bos-framework-score__label">Framework Health</span>
-          <strong className="bos-framework-score__value">94%</strong>
-          <div className="bos-framework-score__ring" aria-hidden="true">
-            <svg viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="52" className="bos-framework-score__track" />
-              <circle cx="60" cy="60" r="52" className="bos-framework-score__fill" />
-            </svg>
-          </div>
+          <span className="bos-framework-score__label">Health Score</span>
+          <strong className="bos-framework-score__value">{BOS_FRAMEWORK_HEALTH_SCORE}%</strong>
+          <FrameworkHealthRing score={BOS_FRAMEWORK_HEALTH_SCORE} />
         </motion.div>
 
         <div className="bos-framework-badges">
@@ -53,7 +56,7 @@ export function FrameworkView() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...motionTransition.soft, delay: index * 0.06 }}
-            whileHover={{ y: -3 }}
+            whileHover={cardHover}
           >
             <span className="bos-framework-stat__icon" aria-hidden="true">{stat.icon}</span>
             <strong>{stat.value}</strong>
@@ -61,6 +64,8 @@ export function FrameworkView() {
           </motion.article>
         ))}
       </div>
+
+      <InfrastructurePanel />
 
       <div className="bos-framework-modules">
         <h2>Engine Modules</h2>
@@ -72,6 +77,7 @@ export function FrameworkView() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 + index * 0.04 }}
+              whileHover={{ y: -2, scale: 1.01 }}
             >
               <span className="bos-framework-module__dot" aria-hidden="true" />
               {mod}

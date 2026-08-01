@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
 import type { BosMetric } from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
+import { LiveKpiValue } from './LiveKpiValue'
+
+const cardHover = { y: -1, scale: 1.005 }
 
 type MetricCardProps = {
   metric: BosMetric
@@ -16,7 +19,7 @@ export function MetricCard({ metric, index }: MetricCardProps) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ...motionTransition.soft, delay: index * 0.05 }}
-      whileHover={{ y: -3 }}
+      whileHover={cardHover}
     >
       <div className="bos-metric__head">
         <span className="bos-metric__icon" aria-hidden="true">{metric.icon}</span>
@@ -24,7 +27,13 @@ export function MetricCard({ metric, index }: MetricCardProps) {
           <span className={`bos-metric__change ${trendClass}`}>{metric.change}</span>
         ) : null}
       </div>
-      <strong className="bos-metric__value">{metric.value}</strong>
+      <strong className="bos-metric__value">
+        {metric.liveValues && metric.liveValues.length > 1 ? (
+          <LiveKpiValue values={metric.liveValues} format={metric.format} />
+        ) : (
+          metric.value
+        )}
+      </strong>
       <span className="bos-metric__label">{metric.label}</span>
     </motion.article>
   )

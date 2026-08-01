@@ -7,6 +7,8 @@ import { CommandCenterView } from './CommandCenterView'
 import { ProductsView } from './ProductsView'
 import { AnalyticsView } from './AnalyticsView'
 import { FrameworkView } from './FrameworkView'
+import { InfrastructureView } from './InfrastructureView'
+import { CopilotView } from './CopilotView'
 import { motionTransition } from '../../motion/variants'
 
 const VIEWS: Record<BosView, () => ReactNode> = {
@@ -14,6 +16,8 @@ const VIEWS: Record<BosView, () => ReactNode> = {
   products: () => <ProductsView />,
   analytics: () => <AnalyticsView />,
   framework: () => <FrameworkView />,
+  infrastructure: () => <InfrastructureView />,
+  'ai-copilot': () => <CopilotView />,
 }
 
 type BusinessOSShowcaseProps = {
@@ -34,10 +38,18 @@ export function BusinessOSShowcase({ compact = false }: BusinessOSShowcaseProps)
         <aside className="bos-sidebar" aria-label="Business OS navigation">
           <div className="bos-sidebar__brand">
             <span className="bos-sidebar__logo" aria-hidden="true">⬡</span>
-            <div>
-              <strong>Business OS</strong>
-              <span>BuilderTudo</span>
+            <div className="bos-sidebar__brand-copy">
+              <div className="bos-sidebar__brand-row">
+                <strong>Business OS</strong>
+                <span className="bos-sidebar__product-badge">Business OS</span>
+              </div>
+              <span className="bos-sidebar__brand-sub">BuilderTudo</span>
             </div>
+          </div>
+
+          <div className="bos-sidebar__live" aria-label="Platform status">
+            <span className="bos-live__dot" aria-hidden="true" />
+            LIVE
           </div>
 
           <nav className="bos-sidebar__nav">
@@ -64,10 +76,12 @@ export function BusinessOSShowcase({ compact = false }: BusinessOSShowcaseProps)
         </aside>
 
         <main className="bos-main">
+          <div className="bos-main__monitor-glow" aria-hidden="true" />
           <div className="bos-main__chrome">
             <div className="bos-main__dots" aria-hidden="true">
               <span /><span /><span />
             </div>
+            <span className="bos-main__chrome-sep" aria-hidden="true" />
             <span className="bos-main__url">business-os.buildertudo.com/{activeView}</span>
             <span className="bos-main__live">
               <span className="bos-live__dot" aria-hidden="true" />

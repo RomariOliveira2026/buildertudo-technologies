@@ -17,6 +17,7 @@ function ChartCard({ chart, index }: { chart: BosChartSeries; index: number }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ...motionTransition.soft, delay: index * 0.07 }}
+      whileHover={{ y: -2, scale: 1.01 }}
     >
       <header className="bos-chart-card__head">
         <h3>{chart.label}</h3>

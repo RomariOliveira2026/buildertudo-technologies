@@ -1,7 +1,9 @@
 import { BOS_COMMAND_METRICS } from '../../content/business-os-showcase'
 import { MetricGrid } from './MetricGrid'
 import { LiveActivityPanel } from './LiveActivityPanel'
+import { LiveActivityTicker } from './LiveActivityTicker'
 import { AICopilotPanel } from './AICopilotPanel'
+import { InfrastructurePanel } from './InfrastructurePanel'
 
 export function CommandCenterView() {
   return (
@@ -20,12 +22,16 @@ export function CommandCenterView() {
         </div>
       </header>
 
+      <LiveActivityTicker />
+
       <MetricGrid metrics={BOS_COMMAND_METRICS} />
 
       <div className="bos-command-split">
         <LiveActivityPanel />
         <AICopilotPanel />
       </div>
+
+      <InfrastructurePanel />
     </div>
   )
 }

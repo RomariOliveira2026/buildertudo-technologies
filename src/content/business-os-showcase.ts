@@ -1,4 +1,12 @@
-export type BosView = 'command-center' | 'products' | 'analytics' | 'framework'
+export type BosView =
+  | 'command-center'
+  | 'products'
+  | 'analytics'
+  | 'framework'
+  | 'infrastructure'
+  | 'ai-copilot'
+
+export type BosMetricFormat = 'revenue' | 'number' | 'percent' | 'text'
 
 export type BosMetric = {
   id: string
@@ -7,23 +15,27 @@ export type BosMetric = {
   change?: string
   trend?: 'up' | 'down' | 'neutral'
   icon: string
+  liveValues?: (number | string)[]
+  format?: BosMetricFormat
 }
 
 export type BosActivity = {
   id: string
-  type: 'deploy' | 'client' | 'subscription' | 'ai' | 'product' | 'pipeline'
+  type: 'deploy' | 'client' | 'subscription' | 'ai' | 'product' | 'pipeline' | 'payment' | 'backup' | 'health'
   title: string
   detail: string
   time: string
 }
 
+export type BosProductStatus = 'production' | 'beta' | 'mvp' | 'paused'
+
 export type BosProduct = {
   id: string
   name: string
-  status: 'live' | 'beta' | 'scaling'
+  status: BosProductStatus
   version: string
   activeUsers: number
-  revenue: string
+  uptime?: string
   health: number
   logo: string
 }
@@ -51,88 +63,133 @@ export type BosFrameworkStat = {
 
 export const BOS_NAV: { id: BosView; label: string; icon: string }[] = [
   { id: 'command-center', label: 'Command Center', icon: '⌘' },
-  { id: 'products', label: 'Products', icon: '▣' },
-  { id: 'analytics', label: 'Analytics', icon: '▤' },
+  { id: 'products', label: 'Products', icon: '▦' },
+  { id: 'analytics', label: 'Analytics', icon: '◫' },
   { id: 'framework', label: 'Framework', icon: '◆' },
+  { id: 'infrastructure', label: 'Infrastructure', icon: '⬡' },
+  { id: 'ai-copilot', label: 'AI Copilot', icon: '◎' },
 ]
 
 export const BOS_COMMAND_METRICS: BosMetric[] = [
-  { id: 'mrr', label: 'Monthly Recurring Revenue', value: '$284K', change: '+12.4%', trend: 'up', icon: '◈' },
-  { id: 'clients', label: 'Active Clients', value: '47', change: '+3', trend: 'up', icon: '◉' },
-  { id: 'products', label: 'Active Products', value: '12', change: 'Live', trend: 'neutral', icon: '▣' },
-  { id: 'ai-agents', label: 'AI Agents Running', value: '23', change: 'Online', trend: 'up', icon: '◎' },
-  { id: 'deploy', label: 'Deploy Success Rate', value: '99.7%', change: '+0.2%', trend: 'up', icon: '↑' },
-  { id: 'infra', label: 'Infrastructure Health', value: '98%', change: 'Stable', trend: 'neutral', icon: '⚙' },
-  { id: 'framework', label: 'Framework Version', value: 'v2.1', change: 'Stable', trend: 'neutral', icon: '◆' },
+  {
+    id: 'mrr',
+    label: 'Revenue',
+    value: '$284K',
+    liveValues: [283940, 283980, 284010, 284050],
+    format: 'revenue',
+    change: '+12.4%',
+    trend: 'up',
+    icon: '◈',
+  },
+  {
+    id: 'clients',
+    label: 'Active Clients',
+    value: '47',
+    liveValues: [46, 47, 48, 47],
+    format: 'number',
+    change: '+3',
+    trend: 'up',
+    icon: '◉',
+  },
+  {
+    id: 'ai-agents',
+    label: 'AI Agents',
+    value: '23',
+    liveValues: [22, 23, 23, 24],
+    format: 'number',
+    change: 'Online',
+    trend: 'up',
+    icon: '◎',
+  },
+  {
+    id: 'products',
+    label: 'Products',
+    value: '12',
+    liveValues: [11, 12, 12, 13],
+    format: 'number',
+    change: 'Live',
+    trend: 'neutral',
+    icon: '▣',
+  },
+  { id: 'deploy', label: 'Deploy Success', value: '99.99%', change: '+0.2%', trend: 'up', icon: '↑' },
+  { id: 'infra', label: 'Infrastructure', value: '98%', change: 'Stable', trend: 'neutral', icon: '⚙' },
+  { id: 'framework', label: 'Framework Version', value: 'v2.1', format: 'text', change: 'Stable', trend: 'neutral', icon: '◆' },
   { id: 'tasks', label: 'Open Tasks', value: '34', change: '−6', trend: 'down', icon: '☑' },
 ]
 
+export const BOS_ACTIVITY_TICKER: BosActivity[] = [
+  { id: 't1', type: 'deploy', title: 'Deploy completed', detail: 'JurisMind v2.1.3 → production', time: 'now' },
+  { id: 't2', type: 'client', title: 'New enterprise client', detail: 'Acme Legal Corp onboarded', time: 'now' },
+  { id: 't3', type: 'pipeline', title: 'Pipeline updated', detail: 'Rep4 CRM — deal moved to Negotiation', time: 'now' },
+  { id: 't4', type: 'deploy', title: 'Framework deployed', detail: 'BuilderTudo Framework v2.1', time: 'now' },
+  { id: 't5', type: 'ai', title: 'AI analysis finished', detail: 'CEO Copilot processed 12 workflows', time: 'now' },
+  { id: 't6', type: 'payment', title: 'Stripe payment received', detail: 'ContentFy Enterprise — $2.4K/mo', time: 'now' },
+  { id: 't7', type: 'backup', title: 'Database backup completed', detail: 'All regions synced', time: 'now' },
+  { id: 't8', type: 'health', title: 'Health Score updated', detail: 'Framework health at 94%', time: 'now' },
+]
+
 export const BOS_LIVE_ACTIVITIES: BosActivity[] = [
-  { id: '1', type: 'deploy', title: 'Deploy realizado', detail: 'JurisMind v2.4.1 → production', time: '2 min ago' },
-  { id: '2', type: 'client', title: 'Novo cliente', detail: 'Acme Legal Corp onboarded', time: '14 min ago' },
-  { id: '3', type: 'subscription', title: 'Nova assinatura', detail: 'ContentFy Enterprise — $2.4K/mo', time: '28 min ago' },
-  { id: '4', type: 'ai', title: 'IA executando automações', detail: 'CEO Copilot processed 12 workflows', time: '35 min ago' },
-  { id: '5', type: 'product', title: 'Produto atualizado', detail: 'DiagramaFy v1.6.2 released', time: '1h ago' },
-  { id: '6', type: 'pipeline', title: 'Pipeline comercial', detail: 'Rep4.0 CRM — deal moved to Negotiation', time: '2h ago' },
+  { id: '1', type: 'deploy', title: 'Deploy completed', detail: 'JurisMind v2.1.3 → production', time: '2 min ago' },
+  { id: '2', type: 'client', title: 'New enterprise client', detail: 'Acme Legal Corp onboarded', time: '14 min ago' },
+  { id: '3', type: 'pipeline', title: 'Pipeline updated', detail: 'Rep4 CRM — deal moved to Negotiation', time: '28 min ago' },
+  { id: '4', type: 'deploy', title: 'Framework deployed', detail: 'BuilderTudo Framework v2.1', time: '35 min ago' },
+  { id: '5', type: 'ai', title: 'AI analysis finished', detail: 'CEO Copilot processed 12 workflows', time: '1h ago' },
+  { id: '6', type: 'payment', title: 'Stripe payment received', detail: 'ContentFy Enterprise — $2.4K/mo', time: '2h ago' },
 ]
 
 export const BOS_COPILOT: BosCopilotSection[] = [
   {
     id: 'brief',
-    title: 'Executive Brief',
-    items: [
-      'MRR grew 12.4% this month. JurisMind and ContentFy drive 68% of recurring revenue.',
-      'Infrastructure health at 98%. All critical services operational across 3 regions.',
-    ],
+    title: 'Revenue forecast',
+    items: ['MRR projected at $312K by Q3. JurisMind and ContentFy drive 68% of recurring revenue.'],
   },
   {
-    id: 'suggestions',
-    title: 'Sugestões inteligentes',
-    items: [
-      'Prioritize ISPMind enterprise rollout — 3 qualified leads in pipeline.',
-      'Schedule Framework v2.2 health audit before Q3 client onboarding.',
-      'Enable white-label config for CondoMind partner channel.',
-    ],
+    id: 'health',
+    title: 'Framework Health',
+    items: ['Health score at 94%. 15 of 16 modules operational. Deploy pipeline stable.'],
+  },
+  {
+    id: 'deploy',
+    title: 'Deploy status',
+    items: ['Last deploy: JurisMind v2.1.3 — success. 99.99% success rate across 30 days.'],
   },
   {
     id: 'alerts',
-    title: 'Alertas críticos',
+    title: 'Risk alerts',
     variant: 'alert',
-    items: [
-      'PetMind staging environment — memory threshold at 82%.',
-      'BuilderLeads webhook retry queue — 2 pending events.',
-    ],
+    items: ['PetMind staging — memory threshold at 82%.', 'BuilderLeads webhook queue — 2 pending events.'],
   },
   {
     id: 'actions',
-    title: 'Próximas ações recomendadas',
+    title: 'Recommended actions',
     items: [
-      'Review Rep4.0 CRM enterprise proposal — due today.',
+      'Review Rep4 CRM enterprise proposal — due today.',
       'Approve ContentFy AI content policy update.',
-      'Sign-off DiagramaFy auto-layout v2 release.',
+      'Schedule Framework v2.2 health audit before Q3 onboarding.',
     ],
   },
   {
-    id: 'insights',
-    title: 'Insights gerados por IA',
+    id: 'release',
+    title: 'Next release',
+    items: ['Framework v2.2 — multi-tenant isolation improvements. Target: 3 weeks.'],
+  },
+  {
+    id: 'infra',
+    title: 'Infrastructure status',
     variant: 'insight',
-    items: [
-      'Client churn risk low — NPS 72 across portfolio.',
-      'Deploy velocity up 18% — Engine automation reducing manual ops.',
-      'AI agent utilization at 94% — consider scaling copilot capacity.',
-    ],
+    items: ['All regions operational. Average latency 42ms. Cloudflare edge active.'],
   },
 ]
 
 export const BOS_PRODUCTS: BosProduct[] = [
-  { id: 'jurismind', name: 'JurisMind', status: 'live', version: '2.4.1', activeUsers: 1240, revenue: '$18.2K', health: 96, logo: '⚖' },
-  { id: 'contentfy', name: 'ContentFy', status: 'live', version: '1.8.0', activeUsers: 890, revenue: '$12.4K', health: 94, logo: '✎' },
-  { id: 'diagramafy', name: 'DiagramaFy', status: 'live', version: '1.6.2', activeUsers: 620, revenue: '$8.1K', health: 93, logo: '◇' },
-  { id: 'petmind', name: 'PetMind', status: 'scaling', version: '0.9.4', activeUsers: 340, revenue: '$4.2K', health: 88, logo: '🐾' },
-  { id: 'condomind', name: 'CondoMind', status: 'beta', version: '0.7.1', activeUsers: 180, revenue: '$2.8K', health: 91, logo: '🏢' },
-  { id: 'rep4', name: 'Rep4.0 CRM', status: 'live', version: '3.1.0', activeUsers: 2100, revenue: '$24.6K', health: 97, logo: '◉' },
-  { id: 'builderleads', name: 'BuilderLeads', status: 'scaling', version: '1.2.3', activeUsers: 450, revenue: '$5.9K', health: 90, logo: '◈' },
-  { id: 'ispmind', name: 'ISPMind', status: 'live', version: '2.0.5', activeUsers: 780, revenue: '$11.3K', health: 95, logo: '◎' },
+  { id: 'jurismind', name: 'JurisMind', status: 'production', version: '2.1.3', activeUsers: 1245, uptime: '99.98%', health: 98, logo: '⚖' },
+  { id: 'contentfy', name: 'ContentFy', status: 'production', version: '1.9.8', activeUsers: 865, uptime: '99.99%', health: 99, logo: '✎' },
+  { id: 'diagramafy', name: 'DiagramaFy', status: 'beta', version: '1.6.2', activeUsers: 421, health: 93, logo: '◇' },
+  { id: 'petmind', name: 'PetMind', status: 'production', version: '0.9.4', activeUsers: 340, uptime: '99.95%', health: 88, logo: '🐾' },
+  { id: 'rep4', name: 'Rep4 CRM', status: 'mvp', version: '0.8.0', activeUsers: 128, health: 91, logo: '◉' },
+  { id: 'condomind', name: 'CondoMind', status: 'beta', version: '0.7.1', activeUsers: 180, health: 91, logo: '🏢' },
+  { id: 'builderleads', name: 'BuilderLeads', status: 'paused', version: '1.2.3', activeUsers: 450, health: 90, logo: '◈' },
+  { id: 'ispmind', name: 'ISPMind', status: 'production', version: '2.0.5', activeUsers: 780, uptime: '99.97%', health: 95, logo: '◎' },
 ]
 
 export const BOS_ANALYTICS_CHARTS: BosChartSeries[] = [
@@ -145,12 +202,15 @@ export const BOS_ANALYTICS_CHARTS: BosChartSeries[] = [
 ]
 
 export const BOS_FRAMEWORK_STATS: BosFrameworkStat[] = [
-  { id: 'health', label: 'Framework Health', value: '94%', icon: '◆' },
-  { id: 'engine', label: 'Engine Modules', value: '12', icon: '⚙' },
+  { id: 'health', label: 'Health Score', value: '94%', icon: '◆' },
+  { id: 'modules', label: 'Modules', value: '15/16', icon: '⚙' },
   { id: 'packages', label: 'Packages', value: '37', icon: '▣' },
   { id: 'components', label: 'Components', value: '80+', icon: '⬡' },
-  { id: 'apis', label: 'APIs', value: '148', icon: '◎' },
+  { id: 'deploy', label: 'Deploy Success', value: '99.99%', icon: '↑' },
+  { id: 'version', label: 'Version', value: 'v2.1', icon: '◎' },
 ]
+
+export const BOS_FRAMEWORK_HEALTH_SCORE = 94
 
 export const BOS_FRAMEWORK_BADGES = [
   'Multi-Tenant Ready',
@@ -158,17 +218,27 @@ export const BOS_FRAMEWORK_BADGES = [
   'AI Native',
 ] as const
 
+export const BOS_INFRASTRUCTURE = {
+  regions: ['São Paulo', 'Virginia', 'Frankfurt'],
+  services: ['Cloudflare', 'OpenAI', 'Anthropic', 'Stripe', 'Supabase'],
+  latency: '42 ms',
+} as const
+
 export const BOS_ACTIVITY_ICONS: Record<BosActivity['type'], string> = {
-  deploy: '↑',
+  deploy: '✓',
   client: '◉',
   subscription: '◈',
-  ai: '◎',
-  product: '▣',
+  ai: '⚡',
+  product: '📦',
   pipeline: '◇',
+  payment: '💳',
+  backup: '🖥',
+  health: '◆',
 }
 
-export function getBosStatusLabel(status: BosProduct['status']) {
-  if (status === 'live') return 'Live'
+export function getBosStatusLabel(status: BosProductStatus) {
+  if (status === 'production') return 'Production'
   if (status === 'beta') return 'Beta'
-  return 'Scaling'
+  if (status === 'mvp') return 'MVP'
+  return 'Paused'
 }

@@ -4,16 +4,20 @@ import { BOS_ACTIVITY_ICONS, BOS_LIVE_ACTIVITIES } from '../../content/business-
 import { motionTransition } from '../../motion/variants'
 
 export function LiveActivityPanel() {
-  const [visibleCount, setVisibleCount] = useState(4)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setVisibleCount((c) => (c >= BOS_LIVE_ACTIVITIES.length ? 4 : c + 1))
-    }, 4000)
+      setActiveIndex((i) => (i + 1) % BOS_LIVE_ACTIVITIES.length)
+    }, 3800)
     return () => window.clearInterval(timer)
   }, [])
 
-  const items = BOS_LIVE_ACTIVITIES.slice(0, visibleCount)
+  const visibleItems = [
+    BOS_LIVE_ACTIVITIES[activeIndex],
+    BOS_LIVE_ACTIVITIES[(activeIndex + 1) % BOS_LIVE_ACTIVITIES.length],
+    BOS_LIVE_ACTIVITIES[(activeIndex + 2) % BOS_LIVE_ACTIVITIES.length],
+  ]
 
   return (
     <section className="bos-panel bos-live" aria-labelledby="bos-live-title">
@@ -29,15 +33,16 @@ export function LiveActivityPanel() {
       </header>
 
       <ul className="bos-live__list">
-        <AnimatePresence initial={false}>
-          {items.map((item, index) => (
+        <AnimatePresence mode="popLayout">
+          {visibleItems.map((item, index) => (
             <motion.li
-              key={item.id}
+              key={`${item.id}-${activeIndex}-${index}`}
               className="bos-live__item"
-              initial={{ opacity: 0, x: -12 }}
+              layout
+              initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ ...motionTransition.soft, delay: index * 0.03 }}
+              exit={{ opacity: 0, x: 10 }}
+              transition={{ ...motionTransition.soft, delay: index * 0.04 }}
             >
               <span className="bos-live__icon" aria-hidden="true">
                 {BOS_ACTIVITY_ICONS[item.type]}
