@@ -5,7 +5,7 @@ import { HeroTechStrip } from './HeroTechStrip'
 import { HeroPerformanceStrip } from './HeroPerformanceStrip'
 import { usePlatformMetrics } from '../../hooks/usePlatformMetrics'
 import { HERO_ENTERPRISE_BADGES, HERO_POWERED_BY } from '../../constants/hero'
-import { fadeUp, heroStagger, motionTransition } from '../../motion/variants'
+import { fadeIn, fadeUp, heroStagger, motionTransition } from '../../motion/variants'
 
 const STAT_ICONS: Record<string, string> = {
   products: '◆',
@@ -35,7 +35,7 @@ export function Hero() {
             animate="visible"
             variants={heroStagger}
           >
-            <motion.ul className="hero__enterprise-badges" variants={fadeUp} transition={motionTransition.soft}>
+            <motion.ul className="hero__enterprise-badges" variants={fadeIn} transition={motionTransition.soft}>
               {HERO_ENTERPRISE_BADGES.map((badge) => (
                 <li key={badge.id}>
                   <span className="hero__enterprise-check" aria-hidden="true">✓</span>
@@ -44,7 +44,7 @@ export function Hero() {
               ))}
             </motion.ul>
 
-            <motion.h1 id="hero-title" variants={fadeUp} transition={motionTransition.soft}>
+            <motion.h1 id="hero-title" variants={fadeIn} transition={{ ...motionTransition.soft, delay: 0.06 }}>
               From idea to production. We build AI-powered SaaS platforms that scale.
             </motion.h1>
 
@@ -59,8 +59,23 @@ export function Hero() {
             </motion.p>
 
             <motion.div className="hero__actions" variants={fadeUp} transition={motionTransition.soft}>
-              <MotionButton href="/#contact" className="btn--lg">Start Your Project</MotionButton>
-              <MotionButton href="/#platform" variant="secondary" className="btn--lg">Explore Platform</MotionButton>
+              <MotionButton
+                href="/#contact"
+                className="btn--lg btn--hero-primary"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.995 }}
+              >
+                Start Your Project
+              </MotionButton>
+              <MotionButton
+                href="/#platform"
+                variant="secondary"
+                className="btn--lg btn--hero-secondary"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.995 }}
+              >
+                Explore Platform
+              </MotionButton>
             </motion.div>
 
             <motion.ul
@@ -91,9 +106,9 @@ export function Hero() {
 
           <motion.div
             className="hero__visual"
-            initial={{ opacity: 0, y: 32, rotateY: -6 }}
-            animate={{ opacity: 1, y: 0, rotateY: 0 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.85, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="hero__visual-glow" aria-hidden="true" />
             <HeroShowcase />

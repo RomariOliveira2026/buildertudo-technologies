@@ -124,14 +124,9 @@ export const PLATFORM_SCREENS: Record<ScreenId, ScreenMeta> = {
 export const HERO_SHOWCASE_SEQUENCE: ScreenId[] = [
   'command-center',
   'analytics',
-  'deploy',
-  'ai-center',
   'crm',
+  'ai-center',
   'products-hub',
-  'studio',
-  'framework-health',
-  'ceo-copilot',
-  'tasks',
   'framework',
 ]
 

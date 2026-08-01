@@ -2,12 +2,13 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { PlatformScreenshot } from '../ui/PlatformScreenshot'
 import { useHeroShowcase } from '../../hooks/useHeroShowcase'
-import { HERO_MOCKUP_OVERLAYS } from '../../constants/hero'
-import { motionTransition } from '../../motion/variants'
+import { HERO_MOCKUP_OVERLAYS, HERO_SHOWCASE_FOOTER_META } from '../../constants/hero'
+import { heroSlide } from '../../motion/variants'
 import { MotionButton } from '../ui/Buttons'
 
 export function HeroShowcase() {
-  const { items, active, activeIndex, activeId, hasScreenshots, goTo, pause, resume } = useHeroShowcase()
+  const { items, active, activeIndex, activeId, hasScreenshots, direction, goTo, pause, resume } =
+    useHeroShowcase()
 
   if (!hasScreenshots) {
     return (
@@ -57,15 +58,17 @@ export function HeroShowcase() {
         </nav>
 
         <div className="hero-showcase__preview">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" custom={direction}>
             {activeId ? (
               <motion.div
                 key={activeId}
                 className="hero-showcase__preview-inner"
-                initial={{ opacity: 0, y: 16, scale: 0.985 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.99 }}
-                transition={motionTransition.soft}
+                custom={direction}
+                variants={heroSlide}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               >
                 <PlatformScreenshot screenId={activeId} zoomOnHover={false} priority />
               </motion.div>
@@ -100,9 +103,11 @@ export function HeroShowcase() {
               />
             ))}
           </div>
-          <span className="hero-showcase__counter">
-            {String(activeIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
-          </span>
+          <ul className="hero-showcase__meta" aria-label="Platform highlights">
+            {HERO_SHOWCASE_FOOTER_META.map((item) => (
+              <li key={item.id}>{item.label}</li>
+            ))}
+          </ul>
         </footer>
       </div>
     </div>

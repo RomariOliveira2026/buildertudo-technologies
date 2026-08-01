@@ -1,5 +1,12 @@
 export const HERO_POWERED_BY = 'Powered by BuilderTudo Framework v2.1' as const
 
+export const HERO_SHOWCASE_FOOTER_META = [
+  { id: 'modules', label: '11 módulos' },
+  { id: 'bos', label: 'Business OS' },
+  { id: 'framework', label: 'Framework v2.1' },
+  { id: 'platform', label: 'Enterprise Platform' },
+] as const
+
 export const HERO_ENTERPRISE_BADGES = [
   { id: 'pec', label: 'Product Engineering Company' },
   { id: 'ai-native', label: 'AI Native' },
