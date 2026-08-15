@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { BosView } from '../../content/business-os-showcase'
@@ -27,6 +27,16 @@ type BusinessOSShowcaseProps = {
 export function BusinessOSShowcase({ compact = false }: BusinessOSShowcaseProps) {
   const [activeView, setActiveView] = useState<BosView>('command-center')
   const ActiveView = VIEWS[activeView]
+
+  useEffect(() => {
+    if (activeView !== 'framework') return
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById('business-os')?.scrollIntoView({ block: 'start' })
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [activeView])
 
   return (
     <div className={`bos-showcase${compact ? ' bos-showcase--compact' : ''}`}>

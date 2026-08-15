@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { products } from '../../constants/products'
 import { ProductScreenshot } from '../ui/ProductScreenshot'
 import { Reveal, StaggerItem, StaggerReveal } from '../ui/Reveal'
@@ -16,6 +16,7 @@ function statusLabel(status: 'live' | 'beta' | 'building', t: (key: string) => s
 
 export function BuiltWithSection() {
   const { t } = useTranslation()
+  const prefersReducedMotion = useReducedMotion()
 
   return (
     <Section id="products" ariaLabelledBy="products-title">
@@ -28,12 +29,21 @@ export function BuiltWithSection() {
         />
       </Reveal>
 
+      <Reveal>
+        <ul className="products-trust-bar" aria-label={t('products.trustAria')}>
+          <li>{t('products.trustProducts', { values: { count: products.length } })}</li>
+          <li>{t('products.trustVerticals')}</li>
+          <li>{t('products.trustFramework')}</li>
+          <li>{t('products.trustAiNative')}</li>
+        </ul>
+      </Reveal>
+
       <StaggerReveal className="products-grid">
         {products.map((product) => (
           <StaggerItem key={product.slug}>
             <motion.article
               className="product-card built-product-card"
-              whileHover={{ y: -4 }}
+              whileHover={{ y: prefersReducedMotion ? 0 : -2 }}
               transition={motionTransition.soft}
             >
               <div className="product-card__top">

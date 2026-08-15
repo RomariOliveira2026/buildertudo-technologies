@@ -25,9 +25,6 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
   return (
     <motion.header
       className={`header${headerScrolled ? ' header--scrolled' : ''}${menuOpen ? ' header--menu-open' : ''}`}
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="header__inner container container--wide">
         <Link className="logo" to="/#home" aria-label={t('common.homeAria')}>

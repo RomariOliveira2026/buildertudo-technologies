@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   BOS_FRAMEWORK_BADGES,
   BOS_FRAMEWORK_HEALTH_SCORE,
@@ -8,9 +8,10 @@ import { motionTransition } from '../../motion/variants'
 import { FrameworkHealthRing } from './FrameworkHealthRing'
 import { InfrastructurePanel } from './InfrastructurePanel'
 
-const cardHover = { y: -2, scale: 1.01 }
-
 export function FrameworkView() {
+  const prefersReducedMotion = useReducedMotion()
+  const cardHover = { y: prefersReducedMotion ? 0 : -2 }
+
   return (
     <div className="bos-view bos-view--framework">
       <header className="bos-view__header">
@@ -23,7 +24,7 @@ export function FrameworkView() {
       <div className="bos-framework-hero">
         <motion.div
           className="bos-framework-score"
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={motionTransition.soft}
         >
@@ -37,7 +38,7 @@ export function FrameworkView() {
             <motion.span
               key={badge}
               className="bos-framework-badge"
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...motionTransition.soft, delay: index * 0.08 }}
             >
@@ -53,7 +54,7 @@ export function FrameworkView() {
           <motion.article
             key={stat.id}
             className="bos-framework-stat"
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...motionTransition.soft, delay: index * 0.06 }}
             whileHover={cardHover}
@@ -65,7 +66,7 @@ export function FrameworkView() {
         ))}
       </div>
 
-      <InfrastructurePanel />
+      <InfrastructurePanel frameworkOverview />
 
       <div className="bos-framework-modules">
         <h2>Engine Modules</h2>
@@ -77,7 +78,7 @@ export function FrameworkView() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 + index * 0.04 }}
-              whileHover={{ y: -2, scale: 1.01 }}
+              whileHover={cardHover}
             >
               <span className="bos-framework-module__dot" aria-hidden="true" />
               {mod}

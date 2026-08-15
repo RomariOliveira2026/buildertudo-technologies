@@ -12,7 +12,7 @@ export function CopilotView() {
           </p>
         </div>
       </header>
-      <AICopilotPanel />
+      <AICopilotPanel executiveLayout />
     </div>
   )
 }

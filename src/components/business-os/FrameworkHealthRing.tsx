@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 const RADIUS = 52
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
@@ -10,6 +10,7 @@ type FrameworkHealthRingProps = {
 
 export function FrameworkHealthRing({ score }: FrameworkHealthRingProps) {
   const [offset, setOffset] = useState(CIRCUMFERENCE)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     const target = CIRCUMFERENCE - (score / 100) * CIRCUMFERENCE
@@ -27,9 +28,11 @@ export function FrameworkHealthRing({ score }: FrameworkHealthRingProps) {
           r={RADIUS}
           className="bos-framework-score__fill"
           strokeDasharray={CIRCUMFERENCE}
-          initial={{ strokeDashoffset: CIRCUMFERENCE }}
+          initial={{ strokeDashoffset: prefersReducedMotion ? offset : CIRCUMFERENCE }}
           animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={prefersReducedMotion
+            ? { duration: 0 }
+            : { duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         />
       </svg>
     </div>

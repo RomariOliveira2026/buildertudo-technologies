@@ -33,7 +33,7 @@ function toProduct(entry: (typeof PRODUCT_CATALOG)[number]): Product {
     technologies: entry.stack.filter((t) => !['Framework', 'AI-OS', 'Engine'].includes(t)),
     status: entry.status,
     healthScore: entry.healthScore,
-    roadmap: entry.roadmap.map((r) => r.title),
+    roadmap: entry.roadmap.filter((r) => r.status !== 'done').map((r) => r.title),
     architecture: entry.architectureSummary,
     goldenScreens,
     aiFeatures: entry.aiFeatures,

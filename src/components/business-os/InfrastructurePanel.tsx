@@ -1,15 +1,27 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { BOS_INFRASTRUCTURE } from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
 
-export function InfrastructurePanel() {
+type InfrastructurePanelProps = {
+  frameworkOverview?: boolean
+}
+
+export function InfrastructurePanel({ frameworkOverview = false }: InfrastructurePanelProps) {
+  const prefersReducedMotion = useReducedMotion()
+  const latency = (
+    <span className="bos-infra__latency">
+      Latency <strong>{BOS_INFRASTRUCTURE.latency}</strong>
+    </span>
+  )
+
   return (
-    <section className="bos-infra" aria-labelledby="bos-infra-title">
+    <section
+      className={`bos-infra${frameworkOverview ? ' bos-infra--framework' : ''}`}
+      aria-labelledby="bos-infra-title"
+    >
       <header className="bos-infra__header">
         <h2 id="bos-infra-title" className="bos-infra__title">Infrastructure</h2>
-        <span className="bos-infra__latency">
-          Latency <strong>{BOS_INFRASTRUCTURE.latency}</strong>
-        </span>
+        {frameworkOverview ? null : latency}
       </header>
 
       <div className="bos-infra__grid">
@@ -20,7 +32,7 @@ export function InfrastructurePanel() {
               <motion.span
                 key={region}
                 className="bos-infra__tag"
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ...motionTransition.soft, delay: index * 0.05 }}
               >
@@ -37,7 +49,7 @@ export function InfrastructurePanel() {
               <motion.span
                 key={service}
                 className="bos-infra__tag bos-infra__tag--service"
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ...motionTransition.soft, delay: 0.1 + index * 0.05 }}
               >
@@ -46,6 +58,8 @@ export function InfrastructurePanel() {
             ))}
           </div>
         </div>
+
+        {frameworkOverview ? <div className="bos-infra__latency-zone">{latency}</div> : null}
       </div>
     </section>
   )
