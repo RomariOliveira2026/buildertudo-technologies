@@ -2,10 +2,13 @@ import { motion } from 'framer-motion'
 import type { BosChartSeries } from '../../content/business-os-showcase'
 import { BOS_ANALYTICS_CHARTS } from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+import { useLocale } from '../../i18n'
+import { businessOSCopy } from '../../i18n/business-os'
 
 function ChartCard({ chart, index }: { chart: BosChartSeries; index: number }) {
+  const { locale } = useLocale()
+  const copy = businessOSCopy[locale].analytics
+  const label = copy.labels[chart.id as keyof typeof copy.labels] ?? chart.label
   const max = Math.max(...chart.values)
   const latest = chart.values[chart.values.length - 1]
   const previous = chart.values[chart.values.length - 2] ?? latest
@@ -20,7 +23,7 @@ function ChartCard({ chart, index }: { chart: BosChartSeries; index: number }) {
       whileHover={{ y: -2, scale: 1.01 }}
     >
       <header className="bos-chart-card__head">
-        <h3>{chart.label}</h3>
+        <h3>{label}</h3>
         <span className="bos-chart-card__delta">+{delta}%</span>
       </header>
 
@@ -28,7 +31,7 @@ function ChartCard({ chart, index }: { chart: BosChartSeries; index: number }) {
         {chart.id === 'revenue' ? `$${latest}K` : chart.id === 'users' ? latest.toLocaleString() : `${latest}${chart.id === 'health' || chart.id === 'performance' ? '%' : ''}`}
       </div>
 
-      <div className="bos-chart-card__bars" role="img" aria-label={`${chart.label} chart`}>
+      <div className="bos-chart-card__bars" role="img" aria-label={`${label} ${copy.chartAria}`}>
         {chart.values.map((value, i) => (
           <div
             key={`${chart.id}-${i}`}
@@ -43,7 +46,7 @@ function ChartCard({ chart, index }: { chart: BosChartSeries; index: number }) {
       </div>
 
       <div className="bos-chart-card__months" aria-hidden="true">
-        {MONTHS.filter((_, i) => i % 3 === 0).map((m) => (
+        {copy.months.map((m) => (
           <span key={m}>{m}</span>
         ))}
       </div>
@@ -52,12 +55,15 @@ function ChartCard({ chart, index }: { chart: BosChartSeries; index: number }) {
 }
 
 export function AnalyticsView() {
+  const { locale } = useLocale()
+  const copy = businessOSCopy[locale].analytics
+
   return (
     <div className="bos-view bos-view--analytics">
       <header className="bos-view__header">
         <div>
-          <h1 className="bos-view__title">Analytics</h1>
-          <p className="bos-view__desc">Revenue, growth, users, deploys, performance and health across the platform.</p>
+          <h1 className="bos-view__title">{copy.title}</h1>
+          <p className="bos-view__desc">{copy.description}</p>
         </div>
       </header>
 

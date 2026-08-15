@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { BOS_ACTIVITY_TICKER, BOS_ACTIVITY_ICONS } from '../../content/business-os-showcase'
+import { useLocale } from '../../i18n'
+import { businessOSCopy } from '../../i18n/business-os'
 
 export function LiveActivityTicker() {
   const [index, setIndex] = useState(0)
+  const { locale } = useLocale()
+  const copy = businessOSCopy[locale]
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -18,7 +22,7 @@ export function LiveActivityTicker() {
     <div className="bos-activity-ticker" aria-live="polite" aria-atomic="true">
       <span className="bos-activity-ticker__label">
         <span className="bos-live__dot" aria-hidden="true" />
-        Live Activity
+        {copy.activity.title}
       </span>
       <AnimatePresence mode="wait">
         <motion.div
@@ -32,7 +36,7 @@ export function LiveActivityTicker() {
           <span className="bos-activity-ticker__icon" aria-hidden="true">
             {BOS_ACTIVITY_ICONS[item.type]}
           </span>
-          <span>{item.title}</span>
+          <span>{copy.activity.ticker[item.id as keyof typeof copy.activity.ticker] ?? item.title}</span>
         </motion.div>
       </AnimatePresence>
     </div>

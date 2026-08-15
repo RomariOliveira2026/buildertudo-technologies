@@ -1,15 +1,18 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import {
-  BOS_FRAMEWORK_BADGES,
   BOS_FRAMEWORK_HEALTH_SCORE,
   BOS_FRAMEWORK_STATS,
 } from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
 import { FrameworkHealthRing } from './FrameworkHealthRing'
 import { InfrastructurePanel } from './InfrastructurePanel'
+import { useLocale } from '../../i18n'
+import { businessOSCopy } from '../../i18n/business-os'
 
 export function FrameworkView() {
   const prefersReducedMotion = useReducedMotion()
+  const { locale } = useLocale()
+  const copy = businessOSCopy[locale].framework
   const cardHover = { y: prefersReducedMotion ? 0 : -2 }
 
   return (
@@ -17,7 +20,7 @@ export function FrameworkView() {
       <header className="bos-view__header">
         <div>
           <h1 className="bos-view__title">Framework</h1>
-          <p className="bos-view__desc">Engineering foundation powering every BuilderTudo product.</p>
+          <p className="bos-view__desc">{copy.description}</p>
         </div>
       </header>
 
@@ -28,13 +31,13 @@ export function FrameworkView() {
           animate={{ opacity: 1, scale: 1 }}
           transition={motionTransition.soft}
         >
-          <span className="bos-framework-score__label">Health Score</span>
+          <span className="bos-framework-score__label">{copy.healthScore}</span>
           <strong className="bos-framework-score__value">{BOS_FRAMEWORK_HEALTH_SCORE}%</strong>
           <FrameworkHealthRing score={BOS_FRAMEWORK_HEALTH_SCORE} />
         </motion.div>
 
         <div className="bos-framework-badges">
-          {BOS_FRAMEWORK_BADGES.map((badge, index) => (
+          {copy.badges.map((badge, index) => (
             <motion.span
               key={badge}
               className="bos-framework-badge"
@@ -61,7 +64,7 @@ export function FrameworkView() {
           >
             <span className="bos-framework-stat__icon" aria-hidden="true">{stat.icon}</span>
             <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
+            <span>{copy.stats[stat.id as keyof typeof copy.stats] ?? stat.label}</span>
           </motion.article>
         ))}
       </div>
@@ -69,9 +72,9 @@ export function FrameworkView() {
       <InfrastructurePanel frameworkOverview />
 
       <div className="bos-framework-modules">
-        <h2>Engine Modules</h2>
+        <h2>{copy.modulesTitle}</h2>
         <div className="bos-framework-modules__grid">
-          {['Workflow Engine', 'Webhook Hub', 'Event Processor', 'Scheduler', 'Connector Registry', 'Dead Letter Queue', 'AI Router', 'Deploy Pipeline', 'Health Monitor', 'Tenant Isolation', 'Auth Gateway', 'Observability'].map((mod, index) => (
+          {copy.modules.map((mod, index) => (
             <motion.div
               key={mod}
               className="bos-framework-module"

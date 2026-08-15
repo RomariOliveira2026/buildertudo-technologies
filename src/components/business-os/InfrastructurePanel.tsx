@@ -1,6 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { BOS_INFRASTRUCTURE } from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
+import { useLocale } from '../../i18n'
+import { businessOSCopy } from '../../i18n/business-os'
 
 type InfrastructurePanelProps = {
   frameworkOverview?: boolean
@@ -8,9 +10,11 @@ type InfrastructurePanelProps = {
 
 export function InfrastructurePanel({ frameworkOverview = false }: InfrastructurePanelProps) {
   const prefersReducedMotion = useReducedMotion()
+  const { locale } = useLocale()
+  const copy = businessOSCopy[locale].infrastructure
   const latency = (
     <span className="bos-infra__latency">
-      Latency <strong>{BOS_INFRASTRUCTURE.latency}</strong>
+      {copy.latency} <strong>{BOS_INFRASTRUCTURE.latency}</strong>
     </span>
   )
 
@@ -26,7 +30,7 @@ export function InfrastructurePanel({ frameworkOverview = false }: Infrastructur
 
       <div className="bos-infra__grid">
         <div className="bos-infra__group">
-          <span className="bos-infra__group-label">Regions</span>
+          <span className="bos-infra__group-label">{copy.regions}</span>
           <div className="bos-infra__tags">
             {BOS_INFRASTRUCTURE.regions.map((region, index) => (
               <motion.span
@@ -43,7 +47,7 @@ export function InfrastructurePanel({ frameworkOverview = false }: Infrastructur
         </div>
 
         <div className="bos-infra__group">
-          <span className="bos-infra__group-label">Services</span>
+          <span className="bos-infra__group-label">{copy.services}</span>
           <div className="bos-infra__tags">
             {BOS_INFRASTRUCTURE.services.map((service, index) => (
               <motion.span

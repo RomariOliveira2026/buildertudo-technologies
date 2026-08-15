@@ -1,18 +1,23 @@
 import { motion } from 'framer-motion'
-import { BOS_PRODUCTS, getBosStatusLabel } from '../../content/business-os-showcase'
+import { BOS_PRODUCTS } from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
+import { useLocale } from '../../i18n'
+import { businessOSCopy } from '../../i18n/business-os'
 
 const cardHover = { y: -2, scale: 1.01 }
 
 export function ProductsView() {
+  const { locale } = useLocale()
+  const copy = businessOSCopy[locale].products
+
   return (
     <div className="bos-view bos-view--products">
       <header className="bos-view__header">
         <div>
-          <h1 className="bos-view__title">Products Hub</h1>
-          <p className="bos-view__desc">BuilderTudo SaaS portfolio — live metrics across every product.</p>
+          <h1 className="bos-view__title">{copy.title}</h1>
+          <p className="bos-view__desc">{copy.description}</p>
         </div>
-        <span className="bos-view__badge">{BOS_PRODUCTS.length} products</span>
+        <span className="bos-view__badge">{BOS_PRODUCTS.length} {copy.count}</span>
       </header>
 
       <div className="bos-products-grid">
@@ -28,7 +33,7 @@ export function ProductsView() {
             <div className="bos-product-card__top">
               <span className="bos-product-card__logo" aria-hidden="true">{product.logo}</span>
               <span className={`bos-product-card__status bos-product-card__status--${product.status}`}>
-                {getBosStatusLabel(product.status)}
+                {copy.statuses[product.status]}
               </span>
             </div>
             <h3>{product.name}</h3>
@@ -36,17 +41,17 @@ export function ProductsView() {
 
             <dl className="bos-product-card__stats">
               <div>
-                <dt>Users</dt>
-                <dd>{product.activeUsers.toLocaleString()}</dd>
+                <dt>{copy.users}</dt>
+                <dd>{product.activeUsers.toLocaleString(locale)}</dd>
               </div>
               {product.uptime ? (
                 <div>
-                  <dt>Uptime</dt>
+                  <dt>{copy.uptime}</dt>
                   <dd>{product.uptime}</dd>
                 </div>
               ) : (
                 <div>
-                  <dt>Health</dt>
+                  <dt>{copy.health}</dt>
                   <dd>
                     <span className="bos-product-card__health">
                       <span
@@ -60,8 +65,8 @@ export function ProductsView() {
                 </div>
               )}
               <div>
-                <dt>Status</dt>
-                <dd className="bos-product-card__status-text">{getBosStatusLabel(product.status)}</dd>
+                <dt>{copy.status}</dt>
+                <dd className="bos-product-card__status-text">{copy.statuses[product.status]}</dd>
               </div>
             </dl>
           </motion.article>

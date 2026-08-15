@@ -10,6 +10,8 @@ import { FrameworkView } from './FrameworkView'
 import { InfrastructureView } from './InfrastructureView'
 import { CopilotView } from './CopilotView'
 import { motionTransition } from '../../motion/variants'
+import { useLocale, useTranslation } from '../../i18n'
+import { businessOSCopy } from '../../i18n/business-os'
 
 const VIEWS: Record<BosView, () => ReactNode> = {
   'command-center': () => <CommandCenterView />,
@@ -26,6 +28,9 @@ type BusinessOSShowcaseProps = {
 
 export function BusinessOSShowcase({ compact = false }: BusinessOSShowcaseProps) {
   const [activeView, setActiveView] = useState<BosView>('command-center')
+  const { locale } = useLocale()
+  const { t } = useTranslation()
+  const copy = businessOSCopy[locale]
   const ActiveView = VIEWS[activeView]
 
   useEffect(() => {
@@ -45,7 +50,7 @@ export function BusinessOSShowcase({ compact = false }: BusinessOSShowcaseProps)
       <div className="bos-showcase__glow bos-showcase__glow--gold" aria-hidden="true" />
 
       <div className="bos-showcase__shell">
-        <aside className="bos-sidebar" aria-label="Business OS navigation">
+        <aside className="bos-sidebar" aria-label={copy.navigationAria}>
           <div className="bos-sidebar__brand">
             <span className="bos-sidebar__logo" aria-hidden="true">⬡</span>
             <div className="bos-sidebar__brand-copy">
@@ -57,9 +62,9 @@ export function BusinessOSShowcase({ compact = false }: BusinessOSShowcaseProps)
             </div>
           </div>
 
-          <div className="bos-sidebar__live" aria-label="Platform status">
+          <div className="bos-sidebar__live" aria-label={copy.platformStatusAria}>
             <span className="bos-live__dot" aria-hidden="true" />
-            LIVE
+            {copy.live.toUpperCase()}
           </div>
 
           <nav className="bos-sidebar__nav">
@@ -72,15 +77,15 @@ export function BusinessOSShowcase({ compact = false }: BusinessOSShowcaseProps)
                 aria-current={activeView === item.id ? 'page' : undefined}
               >
                 <span className="bos-sidebar__icon" aria-hidden="true">{item.icon}</span>
-                {item.label}
+                {copy.nav[item.id]}
               </button>
             ))}
           </nav>
 
           {!compact ? (
             <div className="bos-sidebar__footer">
-              <Link to="/#contact" className="bos-sidebar__cta">Start Your Project</Link>
-              <Link to="/framework" className="bos-sidebar__link">Explore Framework →</Link>
+              <Link to="/#contact" className="bos-sidebar__cta">{t('common.startYourProject')}</Link>
+              <Link to="/framework" className="bos-sidebar__link">{t('common.exploreFramework')} →</Link>
             </div>
           ) : null}
         </aside>
@@ -95,7 +100,7 @@ export function BusinessOSShowcase({ compact = false }: BusinessOSShowcaseProps)
             <span className="bos-main__url">business-os.buildertudo.com/{activeView}</span>
             <span className="bos-main__live">
               <span className="bos-live__dot" aria-hidden="true" />
-              Live
+              {copy.live}
             </span>
           </div>
 

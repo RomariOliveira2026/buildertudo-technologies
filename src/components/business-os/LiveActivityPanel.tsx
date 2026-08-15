@@ -2,9 +2,13 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BOS_ACTIVITY_ICONS, BOS_LIVE_ACTIVITIES } from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
+import { useLocale } from '../../i18n'
+import { businessOSCopy } from '../../i18n/business-os'
 
 export function LiveActivityPanel() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const { locale } = useLocale()
+  const copy = businessOSCopy[locale]
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -23,12 +27,12 @@ export function LiveActivityPanel() {
     <section className="bos-panel bos-live" aria-labelledby="bos-live-title">
       <header className="bos-panel__header">
         <div>
-          <h2 id="bos-live-title" className="bos-panel__title">Live Activity</h2>
-          <p className="bos-panel__subtitle">Real-time platform events</p>
+          <h2 id="bos-live-title" className="bos-panel__title">{copy.activity.title}</h2>
+          <p className="bos-panel__subtitle">{copy.activity.subtitle}</p>
         </div>
         <span className="bos-live__pulse">
           <span className="bos-live__dot" aria-hidden="true" />
-          Live
+          {copy.live}
         </span>
       </header>
 
@@ -48,10 +52,10 @@ export function LiveActivityPanel() {
                 {BOS_ACTIVITY_ICONS[item.type]}
               </span>
               <div className="bos-live__body">
-                <strong>{item.title}</strong>
-                <span>{item.detail}</span>
+                <strong>{copy.activity.items[item.id as keyof typeof copy.activity.items]?.title ?? item.title}</strong>
+                <span>{copy.activity.items[item.id as keyof typeof copy.activity.items]?.detail ?? item.detail}</span>
               </div>
-              <time className="bos-live__time">{item.time}</time>
+              <time className="bos-live__time">{copy.activity.items[item.id as keyof typeof copy.activity.items]?.time ?? item.time}</time>
             </motion.li>
           ))}
         </AnimatePresence>

@@ -1,6 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { BOS_COPILOT } from '../../content/business-os-showcase'
 import { motionTransition } from '../../motion/variants'
+import { useLocale } from '../../i18n'
+import { businessOSCopy } from '../../i18n/business-os'
 
 const PRIMARY_SIGNAL_IDS = new Set(['brief', 'health', 'deploy'])
 
@@ -24,6 +26,8 @@ type AICopilotPanelProps = {
 
 export function AICopilotPanel({ executiveLayout = false }: AICopilotPanelProps) {
   const prefersReducedMotion = useReducedMotion()
+  const { locale } = useLocale()
+  const copy = businessOSCopy[locale].copilot
 
   return (
     <aside className="bos-copilot" aria-labelledby="bos-copilot-title">
@@ -31,20 +35,22 @@ export function AICopilotPanel({ executiveLayout = false }: AICopilotPanelProps)
         <div className="bos-copilot__avatar" aria-hidden="true">◎</div>
         <div className="bos-copilot__header-copy">
           <div className="bos-copilot__title-row">
-            <h2 id="bos-copilot-title" className="bos-copilot__title">Executive AI Brief</h2>
+            <h2 id="bos-copilot-title" className="bos-copilot__title">{copy.title}</h2>
             <span className="bos-copilot__badge">
               <span className="bos-live__dot" aria-hidden="true" />
-              AI ONLINE
+              {copy.online}
             </span>
           </div>
-          <p className="bos-copilot__status">Real-time executive intelligence</p>
+          <p className="bos-copilot__status">{copy.status}</p>
         </div>
       </header>
 
       <div className="bos-copilot__sections">
         {BOS_COPILOT.map((section, sIndex) => {
+          const localized = copy.sections[section.id as keyof typeof copy.sections]
+          const items = localized?.items ?? section.items
           const metric = executiveLayout && PRIMARY_SIGNAL_IDS.has(section.id)
-            ? extractMetric(section.items[0] ?? '')
+            ? extractMetric(items[0] ?? '')
             : undefined
 
           return (
@@ -61,14 +67,14 @@ export function AICopilotPanel({ executiveLayout = false }: AICopilotPanelProps)
                   <span className="bos-copilot__section-icon" aria-hidden="true">
                     {SECTION_ICONS[section.id] ?? '•'}
                   </span>
-                  <h3>{section.title}</h3>
+                  <h3>{localized?.title ?? section.title}</h3>
                 </div>
               ) : (
-                <h3>{section.title}</h3>
+                <h3>{localized?.title ?? section.title}</h3>
               )}
               {metric ? <strong className="bos-copilot__metric">{metric}</strong> : null}
               <ul>
-                {section.items.map((item) => (
+                {items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
