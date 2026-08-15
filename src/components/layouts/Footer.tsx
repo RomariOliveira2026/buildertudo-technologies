@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom'
 import { CONTACT } from '../../constants/contact'
-import { footerLinks } from '../../constants/navigation'
 import { products } from '../../constants/products'
 import { LEGAL_ROUTES } from '../../constants/routes'
+import { getFooterLinks } from '../../i18n/content'
+import { useTranslation } from '../../i18n'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 export function Footer() {
+  const { t } = useTranslation()
+  const links = getFooterLinks(t)
+
   return (
     <footer className="footer" role="contentinfo">
       <div className="container footer__grid footer__grid--v3">
@@ -19,17 +23,14 @@ export function Footer() {
             loading="lazy"
             decoding="async"
           />
-          <p className="footer__tagline">Digital product engineering platform.</p>
-          <p className="footer__desc">
-            Framework, Business OS, AI-OS, Engine and 12 official products.
-            Built in Brazil. Ready for the world.
-          </p>
+          <p className="footer__tagline">{t('footer.tagline')}</p>
+          <p className="footer__desc">{t('footer.description')}</p>
         </div>
 
         <div>
-          <h3 className="footer__heading">Company</h3>
+          <h3 className="footer__heading">{t('footer.company')}</h3>
           <ul>
-            {footerLinks.company.map((link) => (
+            {links.company.map((link) => (
               <li key={link.label}>
                 <Link to={link.href}>{link.label}</Link>
               </li>
@@ -38,9 +39,9 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="footer__heading">Platform</h3>
+          <h3 className="footer__heading">{t('footer.platform')}</h3>
           <ul>
-            {footerLinks.platform.map((link) => (
+            {links.platform.map((link) => (
               <li key={link.label}>
                 <Link to={link.href}>{link.label}</Link>
               </li>
@@ -49,7 +50,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="footer__heading">Products</h3>
+          <h3 className="footer__heading">{t('footer.products')}</h3>
           <ul>
             {products.slice(0, 6).map((product) => (
               <li key={product.slug}>{product.name}</li>
@@ -58,12 +59,12 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="footer__heading">Connect</h3>
+          <h3 className="footer__heading">{t('footer.connect')}</h3>
           <ul>
-            <li><Link to="/#contact">Start a Project</Link></li>
-            <li><a href={CONTACT.meeting}>Book a Call</a></li>
+            <li><Link to="/#contact">{t('footer.startProject')}</Link></li>
+            <li><a href={CONTACT.meeting}>{t('footer.bookCall')}</a></li>
             <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
-            <li><a href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><a href={buildWhatsAppUrl(t('contact.whatsappDefault'))} target="_blank" rel="noopener noreferrer">{t('common.whatsapp')}</a></li>
             <li><a href={CONTACT.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
             <li><a href={CONTACT.upwork} target="_blank" rel="noopener noreferrer">Upwork</a></li>
@@ -71,22 +72,22 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="footer__heading">Resources</h3>
+          <h3 className="footer__heading">{t('footer.resources')}</h3>
           <ul>
-            {footerLinks.resources.map((link) => (
+            {links.resources.map((link) => (
               <li key={link.label}>
                 <Link to={link.href}>{link.label}</Link>
               </li>
             ))}
-            <li><Link to={LEGAL_ROUTES.privacy}>Privacy Policy</Link></li>
-            <li><Link to={LEGAL_ROUTES.terms}>Terms of Use</Link></li>
+            <li><Link to={LEGAL_ROUTES.privacy}>{t('footer.privacy')}</Link></li>
+            <li><Link to={LEGAL_ROUTES.terms}>{t('footer.terms')}</Link></li>
           </ul>
         </div>
       </div>
 
       <div className="container footer__bottom">
-        <p>© {new Date().getFullYear()} BuilderTudo Technologies. All rights reserved.</p>
-        <p className="footer__mission">Platform engineering · AI-native · Enterprise-ready</p>
+        <p>© {new Date().getFullYear()} BuilderTudo Technologies. {t('common.allRightsReserved')}</p>
+        <p className="footer__mission">{t('footer.mission')}</p>
       </div>
     </footer>
   )

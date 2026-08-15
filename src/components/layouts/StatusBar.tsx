@@ -1,10 +1,14 @@
-import { STATUS_BAR_ITEMS } from '../../constants/hero'
+import { getStatusBarItems } from '../../i18n/content'
+import { useTranslation } from '../../i18n'
 
 export function StatusBar() {
+  const { t } = useTranslation()
+  const items = getStatusBarItems(t)
+
   return (
-    <div className="status-bar" role="status" aria-label="Platform status">
+    <div className="status-bar" role="status" aria-label={t('common.platformStatusAria')}>
       <div className="status-bar__inner container container--wide">
-        {STATUS_BAR_ITEMS.map((item) => (
+        {items.map((item) => (
           <span key={item.id} className="status-bar__item">
             {item.live ? <span className="status-bar__dot" aria-hidden="true" /> : null}
             {item.label}

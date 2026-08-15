@@ -1,22 +1,26 @@
-import { PLATFORM_LAYERS } from '../../constants/platform'
+import { getPlatformLayers } from '../../i18n/content'
+import { useTranslation } from '../../i18n'
 import { Reveal, StaggerItem, StaggerReveal } from '../ui/Reveal'
 import { Section, SectionHeader } from '../ui/Section'
 import { MotionButton } from '../ui/Buttons'
 
 export function PlatformSection() {
+  const { t } = useTranslation()
+  const layers = getPlatformLayers(t)
+
   return (
     <Section id="platform" variant="alt" ariaLabelledBy="platform-title">
       <Reveal>
         <SectionHeader
           id="platform-title"
-          eyebrow="The BuilderTudo Platform"
-          title="A proprietary stack — not a stack of tools."
-          description="Framework, AI-OS, Engine, Runtime, Business OS and Golden Screens. One integrated platform we engineered ourselves, so every project ships faster, safer and at product grade."
+          eyebrow={t('platform.eyebrow')}
+          title={t('platform.title')}
+          description={t('platform.description')}
         />
       </Reveal>
 
       <StaggerReveal className="platform-pillars">
-        {PLATFORM_LAYERS.map((layer) => (
+        {layers.map((layer) => (
           <StaggerItem key={layer.id}>
             <article className="platform-pillar">
               <span className="platform-pillar__tag">{layer.tag}</span>
@@ -29,9 +33,9 @@ export function PlatformSection() {
 
       <Reveal>
         <div className="platform-cta-row">
-          <MotionButton href="/framework">Explore Framework</MotionButton>
-          <MotionButton href="/#business-os" variant="secondary">Explore Business OS</MotionButton>
-          <MotionButton href="/#products" variant="ghost">View products</MotionButton>
+          <MotionButton href="/framework">{t('platform.ctaFramework')}</MotionButton>
+          <MotionButton href="/#business-os" variant="secondary">{t('platform.ctaBusinessOs')}</MotionButton>
+          <MotionButton href="/#products" variant="ghost">{t('platform.ctaProducts')}</MotionButton>
         </div>
       </Reveal>
     </Section>

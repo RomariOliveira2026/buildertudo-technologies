@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import { env, isFormBackendEnabled } from '../../config/env'
+import { getContactServices } from '../../i18n/content'
+import { useTranslation } from '../../i18n'
 import { trackEvent } from '../../lib/analytics'
 import {
-  CONTACT_SERVICES,
   hasContactFormErrors,
   validateContactForm,
   type ContactFormData,
@@ -25,6 +26,8 @@ type ContactFormProps = {
 }
 
 export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
+  const { t } = useTranslation()
+  const services = getContactServices(t)
   const [form, setForm] = useState<ContactFormData>(initialState)
   const [errors, setErrors] = useState<ContactFormErrors>({})
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -42,12 +45,19 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const validation = validateContactForm(form)
+    const validation = validateContactForm(form, {
+      name: t('contact.errName'),
+      company: t('contact.errCompany'),
+      phone: t('contact.errPhone'),
+      email: t('contact.errEmail'),
+      service: t('contact.errService'),
+      message: t('contact.errMessage'),
+    })
 
     if (hasContactFormErrors(validation)) {
       setErrors(validation)
       setStatus('error')
-      setFeedback('Please review the highlighted fields.')
+      setFeedback(t('contact.formReviewFields'))
       return
     }
 
@@ -70,16 +80,26 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         source: 'contact_form',
       })
 
-      const whatsappUrl = buildWhatsAppUrl(buildWhatsAppLeadMessage(form))
+      const whatsappUrl = buildWhatsAppUrl(
+        buildWhatsAppLeadMessage(form, {
+          intro: t('contact.whatsappLeadIntro'),
+          name: t('contact.whatsappLeadName'),
+          company: t('contact.whatsappLeadCompany'),
+          phone: t('contact.whatsappLeadPhone'),
+          email: t('contact.whatsappLeadEmail'),
+          service: t('contact.whatsappLeadService'),
+          message: t('contact.whatsappLeadMessage'),
+        }),
+      )
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 
       setStatus('success')
-      setFeedback('Request received! We opened WhatsApp so you can complete your message.')
+      setFeedback(t('contact.formSuccess'))
       setForm(initialState)
       setErrors({})
     } catch {
       setStatus('error')
-      setFeedback('Unable to send right now. Try again or contact us via WhatsApp.')
+      setFeedback(t('contact.formError'))
     }
   }
 
@@ -93,12 +113,13 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
     >
       <div className="contact-form__grid">
         <div className="contact-form__field">
-          <label htmlFor={`${id}-name`}>Name *</label>
+          <label htmlFor={`${id}-name`}>{t('contact.formName')}</label>
           <input
             id={`${id}-name`}
             name="name"
             type="text"
             autoComplete="name"
+            placeholder={t('contact.formPlaceholderName')}
             value={form.name}
             onChange={(event) => updateField('name', event.target.value)}
             aria-invalid={Boolean(errors.name)}
@@ -109,12 +130,13 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field">
-          <label htmlFor={`${id}-company`}>Company *</label>
+          <label htmlFor={`${id}-company`}>{t('contact.formCompany')}</label>
           <input
             id={`${id}-company`}
             name="company"
             type="text"
             autoComplete="organization"
+            placeholder={t('contact.formPlaceholderCompany')}
             value={form.company}
             onChange={(event) => updateField('company', event.target.value)}
             aria-invalid={Boolean(errors.company)}
@@ -125,14 +147,14 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field">
-          <label htmlFor={`${id}-phone`}>Phone / WhatsApp *</label>
+          <label htmlFor={`${id}-phone`}>{t('contact.formPhone')}</label>
           <input
             id={`${id}-phone`}
             name="phone"
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="(79) 99999-9999"
+            placeholder={t('contact.formPlaceholderPhone')}
             value={form.phone}
             onChange={(event) => updateField('phone', event.target.value)}
             aria-invalid={Boolean(errors.phone)}
@@ -143,12 +165,13 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field">
-          <label htmlFor={`${id}-email`}>Email *</label>
+          <label htmlFor={`${id}-email`}>{t('contact.formEmail')}</label>
           <input
             id={`${id}-email`}
             name="email"
             type="email"
             autoComplete="email"
+            placeholder={t('contact.formPlaceholderEmail')}
             value={form.email}
             onChange={(event) => updateField('email', event.target.value)}
             aria-invalid={Boolean(errors.email)}
@@ -159,18 +182,18 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field contact-form__field--full">
-          <label htmlFor={`${id}-service`}>Service needed *</label>
+          <label htmlFor={`${id}-service`}>{t('contact.formService')}</label>
           <select
             id={`${id}-service`}
             name="service"
             value={form.service}
-            onChange={(event) => updateField('service', event.target.value as ContactFormData['service'])}
+            onChange={(event) => updateField('service', event.target.value)}
             aria-invalid={Boolean(errors.service)}
             aria-describedby={errors.service ? `${id}-service-error` : undefined}
             required
           >
-            <option value="">Select an option</option>
-            {CONTACT_SERVICES.map((service) => (
+            <option value="">{t('contact.formSelectService')}</option>
+            {services.map((service) => (
               <option key={service} value={service}>
                 {service}
               </option>
@@ -180,11 +203,12 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         </div>
 
         <div className="contact-form__field contact-form__field--full">
-          <label htmlFor={`${id}-message`}>Message *</label>
+          <label htmlFor={`${id}-message`}>{t('contact.formMessage')}</label>
           <textarea
             id={`${id}-message`}
             name="message"
             rows={5}
+            placeholder={t('contact.formPlaceholderMessage')}
             value={form.message}
             onChange={(event) => updateField('message', event.target.value)}
             aria-invalid={Boolean(errors.message)}
@@ -200,7 +224,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
           className="contact-form__submit"
           aria-busy={status === 'submitting'}
         >
-          {status === 'submitting' ? 'Sending...' : 'Request a quote'}
+          {status === 'submitting' ? t('contact.formSubmitting') : t('contact.formSubmit')}
         </MotionSubmitButton>
       </div>
 

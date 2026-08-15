@@ -1,10 +1,12 @@
 import { env } from '../config/env'
 import { CONTACT } from '../constants/contact'
+import type { Locale } from '../i18n'
+import { LOCALE_META } from '../i18n'
 import type { ProductPageContent } from '../types/product-content'
 import { getProductStatusLabel } from '../types/product'
 
 export const SITE_NAME = 'BuilderTudo Technologies'
-export const SITE_SLOGAN = 'Tecnologia que transforma negócios.'
+export const SITE_SLOGAN = 'Technology that transforms businesses.'
 export const DEFAULT_DESCRIPTION =
   'BuilderTudo Technologies — proprietary AI engineering platform. Framework, Business OS, AI-OS, Engine and 12 SaaS products. Enterprise-grade platform engineering for global clients.'
 
@@ -28,28 +30,28 @@ export function buildPageTitle(title: string) {
   return title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`
 }
 
-export function getOrganizationSchema() {
+export function getOrganizationSchema(description = DEFAULT_DESCRIPTION, slogan = SITE_SLOGAN) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: SITE_NAME,
     url: env.siteUrl,
     logo: DEFAULT_OG_IMAGE,
-    description: DEFAULT_DESCRIPTION,
-    slogan: SITE_SLOGAN,
+    description,
+    slogan,
     email: CONTACT.email,
     sameAs: [CONTACT.linkedin, CONTACT.instagram, CONTACT.github].filter(Boolean),
   }
 }
 
-export function getWebSiteSchema() {
+export function getWebSiteSchema(description = DEFAULT_DESCRIPTION, locale: Locale = 'en') {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: SITE_NAME,
     url: env.siteUrl,
-    description: DEFAULT_DESCRIPTION,
-    inLanguage: 'pt-BR',
+    description,
+    inLanguage: LOCALE_META[locale].htmlLang,
     publisher: {
       '@type': 'Organization',
       name: SITE_NAME,
@@ -58,32 +60,44 @@ export function getWebSiteSchema() {
   }
 }
 
-export function getSoftwareCompanySchema() {
+export function getSoftwareCompanySchema(description = DEFAULT_DESCRIPTION, slogan = SITE_SLOGAN) {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareCompany',
     name: SITE_NAME,
     url: env.siteUrl,
     logo: DEFAULT_OG_IMAGE,
-    description: DEFAULT_DESCRIPTION,
-    slogan: SITE_SLOGAN,
+    description,
+    slogan,
     email: CONTACT.email,
-    areaServed: 'BR',
+    areaServed: 'Worldwide',
     knowsAbout: [
-      'Inteligência Artificial',
-      'Plataformas SaaS',
-      'Automação',
-      'Sistemas Web',
-      'Aplicativos',
+      'Artificial Intelligence',
+      'SaaS Platforms',
+      'Product Engineering',
+      'Enterprise Software',
+      'Business Operating Systems',
     ],
   }
 }
 
-export const homeStructuredData = [
-  getOrganizationSchema(),
-  getWebSiteSchema(),
-  getSoftwareCompanySchema(),
-]
+export function buildHomeStructuredData({
+  description = DEFAULT_DESCRIPTION,
+  slogan = SITE_SLOGAN,
+  locale = 'en' as Locale,
+}: {
+  description?: string
+  slogan?: string
+  locale?: Locale
+} = {}) {
+  return [
+    getOrganizationSchema(description, slogan),
+    getWebSiteSchema(description, locale),
+    getSoftwareCompanySchema(description, slogan),
+  ]
+}
+
+export const homeStructuredData = buildHomeStructuredData()
 
 export function getBreadcrumbSchema(items: Array<{ name: string; path: string }>) {
   return {

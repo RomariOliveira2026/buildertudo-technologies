@@ -2,16 +2,19 @@ import { Reveal } from '../ui/Reveal'
 import { Section, SectionHeader } from '../ui/Section'
 import { MotionButton } from '../ui/Buttons'
 import { BusinessOSShowcase } from '../business-os'
+import { useTranslation } from '../../i18n'
 
 export function BusinessOSSection() {
+  const { t } = useTranslation()
+
   return (
     <Section id="business-os" variant="alt" ariaLabelledBy="business-os-title">
       <Reveal>
         <SectionHeader
           id="business-os-title"
-          eyebrow="Business OS"
-          title="Enterprise software we use every day"
-          description="Command Center, AI Copilot, live activity, product portfolio, analytics and Framework health — the same platform we offer enterprise clients."
+          eyebrow={t('businessOS.eyebrow')}
+          title={t('businessOS.title')}
+          description={t('businessOS.description')}
         />
       </Reveal>
 
@@ -21,8 +24,8 @@ export function BusinessOSSection() {
 
       <Reveal>
         <div className="section-cta-row">
-          <MotionButton href="/business-os">Explore Business OS</MotionButton>
-          <MotionButton href="/live" variant="secondary">View live status</MotionButton>
+          <MotionButton href="/business-os">{t('businessOS.ctaExplore')}</MotionButton>
+          <MotionButton href="/live" variant="secondary">{t('businessOS.ctaLive')}</MotionButton>
         </div>
       </Reveal>
     </Section>

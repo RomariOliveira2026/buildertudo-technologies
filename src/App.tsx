@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
+import { LocaleProvider } from './i18n'
 import { initAnalytics } from './lib/analytics'
 import { scrollToHashWithRetry } from './lib/scrollToSection'
 import { LEGAL_ROUTES, PAGE_ROUTES } from './constants/routes'
@@ -53,7 +54,9 @@ function AppRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <LocaleProvider>
+        <AppRoutes />
+      </LocaleProvider>
     </BrowserRouter>
   )
 }

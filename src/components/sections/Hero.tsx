@@ -4,7 +4,8 @@ import { HeroShowcase } from './HeroShowcase'
 import { HeroTechStrip } from './HeroTechStrip'
 import { HeroPerformanceStrip } from './HeroPerformanceStrip'
 import { usePlatformMetrics } from '../../hooks/usePlatformMetrics'
-import { HERO_ENTERPRISE_BADGES, HERO_POWERED_BY } from '../../constants/hero'
+import { getHeroBadges } from '../../i18n/content'
+import { useTranslation } from '../../i18n'
 import { fadeIn, fadeUp, heroStagger, motionTransition } from '../../motion/variants'
 
 const STAT_ICONS: Record<string, string> = {
@@ -18,6 +19,8 @@ const STAT_ICONS: Record<string, string> = {
 
 export function Hero() {
   const { items } = usePlatformMetrics()
+  const { t } = useTranslation()
+  const badges = getHeroBadges(t)
 
   return (
     <section className="hero hero--enterprise" id="home" aria-labelledby="hero-title">
@@ -36,7 +39,7 @@ export function Hero() {
             variants={heroStagger}
           >
             <motion.ul className="hero__enterprise-badges" variants={fadeIn} transition={motionTransition.soft}>
-              {HERO_ENTERPRISE_BADGES.map((badge) => (
+              {badges.map((badge) => (
                 <li key={badge.id}>
                   <span className="hero__enterprise-check" aria-hidden="true">✓</span>
                   {badge.label}
@@ -45,17 +48,15 @@ export function Hero() {
             </motion.ul>
 
             <motion.h1 id="hero-title" variants={fadeIn} transition={{ ...motionTransition.soft, delay: 0.06 }}>
-              From idea to production. We build AI-powered SaaS platforms that scale.
+              {t('hero.title')}
             </motion.h1>
 
             <motion.p className="hero__lead" variants={fadeUp} transition={motionTransition.soft}>
-              BuilderTudo Technologies is a Product Engineering Company specialized in AI-powered SaaS
-              platforms. We design, build and deploy enterprise-grade products using our proprietary
-              Framework, AI Engine and Business OS.
+              {t('hero.lead')}
             </motion.p>
 
             <motion.p className="hero__powered-by" variants={fadeUp} transition={motionTransition.soft}>
-              {HERO_POWERED_BY}
+              {t('hero.poweredBy')}
             </motion.p>
 
             <motion.div className="hero__actions" variants={fadeUp} transition={motionTransition.soft}>
@@ -65,7 +66,7 @@ export function Hero() {
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.995 }}
               >
-                Start Your Project
+                {t('hero.ctaPrimary')}
               </MotionButton>
               <MotionButton
                 href="/#platform"
@@ -74,7 +75,7 @@ export function Hero() {
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.995 }}
               >
-                Explore Platform
+                {t('hero.ctaSecondary')}
               </MotionButton>
             </motion.div>
 
@@ -82,7 +83,7 @@ export function Hero() {
               className="hero__stats hero__stats--premium"
               variants={fadeUp}
               transition={motionTransition.soft}
-              aria-label="Platform metrics"
+              aria-label={t('common.platformMetricsAria')}
             >
               {items.map((item) => (
                 <motion.li

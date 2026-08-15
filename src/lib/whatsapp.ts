@@ -1,9 +1,19 @@
 import { CONTACT } from '../constants/contact'
 
 export const WHATSAPP_DEFAULT_MESSAGE =
-  'Olá! Visitei o site da BuilderTudo Technologies e gostaria de solicitar um orçamento.'
+  'Hello! I visited the BuilderTudo Technologies website and would like to request a quote.'
 
 export type WhatsAppLeadPayload = {
+  name: string
+  company: string
+  phone: string
+  email: string
+  service: string
+  message: string
+}
+
+export type WhatsAppLeadLabels = {
+  intro: string
   name: string
   company: string
   phone: string
@@ -17,15 +27,26 @@ export function buildWhatsAppUrl(message = WHATSAPP_DEFAULT_MESSAGE) {
   return `${CONTACT.whatsapp}?text=${encoded}`
 }
 
-export function buildWhatsAppLeadMessage(payload: WhatsAppLeadPayload) {
+export function buildWhatsAppLeadMessage(
+  payload: WhatsAppLeadPayload,
+  labels: WhatsAppLeadLabels = {
+    intro: WHATSAPP_DEFAULT_MESSAGE,
+    name: 'Name',
+    company: 'Company',
+    phone: 'WhatsApp',
+    email: 'Email',
+    service: 'Requested service',
+    message: 'Message',
+  },
+) {
   return [
-    'Olá! Visitei o site da BuilderTudo Technologies e gostaria de solicitar um orçamento.',
+    labels.intro,
     '',
-    `Nome: ${payload.name}`,
-    `Empresa: ${payload.company}`,
-    `WhatsApp: ${payload.phone}`,
-    `E-mail: ${payload.email}`,
-    `Serviço desejado: ${payload.service}`,
-    `Mensagem: ${payload.message}`,
+    `${labels.name}: ${payload.name}`,
+    `${labels.company}: ${payload.company}`,
+    `${labels.phone}: ${payload.phone}`,
+    `${labels.email}: ${payload.email}`,
+    `${labels.service}: ${payload.service}`,
+    `${labels.message}: ${payload.message}`,
   ].join('\n')
 }

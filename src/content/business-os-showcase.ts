@@ -193,9 +193,9 @@ export const BOS_PRODUCTS: BosProduct[] = [
 ]
 
 export const BOS_ANALYTICS_CHARTS: BosChartSeries[] = [
-  { id: 'revenue', label: 'Receita', values: [42, 48, 52, 58, 64, 72, 78, 84, 92, 98, 108, 118], color: '#E4AE2B' },
-  { id: 'growth', label: 'Crescimento', values: [8, 10, 9, 12, 11, 14, 13, 15, 16, 14, 18, 17], color: '#4F7CFF' },
-  { id: 'users', label: 'Usuários', values: [1200, 1350, 1480, 1620, 1780, 1920, 2100, 2280, 2450, 2620, 2780, 2940], color: '#7C5CFF' },
+  { id: 'revenue', label: 'Revenue', values: [42, 48, 52, 58, 64, 72, 78, 84, 92, 98, 108, 118], color: '#E4AE2B' },
+  { id: 'growth', label: 'Growth', values: [8, 10, 9, 12, 11, 14, 13, 15, 16, 14, 18, 17], color: '#4F7CFF' },
+  { id: 'users', label: 'Users', values: [1200, 1350, 1480, 1620, 1780, 1920, 2100, 2280, 2450, 2620, 2780, 2940], color: '#7C5CFF' },
   { id: 'deploys', label: 'Deploys', values: [12, 14, 11, 16, 18, 15, 20, 22, 19, 24, 26, 28], color: '#2DD4BF' },
   { id: 'performance', label: 'Performance', values: [94, 95, 94, 96, 95, 97, 96, 98, 97, 98, 99, 98], color: '#4F7CFF' },
   { id: 'health', label: 'Health Score', values: [88, 89, 90, 91, 90, 92, 93, 92, 94, 93, 94, 94], color: '#E4AE2B' },

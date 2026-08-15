@@ -2,21 +2,25 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { PlatformScreenshot } from '../ui/PlatformScreenshot'
 import { useHeroShowcase } from '../../hooks/useHeroShowcase'
-import { HERO_MOCKUP_OVERLAYS, HERO_SHOWCASE_FOOTER_META } from '../../constants/hero'
+import { getHeroFooterMeta, getHeroOverlays } from '../../i18n/content'
+import { useTranslation } from '../../i18n'
 import { heroSlide } from '../../motion/variants'
 import { MotionButton } from '../ui/Buttons'
 
 export function HeroShowcase() {
+  const { t } = useTranslation()
+  const overlays = getHeroOverlays(t)
+  const footerMeta = getHeroFooterMeta(t)
   const { items, active, activeIndex, activeId, hasScreenshots, direction, goTo, pause, resume } =
     useHeroShowcase()
 
   if (!hasScreenshots) {
     return (
       <div className="hero-showcase hero-showcase--empty">
-        <p>Live Business OS demos appear here once real screenshots are captured from the platform.</p>
+        <p>{t('hero.showcaseEmpty')}</p>
         <div className="hero-showcase__empty-actions">
-          <MotionButton href="/business-os">Explore Business OS</MotionButton>
-          <MotionButton href="/framework" variant="secondary">Explore Framework</MotionButton>
+          <MotionButton href="/business-os">{t('hero.showcaseExploreBos')}</MotionButton>
+          <MotionButton href="/framework" variant="secondary">{t('hero.showcaseExploreFramework')}</MotionButton>
         </div>
       </div>
     )
@@ -27,17 +31,17 @@ export function HeroShowcase() {
       className="hero-showcase hero-showcase--enterprise"
       onMouseEnter={pause}
       onMouseLeave={resume}
-      aria-label="Platform showcase"
+      aria-label={t('hero.showcaseEyebrow')}
     >
       <div className="hero-showcase__stage">
         <header className="hero-showcase__header">
           <div className="hero-showcase__header-copy">
-            <span className="hero-showcase__eyebrow">Business OS · Live Demo</span>
+            <span className="hero-showcase__eyebrow">{t('hero.showcaseEyebrow')}</span>
             <h2 className="hero-showcase__title">{active?.name ?? 'Business OS'}</h2>
           </div>
           {active ? (
             <Link className="hero-showcase__open" to="/business-os">
-              Open in Business OS →
+              {t('hero.showcaseOpen')}
             </Link>
           ) : null}
         </header>
@@ -76,7 +80,7 @@ export function HeroShowcase() {
           </AnimatePresence>
 
           <div className="hero-showcase__overlays" aria-hidden="true">
-            {HERO_MOCKUP_OVERLAYS.map((chip, index) => (
+            {overlays.map((chip, index) => (
               <motion.div
                 key={chip.id}
                 className="hero-showcase__overlay-chip"
@@ -104,7 +108,7 @@ export function HeroShowcase() {
             ))}
           </div>
           <ul className="hero-showcase__meta" aria-label="Platform highlights">
-            {HERO_SHOWCASE_FOOTER_META.map((item) => (
+            {footerMeta.map((item) => (
               <li key={item.id}>{item.label}</li>
             ))}
           </ul>

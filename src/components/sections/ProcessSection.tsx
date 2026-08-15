@@ -1,4 +1,5 @@
-import { BUILDER_PROCESS } from '../../constants/process'
+import { getProcessSteps } from '../../i18n/content'
+import { useTranslation } from '../../i18n'
 import { Reveal, StaggerItem, StaggerReveal } from '../ui/Reveal'
 import { Section, SectionHeader } from '../ui/Section'
 import { MotionButton } from '../ui/Buttons'
@@ -6,19 +7,22 @@ import { MotionButton } from '../ui/Buttons'
 const PROCESS_ICONS = ['◎', '◆', '⬡', '▣', '✦', '◇', '↑', '∞']
 
 export function ProcessSection() {
+  const { t } = useTranslation()
+  const steps = getProcessSteps(t)
+
   return (
     <Section id="process" ariaLabelledBy="process-title">
       <Reveal>
         <SectionHeader
           id="process-title"
-          eyebrow="BuilderTudo Method"
-          title="From discovery to evolution"
-          description="A proprietary 8-step flow — every phase powered by Framework, Golden Screens, AI-OS and Engine."
+          eyebrow={t('method.eyebrow')}
+          title={t('method.title')}
+          description={t('method.description')}
         />
       </Reveal>
 
       <StaggerReveal className="process-grid">
-        {BUILDER_PROCESS.map((step, index) => (
+        {steps.map((step, index) => (
           <StaggerItem key={step.step}>
             <article className="process-step">
               <div className="process-step__head">
@@ -36,9 +40,9 @@ export function ProcessSection() {
 
       <Reveal>
         <div className="section-cta-row">
-          <MotionButton href="/method">Full methodology</MotionButton>
+          <MotionButton href="/method">{t('method.ctaFull')}</MotionButton>
           <MotionButton href="mailto:contato@buildertudo.com?subject=Schedule%20Discovery" variant="secondary">
-            Schedule discovery
+            {t('method.ctaSchedule')}
           </MotionButton>
         </div>
       </Reveal>

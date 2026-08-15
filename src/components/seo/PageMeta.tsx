@@ -1,4 +1,6 @@
 import { useEffect } from 'react'
+import { useTranslation } from '../../i18n'
+import { LOCALE_META } from '../../i18n'
 import {
   buildCanonical,
   buildPageTitle,
@@ -60,19 +62,23 @@ export function PageMeta({
   noIndex = false,
   structuredData,
 }: PageMetaProps) {
+  const { locale } = useTranslation()
+
   useEffect(() => {
     const pageTitle = buildPageTitle(title)
     const canonical = buildCanonical(path)
     const robots = noIndex ? 'noindex, nofollow' : 'index, follow'
+    const ogLocale = LOCALE_META[locale].ogLocale
 
     document.title = pageTitle
+    document.documentElement.lang = LOCALE_META[locale].htmlLang
 
     upsertLink('canonical', canonical)
     upsertMeta('meta[name="description"]', { name: 'description', content: description })
     upsertMeta('meta[name="robots"]', { name: 'robots', content: robots })
 
     upsertMeta('meta[property="og:type"]', { property: 'og:type', content: type })
-    upsertMeta('meta[property="og:locale"]', { property: 'og:locale', content: 'pt_BR' })
+    upsertMeta('meta[property="og:locale"]', { property: 'og:locale', content: ogLocale })
     upsertMeta('meta[property="og:site_name"]', { property: 'og:site_name', content: SITE_NAME })
     upsertMeta('meta[property="og:title"]', { property: 'og:title', content: pageTitle })
     upsertMeta('meta[property="og:description"]', { property: 'og:description', content: description })
@@ -89,7 +95,7 @@ export function PageMeta({
     } else {
       document.getElementById('page-structured-data')?.remove()
     }
-  }, [title, description, path, image, type, noIndex, structuredData])
+  }, [title, description, path, image, type, noIndex, structuredData, locale])
 
   return null
 }

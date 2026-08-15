@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { navItems, type NavSectionId } from '../../constants/navigation'
+import { getNavItems } from '../../i18n/content'
+import { useTranslation } from '../../i18n'
 import { MotionButton, MotionIconButton } from '../ui/Buttons'
+import { LanguageSwitcher } from './LanguageSwitcher'
 import type { Theme } from '../../hooks/useTheme'
 
 type HeaderProps = {
@@ -14,7 +16,9 @@ type HeaderProps = {
 
 export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const isNavActive = (id: NavSectionId) => activeSection === id
+  const { t } = useTranslation()
+  const navItems = getNavItems(t)
+  const isNavActive = (id: string) => activeSection === id
 
   const closeMenu = () => setMenuOpen(false)
 
@@ -26,7 +30,7 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="header__inner container container--wide">
-        <Link className="logo" to="/#home" aria-label="BuilderTudo Technologies — Home">
+        <Link className="logo" to="/#home" aria-label={t('common.homeAria')}>
           <img
             className="site-logo"
             src="/logo-oficial.png"
@@ -38,7 +42,7 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
           />
         </Link>
 
-        <nav aria-label="Main navigation" className="header__nav">
+        <nav aria-label={t('common.mainNavAria')} className="header__nav">
           {navItems.map((item) => (
             <Link
               key={item.id}
@@ -50,12 +54,15 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
               {item.label}
             </Link>
           ))}
+          <div className="header__nav-lang">
+            <LanguageSwitcher />
+          </div>
         </nav>
 
         <button
           type="button"
           className="header__menu-btn"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-label={menuOpen ? t('common.closeMenu') : t('common.openMenu')}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
         >
@@ -63,18 +70,19 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
         </button>
 
         <div className="header-actions">
+          <LanguageSwitcher compact />
           <MotionIconButton
             type="button"
             className="theme-toggle"
             onClick={onToggleTheme}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+            aria-label={theme === 'dark' ? t('common.themeToLight') : t('common.themeToDark')}
+            title={theme === 'dark' ? t('common.themeToLight') : t('common.themeToDark')}
           >
             {theme === 'dark' ? '☀' : '☾'}
           </MotionIconButton>
 
           <MotionButton href="/#contact" className="header-cta-btn">
-            Start Your Project
+            {t('common.startYourProject')}
           </MotionButton>
         </div>
       </div>

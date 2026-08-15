@@ -9,7 +9,8 @@ import { observedSections } from '../constants/navigation'
 import { useScrollSpy } from '../hooks/useScrollSpy'
 import { useScrollState } from '../hooks/useScrollState'
 import { useTheme } from '../hooks/useTheme'
-import { DEFAULT_DESCRIPTION, homeStructuredData } from '../lib/seo'
+import { useTranslation } from '../i18n'
+import { buildHomeStructuredData } from '../lib/seo'
 
 const CredibilitySection = lazy(() => import('../components/sections/CredibilitySection').then((m) => ({ default: m.CredibilitySection })))
 const PurposeSection = lazy(() => import('../components/sections/PurposeSection').then((m) => ({ default: m.PurposeSection })))
@@ -24,17 +25,22 @@ export function HomePage() {
   const { theme, toggleTheme } = useTheme()
   const { headerScrolled, showBackToTop, scrollToTop } = useScrollState()
   const activeSection = useScrollSpy(observedSections)
+  const { t, locale } = useTranslation()
 
   return (
     <>
       <PageMeta
-        title="Proprietary AI engineering platform for global companies"
-        description={DEFAULT_DESCRIPTION}
+        title={t('common.homeTitle')}
+        description={t('common.defaultDescription')}
         path="/"
-        structuredData={homeStructuredData}
+        structuredData={buildHomeStructuredData({
+          description: t('common.defaultDescription'),
+          slogan: t('common.siteSlogan'),
+          locale,
+        })}
       />
 
-      <a className="skip-link" href="#home">Skip to main content</a>
+      <a className="skip-link" href="#home">{t('common.skipToContent')}</a>
 
       <main className="page page--home">
         <StatusBar />
