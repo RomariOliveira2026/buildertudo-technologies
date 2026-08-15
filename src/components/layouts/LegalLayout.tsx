@@ -21,10 +21,10 @@ export function LegalLayout({ children, title }: LegalLayoutProps) {
             <Link className="logo" to="/" aria-label="BuilderTudo Technologies - Início">
               <img
                 className="site-logo"
-                src="/logo-oficial.png"
+                src="/logo-header.png"
                 alt="BuilderTudo Technologies — Tecnologia que transforma negócios"
-                width={720}
-                height={132}
+                width={1461}
+                height={525}
                 decoding="async"
               />
             </Link>

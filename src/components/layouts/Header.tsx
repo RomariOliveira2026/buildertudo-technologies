@@ -30,10 +30,10 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
         <Link className="logo" to="/#home" aria-label={t('common.homeAria')}>
           <img
             className="site-logo"
-            src="/logo-oficial.png"
+            src="/logo-header.png"
             alt="BuilderTudo Technologies"
-            width={720}
-            height={132}
+            width={1461}
+            height={525}
             decoding="async"
             fetchPriority="high"
           />

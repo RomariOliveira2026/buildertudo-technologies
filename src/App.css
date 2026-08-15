@@ -168,8 +168,8 @@ body {
 }
 
 .header .site-logo {
-  height: 72px;
-  max-width: min(420px, 52vw);
+  height: 92px;
+  max-width: min(420px, 48vw);
 }
 
 .header nav {
@@ -1687,7 +1687,7 @@ body {
   justify-content: space-between;
 }
 
-.header--legal .site-logo { height: 64px; }
+.header--legal .site-logo { height: 84px; }
 
 .legal-back-btn { font-size: 13px !important; white-space: nowrap; }
 
@@ -1818,7 +1818,7 @@ body {
 
 @media (max-width: 640px) {
   :root { --section-y: 64px; --header-height: 72px; }
-  .header .site-logo { height: 52px; max-width: min(280px, 62vw); }
+  .header .site-logo { height: 64px; max-width: min(300px, 70vw); }
   .site-logo { height: 56px; max-width: min(320px, 76vw); }
   .site-logo--footer { height: 92px; }
   .contact-form__grid { grid-template-columns: 1fr; }
