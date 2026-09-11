@@ -17,11 +17,11 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     problemNarrative: 'Marketing teams adopted generic AI writing tools and immediately hit a wall: every channel sounded different, SEO quality dropped, and legal review became a bottleneck. There was no governed pipeline — only disconnected prompts and spreadsheets.',
     painPoints: ['Inconsistent brand voice across channels', 'No audit trail for AI-generated copy', 'SEO quality degraded at volume', 'Review cycles blocked publishing velocity'],
     solutionTitle: 'Governed content pipeline with brand RAG',
-    solutionNarrative: 'ContentFy was built on AI-OS with a structured knowledge core for brand guidelines. Copy generation routes through guardrails, human review gates and a multi-channel distribution engine — shipping 3× faster without sacrificing voice.',
+    solutionNarrative: 'ContentFy was built on AI-OS with a structured knowledge core for brand guidelines. Copy generation routes through guardrails, human review gates and a multi-channel distribution engine — supporting production without sacrificing voice.',
     approach: ['Brand knowledge core with RAG embeddings', 'Human-in-the-loop review before publish', 'Golden Screens validated campaign workflows', 'Edge runtime for streaming AI responses'],
     architectureDecisions: ['Separated generation from distribution in Engine workflows', 'Brand context injected at AI-OS routing layer', 'Golden Screens approved before full build'],
-    results: [{ value: '3×', label: 'Faster content production' }, { value: '100%', label: 'Brand review coverage' }, { value: '88%', label: 'Framework Health' }],
-    learnings: ['Brand consistency requires structured knowledge core, not bigger prompts', 'Human-in-the-loop improves perceived quality 3×', 'SEO metadata must be generated alongside copy, not after'],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
+    learnings: ['Brand consistency requires structured knowledge core, not bigger prompts', 'Human-in-the-loop improves perceived quality', 'SEO metadata must be generated alongside copy, not after'],
     evolution: [
       { phase: '2025 Q3', title: 'Content Editor Golden Screen', status: 'done', description: 'Validated editor UX and review flow before backend build.' },
       { phase: '2025 Q4', title: 'AI-OS brand pipeline', status: 'done', description: 'RAG knowledge core and guardrails in production.' },
@@ -41,7 +41,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'Fui centralizes location events in Engine, exposes partner webhooks as first-class APIs, and uses Golden Screens to validate journey maps before native implementation — reducing rework across iOS and Android.',
     approach: ['Offline-first journey state sync', 'Privacy controls at data model level', 'Partner API gateway via Engine', 'Shared Golden Screens for cross-platform UX'],
     architectureDecisions: ['Event-sourced location pipeline', 'React Native monorepo sharing Framework components', 'Partner sandbox before production keys'],
-    results: [{ value: '72%', label: 'Framework Health' }, { value: '<200ms', label: 'Location event latency target' }, { value: '1', label: 'Codebase for iOS & Android' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Offline-first is non-negotiable for mobility', 'Location privacy must be designed before first GPS call', 'Partner APIs need versioning from day one'],
     evolution: evolutionItems([
       ['2025 Q4', 'Journey Map Golden Screen', 'done', 'Stakeholder alignment before native build.'],
@@ -59,10 +59,10 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     problemNarrative: 'Legal teams experimented with general-purpose LLMs and faced hallucinated citations, no audit trail, and workflows that did not map to case structure. Compliance risk outweighed productivity gains.',
     painPoints: ['Hallucinated legal citations', 'No audit trail for AI-assisted research', 'Documents scattered across tools', 'Workflows disconnected from case structure'],
     solutionTitle: 'Citation-accurate RAG with legal guardrails',
-    solutionNarrative: 'JurisMind embeds documents in a governed knowledge core, enforces citation validation in AI-OS, and maps workflows to case entities — delivering 80% faster review with defensible outputs.',
+    solutionNarrative: 'JurisMind embeds documents in a governed knowledge core, enforces citation validation in AI-OS, and maps workflows to case entities — supporting document review with defensible outputs.',
     approach: ['Document embedding pipeline with version control', 'Citation validation guardrails in AI-OS', 'Case-centric workflow model', 'Business OS CRM sync for client matters'],
     architectureDecisions: ['Supabase RLS for matter-level isolation', 'Separate read vs. generate permissions', 'Immutable audit log for AI queries'],
-    results: [{ value: '80%', label: 'Time saved on document review' }, { value: '91%', label: 'Framework Health' }, { value: '100%', label: 'Citation validation on outputs' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Legal data requires guardrails, not disclaimers', 'Citation accuracy is non-negotiable for adoption', 'Workflow must mirror how lawyers think about matters'],
     evolution: evolutionItems([
       ['2025 Q2', 'Document Vault MVP', 'done', 'Multi-tenant vault with search.'],
@@ -75,16 +75,16 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
   blindcare: {
     industry: 'Healthcare',
     headline: 'Healthcare SaaS with LGPD baked into the architecture',
-    summary: 'Building a care coordination platform with 99.9% uptime targets, predictive alerts and compliance at the data model — not the policy PDF.',
+    summary: 'Building a care coordination platform predictive alerts and compliance at the data model — not the policy PDF.',
     problemTitle: 'Care coordination fragmented across tools',
     problemNarrative: 'Families, caregivers and clinics coordinated care through phone calls and spreadsheets. No unified view, delayed alerts, and patient data handled without consistent LGPD controls.',
     painPoints: ['No single source of truth for care plans', 'Alert fatigue without prioritization', 'LGPD compliance as afterthought', 'Uptime requirements unmet by generic tools'],
     solutionTitle: 'Multi-tenant care OS with AI copilot',
-    solutionNarrative: 'BlindCare unifies dashboards, family portals and alert centers with AI-OS risk scoring. Architecture enforces tenant isolation, audit logging and 99.9% uptime patterns from Framework healthcare Golden Screens.',
+    solutionNarrative: 'BlindCare unifies dashboards, family portals and alert centers with AI-OS risk scoring. Architecture enforces tenant isolation, audit logging and reliability patterns from Framework healthcare Golden Screens.',
     approach: ['LGPD-compliant multi-tenant Supabase model', 'AI risk scoring with human escalation', 'Alert prioritization engine', 'Accessibility-first Golden Screens'],
     architectureDecisions: ['Healthcare data never crosses tenant boundaries', 'Predictive models run on anonymized aggregates', 'Failover patterns tested in Framework runtime'],
-    results: [{ value: '40%', label: 'Faster caregiver onboarding' }, { value: '99.9%', label: 'Uptime architecture target' }, { value: '94%', label: 'Framework Health' }],
-    learnings: ['Healthcare requires 99.9% uptime from architecture, not SLA text', 'LGPD compliance must be in the schema', 'Predictive alerts need human override paths'],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
+    learnings: ['Healthcare reliability must start in architecture, not SLA text', 'LGPD compliance must be in the schema', 'Predictive alerts need human override paths'],
     evolution: evolutionItems([
       ['2025 Q1', 'Care Dashboard live', 'done', 'Production multi-tenant rollout.'],
       ['2025 Q3', 'Predictive alerts v1', 'done', 'Risk scoring with caregiver notifications.'],
@@ -96,7 +96,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
   professoria: {
     industry: 'Education Technology',
     headline: 'Adaptive tutoring that teachers still control',
-    summary: 'Institutional-scale personalization with AI-OS pacing algorithms and mandatory teacher oversight — engagement up 40% without black-box tutoring.',
+    summary: 'Institutional-scale personalization with AI-OS pacing algorithms and mandatory teacher oversight — with teacher oversight instead of black-box tutoring.',
     problemTitle: 'One-size-fits-all breaks at institutional scale',
     problemNarrative: 'Schools and training providers could not personalize learning paths for hundreds of students. Generic AI tutors lacked pedagogical guardrails and teacher visibility.',
     painPoints: ['Fixed curricula ignore student pace', 'AI tutors without teacher oversight', 'No LMS integration path', 'Engagement drops after week two'],
@@ -104,7 +104,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'ProfessorIA combines adaptive pacing in AI-OS with teacher dashboards for override and review. Golden Screens aligned educators before engineering scaled the lesson builder.',
     approach: ['Adaptive pacing with teacher approval gates', 'Progress analytics per cohort', 'Firebase real-time sync for classrooms', 'LMS integration roadmap in Engine'],
     architectureDecisions: ['Teacher role has veto on AI recommendations', 'Offline lesson caching for low-bandwidth schools', 'Separate student vs. admin data realms'],
-    results: [{ value: '40%', label: 'Higher student engagement' }, { value: '76%', label: 'Framework Health' }, { value: '3', label: 'Golden Screens validated' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Adaptive pacing increases engagement when teachers retain control', 'Offline lesson sync is critical in emerging markets', 'LMS hooks must be planned before content model freezes'],
     evolution: evolutionItems([
       ['2025 Q4', 'Student Dashboard Golden Screen', 'done', 'UX validated with pilot school.'],
@@ -125,7 +125,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'VoxCraft ships a sub-200ms pipeline with WebSocket streaming, API console and voice studio on Framework. Engine handles queueing and webhook delivery; Golden Screens validated admin UX before public API.',
     approach: ['Streaming WebSocket API as primary interface', 'Voice studio for non-developer tuning', 'Usage analytics with per-tenant quotas', 'Enterprise SDK on public roadmap'],
     architectureDecisions: ['API-first — UI is a client of the same API', 'Latency budget enforced in CI load tests', 'Model routing abstracted in AI-OS'],
-    results: [{ value: '<200ms', label: 'P95 latency target' }, { value: '89%', label: 'Framework Health' }, { value: 'API-first', label: 'Architecture pattern' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Latency under 200ms is the quality threshold for voice', 'API-first drives adoption faster than UI-first', 'Usage analytics must ship with v1, not v3'],
     evolution: evolutionItems([
       ['2025 Q2', 'Voice API v1', 'done', 'Production streaming endpoints.'],
@@ -138,7 +138,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
   prevenpro: {
     industry: 'Compliance & Risk',
     headline: 'Real-time compliance that prevents audit failures',
-    summary: 'Multi-tenant compliance platform with anomaly detection, automated reporting and 60% fewer audit failures — built for regulated operations.',
+    summary: 'Multi-tenant compliance platform with anomaly detection, automated reporting and structured audit workflows — built for regulated operations.',
     problemTitle: 'Audit failures from manual process control',
     problemNarrative: 'Operations teams tracked critical processes in spreadsheets. Alerts arrived too late, audit evidence was scattered, and multi-site organizations had no isolated tenant model.',
     painPoints: ['Manual compliance checks', 'Delayed anomaly detection', 'Audit evidence not centralized', 'Multi-site data leakage risk'],
@@ -146,7 +146,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'PrevenPro automates scoring, detects anomalies via AI-OS and generates audit packs on schedule. Firebase multi-tenant isolation and Cloudflare edge protection ship as defaults.',
     approach: ['Real-time alert engine', 'Compliance scoring models', 'Auto-generated audit reports', 'Framework Health visibility in Business OS'],
     architectureDecisions: ['Tenant isolation at Firebase rules level', 'Alert deduplication to prevent fatigue', 'Immutable audit event stream'],
-    results: [{ value: '60%', label: 'Fewer audit failures' }, { value: '92%', label: 'Framework Health' }, { value: 'Real-time', label: 'Alert delivery' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Real-time alerts reduce audit failures more than quarterly reviews', 'Multi-tenant isolation is essential for enterprise compliance', 'Auto-reports must map to auditor vocabulary'],
     evolution: evolutionItems([
       ['2025 Q1', 'Process Monitor live', 'done', 'Core monitoring in production.'],
@@ -167,7 +167,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'FuelMaster combines real-time Supabase sync, Engine workflow automation and consumption prediction. Golden Screens validated fleet overview before IoT ingestion scaled.',
     approach: ['Real-time fleet telemetry dashboard', 'Engine rules for fuel anomaly alerts', 'Offline-tolerant sensor sync queue', 'Route planner with prediction models'],
     architectureDecisions: ['Sensor data buffered locally when offline', 'Prediction models trained on tenant-scoped data only', 'Workflow automation separate from UI layer'],
-    results: [{ value: '87%', label: 'Framework Health' }, { value: 'Real-time', label: 'Fleet dashboard sync' }, { value: 'IoT-ready', label: 'Ingestion architecture' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['IoT integration requires robust offline sync', 'Fleet ops need single-pane dashboards, not reports', 'Fuel anomaly alerts must avoid false-positive storms'],
     evolution: evolutionItems([
       ['2025 Q2', 'Fleet Overview live', 'done', 'Production dashboard for pilot fleets.'],
@@ -188,7 +188,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'DiagramaFy generates diagrams from natural language, applies auto-layout and exports to Mermaid — keeping architecture artifacts in sync with how engineers actually work.',
     approach: ['Text-to-diagram via AI-OS', 'Auto-layout engine', 'Mermaid export pipeline', 'Template library from Golden Screens'],
     architectureDecisions: ['Canvas state serializable to Mermaid AST', 'AI suggestions never auto-commit without review', 'Templates versioned in Framework package'],
-    results: [{ value: 'Hours', label: 'Saved per complex diagram' }, { value: '81%', label: 'Framework Health' }, { value: 'Mermaid', label: 'Export compatibility' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Developers want Mermaid compatibility, not proprietary formats', 'Auto-layout saves senior architect time disproportionately', 'AI diagrams need diff-friendly exports'],
     evolution: evolutionItems([
       ['2025 Q4', 'Canvas Editor beta', 'done', 'Core editing experience shipped.'],
@@ -209,7 +209,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'RespondFy routes messages through sentiment analysis, brand voice templates and human approval queues. AI-OS handles generation; Engine orchestrates omnichannel delivery.',
     approach: ['Sentiment-based routing rules', 'Brand voice template library', 'Human review queue for edge cases', 'Omnichannel inbox unification'],
     architectureDecisions: ['No auto-send for negative sentiment', 'Template versioning with rollback', 'CRM sync as async Engine jobs'],
-    results: [{ value: '↑ CSAT', label: 'With sentiment routing' }, { value: '84%', label: 'Framework Health' }, { value: '0', label: 'Unreviewed negative auto-sends' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Human review loop prevents brand damage', 'Sentiment routing improves CSAT more than faster bots', 'Templates need version control like code'],
     evolution: evolutionItems([
       ['2025 Q4', 'Inbox MVP', 'done', 'Unified thread view shipped.'],
@@ -230,7 +230,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'ISPMind ingests network events, classifies tickets with AI-OS and surfaces SLA risk in real time. Golden Screens validated NOC layouts with operator interviews before build.',
     approach: ['Network map with live status overlays', 'AI ticket classification', 'SLA countdown dashboards', '24/7 event processing in Engine'],
     architectureDecisions: ['Event stream as source of truth', 'Ticket AI suggests, humans confirm', 'SLA clocks immutable once started'],
-    results: [{ value: '24/7', label: 'Event monitoring design' }, { value: '68%', label: 'Framework Health' }, { value: '↓ MTTR', label: 'Target for ticket automation' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Telecom ops need 24/7 monitoring architecture', 'SLA tracking is a core data model, not a report', 'NOC UX must be validated with real operators'],
     evolution: evolutionItems([
       ['2025 Q4', 'Network Map prototype', 'done', 'Topology view with pilot ISP.'],
@@ -251,7 +251,7 @@ const ENRICHMENTS: Record<string, CaseStudyEnrichment> = {
     solutionNarrative: 'ProOdonto Smart unifies scheduling, records and AI treatment suggestions with LGPD-by-design multi-tenancy. No-show prediction runs in AI-OS; reminders flow through Engine.',
     approach: ['Smart scheduling with prediction', 'LGPD multi-tenant patient records', 'Treatment AI with dentist approval', 'Offline-tolerant scheduling sync'],
     architectureDecisions: ['Clinic tenant isolation in Supabase', 'AI suggestions require dentist sign-off', 'Scheduling queue survives connectivity loss'],
-    results: [{ value: '↓ No-shows', label: 'Prediction target' }, { value: '74%', label: 'Framework Health' }, { value: 'LGPD', label: 'Compliance by design' }],
+    results: [{ value: 'Interno', label: 'Projeto BuilderTudo' }, { value: '—', label: 'Métricas não divulgadas' }, { value: 'Web', label: 'Estrutura digital' }],
     learnings: ['Clinics need offline-tolerant scheduling', 'Patient data demands compliance in schema', 'AI treatment hints must never auto-apply'],
     evolution: evolutionItems([
       ['2025 Q4', 'Clinic Dashboard Golden Screen', 'done', 'Validated with pilot clinic.'],

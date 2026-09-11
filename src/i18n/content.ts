@@ -41,12 +41,12 @@ export function getHeroBadges(t: TranslateFn) {
 
 export function getHeroOverlays(t: TranslateFn) {
   return [
-    { id: 'revenue', label: t('hero.overlayRevenue'), value: '$284K' },
-    { id: 'mrr', label: t('hero.overlayMrr'), value: '$42K' },
+    { id: 'revenue', label: t('hero.overlayRevenue'), value: '—' },
+    { id: 'mrr', label: t('hero.overlayMrr'), value: '—' },
     { id: 'copilot', label: t('hero.overlayCopilot'), value: t('hero.overlayOnline') },
     { id: 'pipeline', label: t('hero.overlayPipeline'), value: t('hero.overlayDeals') },
     { id: 'deploy', label: t('hero.overlayDeploy'), value: t('hero.overlayLive') },
-    { id: 'score', label: t('hero.overlayScore'), value: '94%' },
+    { id: 'score', label: t('hero.overlayScore'), value: '—' },
   ] as const
 }
 

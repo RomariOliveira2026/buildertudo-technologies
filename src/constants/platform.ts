@@ -46,7 +46,7 @@ export const HERO_STACK_LAYERS: StackLayer[] = [
 export const FRAMEWORK_STACK: FrameworkNode[] = [
   { id: 'framework', name: 'Framework', description: 'Core engineering architecture' },
   { id: 'design-system', name: 'Design System', description: 'Tokens, typography and patterns' },
-  { id: 'component-library', name: 'Component Library', description: '80+ production-ready components' },
+  { id: 'component-library', name: 'Component Library', description: 'Reusable production components' },
   { id: 'golden-screens', name: 'Golden Screens', description: 'Reference UI implementations' },
   { id: 'runtime', name: 'Runtime', description: 'Execution layer for apps and services' },
   { id: 'ai-os', name: 'AI Operating System', description: 'Governed intelligence infrastructure' },
@@ -92,7 +92,7 @@ export const AI_CAPABILITIES: AICapability[] = [
 ]
 
 export const LIVE_WIDGETS: LiveWidget[] = [
-  { id: 'framework-health', name: 'Framework Health', description: 'Real-time quality score — 94%', status: 'ready' },
+  { id: 'framework-health', name: 'Framework Health', description: 'Quality indicators available in the operational environment', status: 'ready' },
   { id: 'deploys', name: 'Deploys', description: 'Latest production releases', status: 'ready' },
   { id: 'business-os', name: 'Business OS', description: 'System health overview', status: 'ready' },
   { id: 'ai-center', name: 'AI Center', description: 'Copilot and model status', status: 'ready' },
@@ -102,7 +102,7 @@ export const LIVE_WIDGETS: LiveWidget[] = [
   { id: 'roadmap', name: 'Roadmap', description: 'Public product roadmap', status: 'planned' },
   { id: 'products', name: 'Products', description: 'Portfolio status — 12 official products', status: 'ready' },
   { id: 'runtime', name: 'Runtime', description: 'Live services monitor', status: 'ready' },
-  { id: 'uptime', name: 'Uptime', description: 'Platform availability — 99.9%', status: 'ready' },
+  { id: 'uptime', name: 'Uptime', description: 'Availability monitored in the operational environment', status: 'ready' },
   { id: 'changelog', name: 'Changelog', description: 'Platform update log', status: 'planned' },
 ]
 

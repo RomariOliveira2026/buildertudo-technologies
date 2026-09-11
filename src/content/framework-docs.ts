@@ -151,7 +151,7 @@ export const FRAMEWORK_ARCHITECTURE_LAYERS: FrameworkLayer[] = [
 export const FRAMEWORK_PACKAGES: FrameworkPackage[] = [
   { name: '@buildertudo/framework-core', scope: 'foundation', description: 'Core types, utilities, config and engineering contracts.', status: 'stable' },
   { name: '@buildertudo/design-system', scope: 'ui', description: 'Design tokens, typography, spacing, color and motion standards.', status: 'stable' },
-  { name: '@buildertudo/components', scope: 'ui', description: '80+ accessible, tree-shakeable React components.', status: 'stable' },
+  { name: '@buildertudo/components', scope: 'ui', description: 'Accessible, tree-shakeable React components.', status: 'stable' },
   { name: '@buildertudo/golden-screens', scope: 'ui', description: 'Reference screen packages with visual regression tests.', status: 'stable' },
   { name: '@buildertudo/runtime', scope: 'infra', description: 'Edge + Node execution layer with shared middleware.', status: 'stable' },
   { name: '@buildertudo/persistence', scope: 'data', description: 'Tenant-aware data access, migrations and RLS patterns.', status: 'stable' },
@@ -222,7 +222,7 @@ export const FRAMEWORK_DESIGN_SYSTEM = {
 export const FRAMEWORK_COMPONENT_LIBRARY = {
   title: 'Component Library',
   summary:
-    '80+ production-ready React components — tree-shakeable, type-safe, tested and used across every official BuilderTudo product.',
+    'Production-ready React components — tree-shakeable, type-safe, tested and used across every official BuilderTudo product.',
   categories: [
     { name: 'Layout', count: 12, examples: ['PageLayout', 'Section', 'Grid', 'Sidebar'] },
     { name: 'Navigation', count: 8, examples: ['Header', 'Breadcrumbs', 'Tabs', 'Pagination'] },

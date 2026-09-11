@@ -96,7 +96,7 @@ export function buildReusableEngineering(product: ProductPageContent): CaseStudy
   return {
     framework: layers.find((l) => l.id === 'framework')?.description ?? 'BuilderTudo Design System, tokens and engineering standards.',
     goldenScreens,
-    componentLibrary: '80+ production-ready components from BuilderTudo Component Library.',
+    componentLibrary: 'Production-ready components from BuilderTudo Component Library.',
     runtime: layers.find((l) => l.id === 'runtime')?.description ?? 'Shared runtime patterns for auth, data fetching and observability.',
     aiOs: layers.find((l) => l.id === 'ai-os')?.description ?? 'Governed AI layer with copilots and guardrails.',
     engine: layers.find((l) => l.id === 'engine')?.description ?? 'Workflow automation and integration orchestration.',

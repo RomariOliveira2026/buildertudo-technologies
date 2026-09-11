@@ -60,7 +60,7 @@ export const PRODUCT_CATALOG: ProductPageContent[] = [
     ),
     stack: ['React', 'TypeScript', 'OpenAI', 'Vercel', 'AI-OS', 'Framework'],
     features: ['Copy generation', 'Brand voice profiles', 'Multi-channel publishing', 'SEO optimization', 'Campaign analytics'],
-    benefits: ['3× faster content production', 'Consistent brand voice across channels', 'Human-in-the-loop quality control', 'SEO-ready output by default'],
+    benefits: ['Structured content production', 'Consistent brand voice across channels', 'Human-in-the-loop quality control', 'SEO-ready output by default'],
     roadmap: roadmap([
       ['Q1 2026', 'Multi-channel publishing', 'in-progress'],
       ['Q2 2026', 'Brand voice profiles', 'planned'],
@@ -128,7 +128,7 @@ export const PRODUCT_CATALOG: ProductPageContent[] = [
     ),
     stack: ['Next.js', 'Supabase', 'OpenAI', 'AI-OS', 'Framework'],
     features: ['Document vault', 'Case workflows', 'AI legal research', 'Contract summarization', 'Audit trails'],
-    benefits: ['Citation-accurate AI research', 'Compliance guardrails built-in', '60% faster document review', 'Multi-jurisdiction ready architecture'],
+    benefits: ['Citation-accurate AI research', 'Compliance guardrails built-in', 'Structured document review', 'Multi-jurisdiction ready architecture'],
     roadmap: roadmap([
       ['Q4 2025', 'Contract analysis v2', 'done'],
       ['Q1 2026', 'Multi-jurisdiction support', 'in-progress'],
@@ -152,7 +152,7 @@ export const PRODUCT_CATALOG: ProductPageContent[] = [
     problem:
       'Families and care providers lack a unified platform for coordination, safety monitoring and predictive alerts. Fragmented tools create gaps in care and compliance failures in healthcare data.',
     solution:
-      'BlindCare unifies care dashboards, family portals and alert centers with AI-OS care copilot, LGPD-compliant architecture and 99.9% uptime targets.',
+      'BlindCare unifies care dashboards, family portals and alert centers with AI-OS care copilot, LGPD-compliant architecture and reliability patterns.',
     architectureSummary: 'React + Supabase multi-tenant with LGPD compliance and AI-OS care copilot.',
     architectureLayers: layers(
       'React SPA with healthcare Golden Screens and accessibility-first components.',
@@ -162,7 +162,7 @@ export const PRODUCT_CATALOG: ProductPageContent[] = [
     ),
     stack: ['React', 'TypeScript', 'Supabase', 'OpenAI', 'AI-OS', 'Framework'],
     features: ['Care dashboard', 'Family portal', 'Predictive alerts', 'Schedule optimization', 'LGPD compliance'],
-    benefits: ['99.9% uptime architecture', 'LGPD compliance from day one', 'Predictive alerts reduce incidents', 'Family-caregiver coordination in one place'],
+    benefits: ['Reliability-focused architecture', 'LGPD compliance from day one', 'Predictive alerts reduce incidents', 'Family-caregiver coordination in one place'],
     roadmap: roadmap([
       ['Q4 2025', 'Predictive alerts v1', 'done'],
       ['Q1 2026', 'Caregiver mobile app', 'in-progress'],
@@ -196,7 +196,7 @@ export const PRODUCT_CATALOG: ProductPageContent[] = [
     ),
     stack: ['React', 'Firebase', 'OpenAI', 'AI-OS', 'Framework'],
     features: ['Adaptive tutoring', 'Lesson builder', 'Progress analytics', 'Quiz generation', 'LMS integrations'],
-    benefits: ['40% higher student engagement', 'Teacher oversight on every AI interaction', 'Institutional-scale personalization', 'LMS-ready integration layer'],
+    benefits: ['Teacher-guided engagement', 'Teacher oversight on every AI interaction', 'Institutional-scale personalization', 'LMS-ready integration layer'],
     roadmap: roadmap([
       ['Q1 2026', 'Adaptive curriculum', 'in-progress'],
       ['Q2 2026', 'Student analytics', 'planned'],
@@ -254,7 +254,7 @@ export const PRODUCT_CATALOG: ProductPageContent[] = [
     problem:
       'Regulated industries face audit failures from manual process control, delayed alerts and fragmented compliance tracking. Spreadsheets and generic tools cannot enforce real-time compliance.',
     solution:
-      'PrevenPro automates compliance scoring, anomaly detection and audit reporting with multi-tenant isolation, real-time alerts and auto-reporting — reducing audit failures by 60%.',
+      'PrevenPro automates compliance scoring, anomaly detection and audit reporting with multi-tenant isolation, real-time alerts and auto-reporting.',
     architectureSummary: 'Next.js + Firebase multi-tenant with real-time alert engine.',
     architectureLayers: layers(
       'Next.js with compliance Golden Screens and multi-tenant data isolation.',
@@ -264,7 +264,7 @@ export const PRODUCT_CATALOG: ProductPageContent[] = [
     ),
     stack: ['Next.js', 'Node.js', 'Firebase', 'Cloudflare', 'AI-OS', 'Framework'],
     features: ['Compliance dashboard', 'Process monitoring', 'Audit trails', 'Anomaly detection', 'Auto-reporting'],
-    benefits: ['60% reduction in audit failures', 'Real-time compliance alerts', 'Multi-tenant isolation', 'Automated audit reports'],
+    benefits: ['Structured audit workflows', 'Real-time compliance alerts', 'Multi-tenant isolation', 'Automated audit reports'],
     roadmap: roadmap([
       ['Q4 2025', 'Audit automation', 'done'],
       ['Q1 2026', 'Multi-tenant SaaS', 'in-progress'],

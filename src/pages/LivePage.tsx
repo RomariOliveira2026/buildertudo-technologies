@@ -45,8 +45,8 @@ export function LivePage() {
               </div>
             ))}
             <div className="live-metric">
-              <strong>99.9%</strong>
-              <span>Uptime</span>
+              <strong>—</strong>
+              <span>Availability</span>
             </div>
           </div>
           <p className="live-updated">
