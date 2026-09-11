@@ -5,6 +5,7 @@ import { Header } from './Header'
 import { BackToTop, WhatsAppFloat } from '../ui/FloatingActions'
 import { useScrollState } from '../../hooks/useScrollState'
 import { useTheme } from '../../hooks/useTheme'
+import { useTranslation } from '../../i18n'
 
 type PageLayoutProps = {
   children: ReactNode
@@ -14,10 +15,11 @@ type PageLayoutProps = {
 export function PageLayout({ children, className = '' }: PageLayoutProps) {
   const { theme, toggleTheme } = useTheme()
   const { headerScrolled, showBackToTop, scrollToTop } = useScrollState()
+  const { t } = useTranslation()
 
   return (
     <>
-      <a className="skip-link" href="#page-content">Skip to main content</a>
+      <a className="skip-link" href="#page-content">{t('common.skipToContent')}</a>
       <main className={`page ${className}`.trim()}>
         <Header
           headerScrolled={headerScrolled}
@@ -41,6 +43,8 @@ type SubPageHeroProps = {
 }
 
 export function SubPageHero({ eyebrow, title, description }: SubPageHeroProps) {
+  const { t } = useTranslation()
+
   return (
     <header className="subpage-hero">
       <div className="container">
@@ -48,7 +52,7 @@ export function SubPageHero({ eyebrow, title, description }: SubPageHeroProps) {
         <h1>{title}</h1>
         <p>{description}</p>
         <Link className="ghost-btn link-btn subpage-hero__back" to="/">
-          ← Back to home
+          ← {t('common.backToHome')}
         </Link>
       </div>
     </header>

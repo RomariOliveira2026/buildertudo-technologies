@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from '../../i18n'
-import { buildWhatsAppUrl } from '../../lib/whatsapp'
+import { getWhatsAppCopy } from '../../i18n/commercial'
+import { buildWhatsAppUrl, trackWhatsAppClick } from '../../lib/whatsapp'
 import { motionTransition } from '../../motion/variants'
 
 type BackToTopProps = {
@@ -34,11 +35,12 @@ export function WhatsAppFloat() {
   return (
     <motion.a
       className="whatsapp-float"
-      href={buildWhatsAppUrl(t('contact.whatsappDefault'))}
+      href={buildWhatsAppUrl(getWhatsAppCopy(t, 'default'))}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t('common.whatsappAria')}
       title={t('common.whatsapp')}
+      onClick={() => trackWhatsAppClick('float')}
       whileHover={{ y: -3, scale: 1.05 }}
       whileTap={{ scale: 0.97 }}
       transition={motionTransition.soft}

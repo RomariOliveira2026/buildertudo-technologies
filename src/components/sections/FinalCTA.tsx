@@ -1,38 +1,44 @@
-import { motion } from 'framer-motion'
 import { ContactForm } from '../forms/ContactForm'
 import { MotionButton } from '../ui/Buttons'
-import { fadeUp, motionTransition } from '../../motion/variants'
 import { Reveal } from '../ui/Reveal'
-import { buildWhatsAppUrl } from '../../lib/whatsapp'
 import { useTranslation } from '../../i18n'
+import { getWhatsAppCopy } from '../../i18n/commercial'
+import { ANALYTICS_EVENTS } from '../../config/commercial'
+import { trackEvent } from '../../lib/analytics'
+import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 export function FinalCTA() {
   const { t } = useTranslation()
 
   return (
-    <section className="final-cta" id="contact" aria-labelledby="contact-title">
+    <section className="final-cta commercial-cta" id="contact" aria-labelledby="contact-title">
       <div className="container">
         <Reveal>
-          <motion.div className="final-cta__intro" variants={fadeUp} transition={motionTransition.soft}>
+          <div className="final-cta__intro">
             <span className="badge badge--gold">{t('contact.badge')}</span>
-            <h2 id="contact-title">{t('contact.title')}</h2>
-            <p>{t('contact.body')}</p>
-          </motion.div>
+            <h2 id="contact-title">{t('commercial.cta.title')}</h2>
+            <p>{t('commercial.cta.body')}</p>
+          </div>
 
-          <motion.div variants={fadeUp} transition={{ ...motionTransition.soft, delay: 0.08 }}>
-            <ContactForm id="commercial-contact-form" />
-          </motion.div>
+          <div className="final-cta__alt commercial-cta__actions">
+            <MotionButton
+              href="#commercial-contact-form"
+              onClick={() => trackEvent(ANALYTICS_EVENTS.clickQuote, { source: 'final-cta' })}
+            >
+              {t('commercial.cta.primary')}
+            </MotionButton>
+            <MotionButton
+              href={buildWhatsAppUrl(getWhatsAppCopy(t, 'quote'))}
+              variant="secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent(ANALYTICS_EVENTS.clickWhatsapp, { context: 'quote' })}
+            >
+              {t('commercial.cta.secondary')}
+            </MotionButton>
+          </div>
 
-          <motion.div className="final-cta__alt" variants={fadeUp} transition={{ ...motionTransition.soft, delay: 0.16 }}>
-            <MotionButton href="#commercial-contact-form">{t('contact.ctaStart')}</MotionButton>
-            <MotionButton href="mailto:contato@buildertudo.com?subject=Book%20a%20Discovery%20Call" variant="secondary">
-              {t('contact.ctaBook')}
-            </MotionButton>
-            <MotionButton href="/framework" variant="secondary">{t('contact.ctaFramework')}</MotionButton>
-            <MotionButton href={buildWhatsAppUrl(t('contact.whatsappDefault'))} variant="ghost">
-              {t('contact.ctaWhatsapp')}
-            </MotionButton>
-          </motion.div>
+          <ContactForm id="commercial-contact-form" />
         </Reveal>
       </div>
     </section>

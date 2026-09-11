@@ -29,17 +29,35 @@ function initGtm() {
   injectScript('gtm-script', `https://www.googletagmanager.com/gtm.js?id=${env.gtmId}`)
 }
 
+function ensureGtag() {
+  window.dataLayer = window.dataLayer ?? []
+  if (!window.gtag) {
+    window.gtag = (...args: unknown[]) => {
+      window.dataLayer?.push(args as unknown as Record<string, unknown>)
+    }
+  }
+}
+
 function initGa4() {
   if (!env.ga4Id || env.gtmId) return
 
   injectScript('ga4-script', `https://www.googletagmanager.com/gtag/js?id=${env.ga4Id}`)
+  ensureGtag()
+  window.gtag?.('js', new Date())
+  window.gtag?.('config', env.ga4Id, { anonymize_ip: true })
+}
 
-  window.dataLayer = window.dataLayer ?? []
-  window.gtag = (...args: unknown[]) => {
-    window.dataLayer?.push(args as unknown as Record<string, unknown>)
+function initGoogleAds() {
+  if (!env.googleAdsId || env.gtmId) return
+
+  if (!env.ga4Id) {
+    injectScript('google-ads-script', `https://www.googletagmanager.com/gtag/js?id=${env.googleAdsId}`)
+    ensureGtag()
+    window.gtag?.('js', new Date())
   }
-  window.gtag('js', new Date())
-  window.gtag('config', env.ga4Id, { anonymize_ip: true })
+
+  ensureGtag()
+  window.gtag?.('config', env.googleAdsId)
 }
 
 function initMetaPixel() {
@@ -76,6 +94,7 @@ export function initAnalytics() {
 
   initGtm()
   initGa4()
+  initGoogleAds()
   initMetaPixel()
   initClarity()
   analyticsInitialized = true

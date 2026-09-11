@@ -1,22 +1,20 @@
 import type { TranslateFn } from '../i18n'
 
 export const NAV_IDS = [
-  'credibility',
-  'platform',
-  'business-os',
-  'products',
-  'process',
-  'services',
+  'solucoes',
+  'planos',
+  'buildercare',
+  'projetos',
+  'processo',
   'contact',
 ] as const
 
 const NAV_KEYS = {
-  credibility: 'navigation.credibility',
-  platform: 'navigation.platform',
-  'business-os': 'navigation.businessOs',
-  products: 'navigation.products',
-  process: 'navigation.method',
-  services: 'navigation.services',
+  solucoes: 'navigation.solutions',
+  planos: 'navigation.plans',
+  buildercare: 'navigation.buildercare',
+  projetos: 'navigation.projects',
+  processo: 'navigation.process',
   contact: 'navigation.contact',
 } as const
 
@@ -173,43 +171,37 @@ export function getHomeServices(t: TranslateFn) {
 
 export function getContactServices(t: TranslateFn) {
   return [
-    t('contact.servicePlatformEngineering'),
-    t('contact.serviceAiIntegration'),
-    t('contact.serviceSaas'),
-    t('contact.serviceWeb'),
-    t('contact.serviceMobile'),
-    t('contact.serviceAutomation'),
-    t('contact.serviceUx'),
-    t('contact.serviceConsulting'),
-    t('contact.serviceSquad'),
-    t('contact.serviceOther'),
+    { id: 'express', label: t('contact.serviceExpress') },
+    { id: 'business', label: t('contact.serviceBusiness') },
+    { id: 'premium', label: t('contact.servicePremium') },
+    { id: 'landing', label: t('contact.serviceLanding') },
+    { id: 'custom', label: t('contact.serviceCustom') },
+    { id: 'unknown', label: t('contact.serviceUnknown') },
   ] as const
 }
 
 export function getFooterLinks(t: TranslateFn) {
   return {
     company: [
-      { label: t('footer.about'), href: '/#platform' },
-      { label: t('footer.framework'), href: '/framework' },
-      { label: t('footer.businessOs'), href: '/business-os' },
-      { label: t('footer.method'), href: '/method' },
-      { label: t('footer.careers'), href: 'mailto:contato@buildertudo.com?subject=Careers' },
+      { label: t('footer.solutions'), href: '/#solucoes' },
+      { label: t('footer.plans'), href: '/#planos' },
+      { label: t('footer.buildercare'), href: '/#buildercare' },
+      { label: t('footer.process'), href: '/#processo' },
+      { label: t('footer.quote'), href: '/#contact' },
     ],
     platform: [
       { label: t('footer.framework'), href: '/framework' },
       { label: t('footer.businessOs'), href: '/business-os' },
-      { label: t('footer.aiPlatform'), href: '/#ai' },
-      { label: t('footer.showcase'), href: '/#showcase' },
-      { label: t('footer.liveStatus'), href: '/live' },
-      { label: t('footer.frameworkHealth'), href: '/live#framework-health' },
-    ],
-    resources: [
+      { label: t('footer.productsLink'), href: '/#projetos' },
       { label: t('footer.caseStudies'), href: '/cases' },
       { label: t('footer.labs'), href: '/labs' },
-      { label: t('footer.productsLink'), href: '/#products' },
-      { label: t('footer.methodLink'), href: '/#process' },
-      { label: t('footer.servicesLink'), href: '/#services' },
       { label: t('footer.liveStatus'), href: '/live' },
+    ],
+    resources: [
+      { label: t('footer.faq'), href: '/#faq' },
+      { label: t('footer.projects'), href: '/#projetos' },
+      { label: t('footer.privacy'), href: '/politica-de-privacidade' },
+      { label: t('footer.terms'), href: '/termos-de-uso' },
     ],
   }
 }

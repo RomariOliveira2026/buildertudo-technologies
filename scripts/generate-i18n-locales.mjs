@@ -1,3 +1,8 @@
+/**
+ * LEGACY GENERATOR — do not run as the source of truth.
+ * Commercial copy now lives in src/i18n/locales/*.ts and src/i18n/locales/commercial.ts.
+ * Running this script would overwrite locale files.
+ */
 import { writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'

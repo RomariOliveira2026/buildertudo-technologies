@@ -1,4 +1,5 @@
 import { env } from '../config/env'
+import { formatPriceFromPlan, PRICING } from '../config/commercial'
 import { CONTACT } from '../constants/contact'
 import type { Locale } from '../i18n'
 import { LOCALE_META } from '../i18n'
@@ -6,9 +7,9 @@ import type { ProductPageContent } from '../types/product-content'
 import { getProductStatusLabel } from '../types/product'
 
 export const SITE_NAME = 'BuilderTudo Technologies'
-export const SITE_SLOGAN = 'Technology that transforms businesses.'
+export const SITE_SLOGAN = 'Criamos presença digital inteligente para empresas que querem vender mais.'
 export const DEFAULT_DESCRIPTION =
-  'BuilderTudo Technologies — proprietary AI engineering platform. Framework, Business OS, AI-OS, Engine and 12 SaaS products. Enterprise-grade platform engineering for global clients.'
+  'BuilderTudo Technologies cria sites profissionais, landing pages e presença digital para empresas que querem transformar visitantes em oportunidades de negócio.'
 
 export const DEFAULT_OG_IMAGE = `${env.siteUrl}/logo-oficial.png`
 
@@ -70,31 +71,76 @@ export function getSoftwareCompanySchema(description = DEFAULT_DESCRIPTION, slog
     description,
     slogan,
     email: CONTACT.email,
-    areaServed: 'Worldwide',
+    areaServed: 'BR',
     knowsAbout: [
-      'Artificial Intelligence',
-      'SaaS Platforms',
-      'Product Engineering',
-      'Enterprise Software',
-      'Business Operating Systems',
+      'Criação de sites',
+      'Desenvolvimento de sites',
+      'Sites profissionais',
+      'Landing pages',
+      'Presença digital',
+      'Sites para empresas',
     ],
+  }
+}
+
+export function getFaqSchema(items: Array<{ question: string; answer: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+}
+
+export function getWebsiteOfferCatalog() {
+  const plans = [
+    { id: 'express' as const, name: 'Site Express' },
+    { id: 'business' as const, name: 'Site Business' },
+    { id: 'premium' as const, name: 'Site Premium' },
+  ]
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    name: 'Criação de sites BuilderTudo',
+    itemListElement: plans.map((plan, index) => ({
+      '@type': 'Offer',
+      position: index + 1,
+      name: plan.name,
+      price: PRICING[plan.id],
+      priceCurrency: PRICING.currency,
+      url: `${env.siteUrl}/?plano=${plan.id}#contact`,
+      description: `A partir de ${formatPriceFromPlan(plan.id)}`,
+    })),
   }
 }
 
 export function buildHomeStructuredData({
   description = DEFAULT_DESCRIPTION,
   slogan = SITE_SLOGAN,
-  locale = 'en' as Locale,
+  locale = 'pt-BR' as Locale,
+  faq,
 }: {
   description?: string
   slogan?: string
   locale?: Locale
+  faq?: Array<{ question: string; answer: string }>
 } = {}) {
-  return [
+  const graph: Array<Record<string, unknown>> = [
     getOrganizationSchema(description, slogan),
     getWebSiteSchema(description, locale),
     getSoftwareCompanySchema(description, slogan),
+    getWebsiteOfferCatalog(),
   ]
+
+  if (faq?.length) graph.push(getFaqSchema(faq))
+  return graph
 }
 
 export const homeStructuredData = buildHomeStructuredData()
@@ -126,7 +172,7 @@ export function getProductSchema(product: ProductPageContent, path: string) {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
       price: '0',
-      priceCurrency: 'USD',
+      priceCurrency: 'BRL',
     },
     creator: {
       '@type': 'Organization',

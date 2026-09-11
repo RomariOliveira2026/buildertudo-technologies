@@ -6,6 +6,8 @@ import { useTranslation } from '../../i18n'
 import { MotionButton, MotionIconButton } from '../ui/Buttons'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import type { Theme } from '../../hooks/useTheme'
+import { ANALYTICS_EVENTS } from '../../config/commercial'
+import { trackEvent } from '../../lib/analytics'
 
 type HeaderProps = {
   headerScrolled: boolean
@@ -78,7 +80,11 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
             {theme === 'dark' ? '☀' : '☾'}
           </MotionIconButton>
 
-          <MotionButton href="/#contact" className="header-cta-btn">
+          <MotionButton
+            href="/#contact"
+            className="header-cta-btn"
+            onClick={() => trackEvent(ANALYTICS_EVENTS.clickQuote, { source: 'header' })}
+          >
             {t('common.startYourProject')}
           </MotionButton>
         </div>

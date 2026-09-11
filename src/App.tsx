@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
+import './styles/commercial.css'
 import { LocaleProvider } from './i18n'
 import { initAnalytics } from './lib/analytics'
 import { scrollToHashWithRetry } from './lib/scrollToSection'

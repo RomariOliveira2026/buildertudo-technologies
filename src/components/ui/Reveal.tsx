@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { fadeUp, motionTransition } from '../../motion/variants'
 
@@ -11,11 +11,12 @@ type RevealProps = {
 
 export function Reveal({ children, className, delay = 0, as = 'div' }: RevealProps) {
   const Component = motion[as]
+  const reduceMotion = useReducedMotion()
 
   return (
     <Component
       className={className}
-      initial="hidden"
+      initial={reduceMotion ? false : 'hidden'}
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
       variants={fadeUp}
@@ -37,17 +38,19 @@ export function StaggerReveal({
   role?: string
   'aria-label'?: string
 }) {
+  const reduceMotion = useReducedMotion()
+
   return (
     <motion.div
       className={className}
       role={role}
       aria-label={ariaLabel}
-      initial="hidden"
+      initial={reduceMotion ? false : 'hidden'}
       whileInView="visible"
       viewport={{ once: true, margin: '-40px' }}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.08 } },
+        visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.08 } },
       }}
     >
       {children}

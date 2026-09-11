@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+# BuilderTudo Technologies
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site comercial da BuilderTudo Technologies: presença digital inteligente para empresas que querem vender mais.
 
-Currently, two official plugins are available:
+O objetivo desta versão é gerar leads e pedidos de orçamento para criação de sites, landing pages e estruturas digitais.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Site publicado: [buildertudo.com](https://buildertudo.com)
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript + Vite
+- React Router
+- Framer Motion
+- Deploy na Vercel (`vercel.json` preservado)
 
-## Expanding the ESLint configuration
+Não é necessário migrar de framework para operar esta Sprint.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Desenvolvimento
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
+npm run lint
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+O idioma padrão é `pt-BR`. EN e ES continuam disponíveis no seletor.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Conteúdo comercial centralizado
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Altere estes arquivos quando preços, WhatsApp, Instagram, planos, FAQ ou portfólio mudarem:
+
+| Dado | Arquivo |
+| --- | --- |
+| Preços, WhatsApp, Instagram, eventos de analytics | `src/config/commercial.ts` |
+| Contato (e-mail, redes, wa.me) | `src/constants/contact.ts` |
+| Planos, FAQ, portfólio, segmentos, processo | `src/data/commercial.ts` |
+| Copy comercial | `src/i18n/locales/commercial.ts` |
+
+## Formulário de leads
+
+O formulário valida no cliente e, nesta Sprint, **conclui o contato pelo WhatsApp comercial**.
+
+Para integrar um backend depois, configure `VITE_FORM_ENDPOINT` em `.env`. Enquanto essa variável estiver vazia, o site **não simula** envio de e-mail: o visitante é informado de que o próximo passo acontece no WhatsApp.
+
+Variáveis relacionadas estão em `.env.example`.
+
+## Analytics
+
+Nenhum ID fictício foi inserido. Quando as contas oficiais existirem, preencha:
+
+- `VITE_GA4_ID`
+- `VITE_GTM_ID`
+- `VITE_META_PIXEL_ID`
+- `VITE_GOOGLE_ADS_ID`
+- `VITE_CLARITY_ID`
+
+Eventos já preparados:
+
+- `click_whatsapp`
+- `click_quote`
+- `select_plan`
+- `submit_lead`
+- `view_portfolio`
+
+Detalhes em `docs/integrations.md`.
+
+## Páginas internas preservadas
+
+A home comercial não apaga o ecossistema existente. Continuam acessíveis:
+
+- `/framework`
+- `/business-os`
+- `/live`
+- `/labs`
+- `/cases`
+- `/products/:slug`
+- `/politica-de-privacidade`
+- `/termos-de-uso`
+
+Essas rotas aparecem no rodapé como tecnologia e projetos internos da BuilderTudo — não como clientes externos.

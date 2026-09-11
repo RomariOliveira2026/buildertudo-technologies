@@ -1,15 +1,18 @@
 import { useState, type FormEvent } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { env, isFormBackendEnabled } from '../../config/env'
+import { ANALYTICS_EVENTS } from '../../config/commercial'
 import { getContactServices } from '../../i18n/content'
 import { useTranslation } from '../../i18n'
 import { trackEvent } from '../../lib/analytics'
 import {
   hasContactFormErrors,
+  isContactProjectType,
   validateContactForm,
   type ContactFormData,
   type ContactFormErrors,
 } from '../../lib/contactForm'
-import { buildWhatsAppLeadMessage, buildWhatsAppUrl } from '../../lib/whatsapp'
+import { buildWhatsAppLeadMessage, buildWhatsAppUrl, trackWhatsAppClick } from '../../lib/whatsapp'
 import { MotionSubmitButton } from '../ui/Buttons'
 
 const initialState: ContactFormData = {
@@ -27,11 +30,14 @@ type ContactFormProps = {
 
 export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
   const { t } = useTranslation()
+  const [searchParams] = useSearchParams()
   const services = getContactServices(t)
+  const preselected = searchParams.get('plano')
   const [form, setForm] = useState<ContactFormData>(initialState)
   const [errors, setErrors] = useState<ContactFormErrors>({})
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [feedback, setFeedback] = useState('')
+  const selectedService = form.service || (isContactProjectType(preselected) ? preselected : '')
 
   const updateField = <K extends keyof ContactFormData>(field: K, value: ContactFormData[K]) => {
     setForm((current) => ({ ...current, [field]: value }))
@@ -45,7 +51,8 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const validation = validateContactForm(form, {
+    const payload = { ...form, service: selectedService }
+    const validation = validateContactForm(payload, {
       name: t('contact.errName'),
       company: t('contact.errCompany'),
       phone: t('contact.errPhone'),
@@ -69,19 +76,24 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         const response = await fetch(env.formEndpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
+          body: JSON.stringify(payload),
         })
 
         if (!response.ok) throw new Error('form-submit-failed')
       }
 
+      trackEvent(ANALYTICS_EVENTS.submitLead, {
+        service: payload.service,
+        source: 'contact_form',
+        backend: Boolean(isFormBackendEnabled && env.formEndpoint),
+      })
       trackEvent('generate_lead', {
-        service: form.service,
+        service: payload.service,
         source: 'contact_form',
       })
 
       const whatsappUrl = buildWhatsAppUrl(
-        buildWhatsAppLeadMessage(form, {
+        buildWhatsAppLeadMessage(payload, {
           intro: t('contact.whatsappLeadIntro'),
           name: t('contact.whatsappLeadName'),
           company: t('contact.whatsappLeadCompany'),
@@ -91,10 +103,13 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
           message: t('contact.whatsappLeadMessage'),
         }),
       )
+      trackWhatsAppClick('form', { service: payload.service })
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 
       setStatus('success')
-      setFeedback(t('contact.formSuccess'))
+      setFeedback(
+        isFormBackendEnabled && env.formEndpoint ? t('contact.formSuccessBackend') : t('contact.formSuccess'),
+      )
       setForm(initialState)
       setErrors({})
     } catch {
@@ -186,7 +201,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
           <select
             id={`${id}-service`}
             name="service"
-            value={form.service}
+            value={selectedService}
             onChange={(event) => updateField('service', event.target.value)}
             aria-invalid={Boolean(errors.service)}
             aria-describedby={errors.service ? `${id}-service-error` : undefined}
@@ -194,8 +209,8 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
           >
             <option value="">{t('contact.formSelectService')}</option>
             {services.map((service) => (
-              <option key={service} value={service}>
-                {service}
+              <option key={service.id} value={service.id}>
+                {service.label}
               </option>
             ))}
           </select>
@@ -222,11 +237,16 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
       <div className="contact-form__actions">
         <MotionSubmitButton
           className="contact-form__submit"
+          disabled={status === 'submitting'}
           aria-busy={status === 'submitting'}
         >
           {status === 'submitting' ? t('contact.formSubmitting') : t('contact.formSubmit')}
         </MotionSubmitButton>
       </div>
+
+      {!isFormBackendEnabled ? (
+        <p className="contact-form__note">{t('contact.formNoBackendNote')}</p>
+      ) : null}
 
       <p
         id={`${id}-feedback`}
