@@ -5,6 +5,7 @@ export const env = {
   ga4Id: readEnv('VITE_GA4_ID'),
   gtmId: readEnv('VITE_GTM_ID'),
   metaPixelId: readEnv('VITE_META_PIXEL_ID'),
+  googleAdsId: readEnv('VITE_GOOGLE_ADS_ID'),
   clarityId: readEnv('VITE_CLARITY_ID'),
   resendApiUrl: readEnv('VITE_RESEND_API_URL'),
   supabaseUrl: readEnv('VITE_SUPABASE_URL'),
@@ -13,7 +14,7 @@ export const env = {
 } as const
 
 export const isAnalyticsEnabled = Boolean(
-  env.ga4Id || env.gtmId || env.metaPixelId || env.clarityId,
+  env.ga4Id || env.gtmId || env.metaPixelId || env.googleAdsId || env.clarityId,
 )
 
 export const isFormBackendEnabled = Boolean(

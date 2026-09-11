@@ -1,3 +1,8 @@
+/**
+ * LEGACY GENERATOR — do not run as the source of truth.
+ * Commercial copy now lives in src/i18n/locales/*.ts and src/i18n/locales/commercial.ts.
+ * Running this script would overwrite locale files.
+ */
 import { writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -67,10 +72,10 @@ const en = {
     metricEnterpriseValue: 'Enterprise',
     metricEnterpriseLabel: 'Ready',
     builtWith: 'Built with',
-    perfUptime: '99.99% uptime',
+    perfUptime: 'Continuous monitoring',
     perfEnterprise: 'Enterprise Ready',
     perfAiNative: 'AI Native',
-    perfSoc2: 'SOC2 Ready',
+    perfSoc2: 'Security focused',
     perfMultiTenant: 'Multi Tenant',
     perfWhiteLabel: 'White Label Ready',
     overlayRevenue: 'Revenue',
@@ -426,7 +431,7 @@ const esOverrides = {
   'hero.metricEnterpriseValue': 'Enterprise',
   'hero.metricEnterpriseLabel': 'Ready',
   'hero.builtWith': 'Construido con',
-  'hero.perfUptime': '99.99% uptime',
+  'hero.perfUptime': 'Continuous monitoring',
   'hero.perfEnterprise': 'Enterprise Ready',
   'hero.perfWhiteLabel': 'White Label Ready',
   'hero.overlayRevenue': 'Revenue',

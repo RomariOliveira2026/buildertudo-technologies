@@ -39,11 +39,11 @@ export const FRAMEWORK_MODULES: FrameworkModule[] = [
   {
     id: 'component-library',
     name: 'Component Library',
-    description: '80+ production-ready, accessible React components used across all products.',
+    description: 'Reusable, accessible React components used across internal products.',
     benefits: ['Reusable UI', 'Tested patterns', 'Type-safe APIs', 'Performance optimized'],
     architecture: 'Tree-shakeable packages with unit tests, a11y tests and bundle analysis.',
     dependencies: ['design-system'],
-    roadmap: ['90+ components', 'React 19 patterns', 'Native component bridge'],
+    roadmap: ['Component evolution', 'React 19 patterns', 'Native component bridge'],
   },
   {
     id: 'runtime',
@@ -70,7 +70,7 @@ export const FRAMEWORK_MODULES: FrameworkModule[] = [
     benefits: ['Eliminate manual work', 'API integrations', 'Event-driven flows', 'Monitoring'],
     architecture: 'Webhook hub + workflow DAG executor with retry, dead-letter and alerting.',
     dependencies: ['runtime', 'ai-os'],
-    roadmap: ['Visual workflow builder', '500+ connectors', 'Real-time event streaming'],
+    roadmap: ['Visual workflow builder', 'Connector evolution', 'Real-time event streaming'],
   },
   {
     id: 'business-os',
@@ -88,6 +88,6 @@ export const FRAMEWORK_MODULES: FrameworkModule[] = [
     benefits: ['Proven patterns', 'Vertical expertise', 'Live references', 'Continuous evolution'],
     architecture: 'Each product inherits Framework, Golden Screens, AI-OS and Engine by default.',
     dependencies: ['business-os', 'framework'],
-    roadmap: ['20+ products by 2027', 'Marketplace launch', 'White-label platform'],
+    roadmap: ['Portfolio evolution', 'Marketplace evaluation', 'White-label platform'],
   },
 ]

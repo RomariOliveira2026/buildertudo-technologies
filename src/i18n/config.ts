@@ -2,7 +2,7 @@ export const LOCALES = ['en', 'es', 'pt-BR'] as const
 
 export type Locale = (typeof LOCALES)[number]
 
-export const DEFAULT_LOCALE: Locale = 'en'
+export const DEFAULT_LOCALE: Locale = 'pt-BR'
 
 export const LOCALE_STORAGE_KEY = 'buildertudo.locale'
 

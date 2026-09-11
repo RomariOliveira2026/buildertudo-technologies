@@ -1,15 +1,13 @@
 export const CONTACT_SERVICE_KEYS = [
-  'servicePlatformEngineering',
-  'serviceAiIntegration',
-  'serviceSaas',
-  'serviceWeb',
-  'serviceMobile',
-  'serviceAutomation',
-  'serviceUx',
-  'serviceConsulting',
-  'serviceSquad',
-  'serviceOther',
+  'express',
+  'business',
+  'premium',
+  'landing',
+  'custom',
+  'unknown',
 ] as const
+
+export type ContactProjectType = (typeof CONTACT_SERVICE_KEYS)[number]
 
 export type ContactFormData = {
   name: string
@@ -35,12 +33,12 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const phonePattern = /^(\+?\d{1,3}\s?)?(\(?\d{2,3}\)?\s?)?\d{4,5}[-\s]?\d{4}$/
 
 const DEFAULT_MESSAGES: ContactValidationMessages = {
-  name: 'Please enter your full name.',
-  company: 'Please enter your company name.',
-  phone: 'Please enter a valid phone number with area code.',
-  email: 'Please enter a valid email address.',
-  service: 'Please select a service.',
-  message: 'Please describe your needs (min. 10 characters).',
+  name: 'Informe seu nome completo.',
+  company: 'Informe o nome da empresa.',
+  phone: 'Informe um WhatsApp válido com DDD.',
+  email: 'Informe um e-mail válido.',
+  service: 'Selecione o tipo de projeto.',
+  message: 'Descreva sua necessidade (mínimo de 10 caracteres).',
 }
 
 export function validateContactForm(
@@ -68,4 +66,8 @@ export function validateContactForm(
 
 export function hasContactFormErrors(errors: ContactFormErrors) {
   return Object.keys(errors).length > 0
+}
+
+export function isContactProjectType(value: string | null | undefined): value is ContactProjectType {
+  return Boolean(value && (CONTACT_SERVICE_KEYS as readonly string[]).includes(value))
 }

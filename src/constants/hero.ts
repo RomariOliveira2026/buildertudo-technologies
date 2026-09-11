@@ -26,21 +26,21 @@ export const HERO_TECH_STACK = [
 ] as const
 
 export const HERO_PERFORMANCE_INDICATORS = [
-  { id: 'uptime', label: '99.99% uptime' },
+  { id: 'uptime', label: 'Monitoramento contínuo' },
   { id: 'enterprise', label: 'Enterprise Ready' },
   { id: 'ai-native', label: 'AI Native' },
-  { id: 'soc2', label: 'SOC2 Ready' },
+  { id: 'soc2', label: 'Security focused' },
   { id: 'multi-tenant', label: 'Multi Tenant' },
   { id: 'white-label', label: 'White Label Ready' },
 ] as const
 
 export const HERO_MOCKUP_OVERLAYS = [
-  { id: 'revenue', label: 'Revenue', value: '$284K' },
-  { id: 'mrr', label: 'MRR', value: '$42K' },
+  { id: 'revenue', label: 'Revenue', value: '—' },
+  { id: 'mrr', label: 'MRR', value: '—' },
   { id: 'copilot', label: 'AI Copilot', value: 'Online' },
   { id: 'pipeline', label: 'Pipeline', value: '12 deals' },
   { id: 'deploy', label: 'Deploy Status', value: 'Live' },
-  { id: 'score', label: 'Framework Score', value: '94%' },
+  { id: 'score', label: 'Framework Score', value: '—' },
 ] as const
 
 export const STATUS_BAR_ITEMS = [

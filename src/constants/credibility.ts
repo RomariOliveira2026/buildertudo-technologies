@@ -12,7 +12,7 @@ export const CREDIBILITY_METRICS = [
   { id: 'golden-screens', value: String(STATIC_PLATFORM_METRICS.goldenScreens), label: 'Golden Screens' },
   { id: 'components', value: `${STATIC_PLATFORM_METRICS.components}+`, label: 'Reusable components' },
   { id: 'products', value: `${products.length}`, label: 'Products built' },
-  { id: 'tests', value: '847', label: 'Automated tests' },
+  { id: 'tests', value: '—', label: 'Automated tests' },
   { id: 'ai-copilots', value: '7', label: 'AI Copilots' },
   { id: 'business-os', value: 'Live', label: 'Business OS' },
 ] as const

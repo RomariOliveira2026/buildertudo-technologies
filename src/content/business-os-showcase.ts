@@ -74,10 +74,10 @@ export const BOS_COMMAND_METRICS: BosMetric[] = [
   {
     id: 'mrr',
     label: 'Revenue',
-    value: '$284K',
+    value: '—',
     liveValues: [283940, 283980, 284010, 284050],
     format: 'revenue',
-    change: '+12.4%',
+    change: 'Demo',
     trend: 'up',
     icon: '◈',
   },
@@ -111,8 +111,8 @@ export const BOS_COMMAND_METRICS: BosMetric[] = [
     trend: 'neutral',
     icon: '▣',
   },
-  { id: 'deploy', label: 'Deploy Success', value: '99.99%', change: '+0.2%', trend: 'up', icon: '↑' },
-  { id: 'infra', label: 'Infrastructure', value: '98%', change: 'Stable', trend: 'neutral', icon: '⚙' },
+  { id: 'deploy', label: 'Deploy Success', value: '—', change: 'Demo', trend: 'up', icon: '↑' },
+  { id: 'infra', label: 'Infrastructure', value: '—', change: 'Stable', trend: 'neutral', icon: '⚙' },
   { id: 'framework', label: 'Framework Version', value: 'v2.1', format: 'text', change: 'Stable', trend: 'neutral', icon: '◆' },
   { id: 'tasks', label: 'Open Tasks', value: '34', change: '−6', trend: 'down', icon: '☑' },
 ]
@@ -123,9 +123,9 @@ export const BOS_ACTIVITY_TICKER: BosActivity[] = [
   { id: 't3', type: 'pipeline', title: 'Pipeline updated', detail: 'Rep4 CRM — deal moved to Negotiation', time: 'now' },
   { id: 't4', type: 'deploy', title: 'Framework deployed', detail: 'BuilderTudo Framework v2.1', time: 'now' },
   { id: 't5', type: 'ai', title: 'AI analysis finished', detail: 'CEO Copilot processed 12 workflows', time: 'now' },
-  { id: 't6', type: 'payment', title: 'Stripe payment received', detail: 'ContentFy Enterprise — $2.4K/mo', time: 'now' },
+  { id: 't6', type: 'payment', title: 'Stripe payment received', detail: 'ContentFy Enterprise — status registrado', time: 'now' },
   { id: 't7', type: 'backup', title: 'Database backup completed', detail: 'All regions synced', time: 'now' },
-  { id: 't8', type: 'health', title: 'Health Score updated', detail: 'Framework health at 94%', time: 'now' },
+  { id: 't8', type: 'health', title: 'Health Score updated', detail: 'Framework health indicator updated', time: 'now' },
 ]
 
 export const BOS_LIVE_ACTIVITIES: BosActivity[] = [
@@ -134,30 +134,30 @@ export const BOS_LIVE_ACTIVITIES: BosActivity[] = [
   { id: '3', type: 'pipeline', title: 'Pipeline updated', detail: 'Rep4 CRM — deal moved to Negotiation', time: '28 min ago' },
   { id: '4', type: 'deploy', title: 'Framework deployed', detail: 'BuilderTudo Framework v2.1', time: '35 min ago' },
   { id: '5', type: 'ai', title: 'AI analysis finished', detail: 'CEO Copilot processed 12 workflows', time: '1h ago' },
-  { id: '6', type: 'payment', title: 'Stripe payment received', detail: 'ContentFy Enterprise — $2.4K/mo', time: '2h ago' },
+  { id: '6', type: 'payment', title: 'Stripe payment received', detail: 'ContentFy Enterprise — status registrado', time: '2h ago' },
 ]
 
 export const BOS_COPILOT: BosCopilotSection[] = [
   {
     id: 'brief',
     title: 'Revenue forecast',
-    items: ['MRR projected at $312K by Q3. JurisMind and ContentFy drive 68% of recurring revenue.'],
+    items: ['Revenue forecast demonstration — no real financial data is displayed.'],
   },
   {
     id: 'health',
     title: 'Framework Health',
-    items: ['Health score at 94%. 15 of 16 modules operational. Deploy pipeline stable.'],
+    items: ['Demonstration health indicators available. Deploy pipeline shown for product demonstration.'],
   },
   {
     id: 'deploy',
     title: 'Deploy status',
-    items: ['Last deploy: JurisMind v2.1.3 — success. 99.99% success rate across 30 days.'],
+    items: ['Last deploy: JurisMind v2.1.3 — success. monitoring available in the operational environment.'],
   },
   {
     id: 'alerts',
     title: 'Risk alerts',
     variant: 'alert',
-    items: ['PetMind staging — memory threshold at 82%.', 'BuilderLeads webhook queue — 2 pending events.'],
+    items: ['Staging environment — demonstration alert.', 'BuilderLeads webhook queue — 2 pending events.'],
   },
   {
     id: 'actions',
@@ -182,14 +182,14 @@ export const BOS_COPILOT: BosCopilotSection[] = [
 ]
 
 export const BOS_PRODUCTS: BosProduct[] = [
-  { id: 'jurismind', name: 'JurisMind', status: 'production', version: '2.1.3', activeUsers: 1245, uptime: '99.98%', health: 98, logo: '⚖' },
-  { id: 'contentfy', name: 'ContentFy', status: 'production', version: '1.9.8', activeUsers: 865, uptime: '99.99%', health: 99, logo: '✎' },
+  { id: 'jurismind', name: 'JurisMind', status: 'production', version: '2.1.3', activeUsers: 0, uptime: '—', health: 98, logo: '⚖' },
+  { id: 'contentfy', name: 'ContentFy', status: 'production', version: '1.9.8', activeUsers: 865, uptime: '—', health: 99, logo: '✎' },
   { id: 'diagramafy', name: 'DiagramaFy', status: 'beta', version: '1.6.2', activeUsers: 421, health: 93, logo: '◇' },
-  { id: 'petmind', name: 'PetMind', status: 'production', version: '0.9.4', activeUsers: 340, uptime: '99.95%', health: 88, logo: '🐾' },
+  { id: 'petmind', name: 'PetMind', status: 'production', version: '0.9.4', activeUsers: 0, uptime: '—', health: 88, logo: '🐾' },
   { id: 'rep4', name: 'Rep4 CRM', status: 'mvp', version: '0.8.0', activeUsers: 128, health: 91, logo: '◉' },
   { id: 'condomind', name: 'CondoMind', status: 'beta', version: '0.7.1', activeUsers: 180, health: 91, logo: '🏢' },
   { id: 'builderleads', name: 'BuilderLeads', status: 'paused', version: '1.2.3', activeUsers: 450, health: 90, logo: '◈' },
-  { id: 'ispmind', name: 'ISPMind', status: 'production', version: '2.0.5', activeUsers: 780, uptime: '99.97%', health: 95, logo: '◎' },
+  { id: 'ispmind', name: 'ISPMind', status: 'production', version: '2.0.5', activeUsers: 0, uptime: '—', health: 95, logo: '◎' },
 ]
 
 export const BOS_ANALYTICS_CHARTS: BosChartSeries[] = [
@@ -202,11 +202,11 @@ export const BOS_ANALYTICS_CHARTS: BosChartSeries[] = [
 ]
 
 export const BOS_FRAMEWORK_STATS: BosFrameworkStat[] = [
-  { id: 'health', label: 'Health Score', value: '94%', icon: '◆' },
+  { id: 'health', label: 'Health Score', value: '—', icon: '◆' },
   { id: 'modules', label: 'Modules', value: '15/16', icon: '⚙' },
   { id: 'packages', label: 'Packages', value: '37', icon: '▣' },
-  { id: 'components', label: 'Components', value: '80+', icon: '⬡' },
-  { id: 'deploy', label: 'Deploy Success', value: '99.99%', icon: '↑' },
+  { id: 'components', label: 'Components', value: '—', icon: '⬡' },
+  { id: 'deploy', label: 'Deploy Success', value: '—', icon: '↑' },
   { id: 'version', label: 'Version', value: 'v2.1', icon: '◎' },
 ]
 

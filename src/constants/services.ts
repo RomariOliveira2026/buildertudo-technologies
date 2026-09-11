@@ -11,7 +11,7 @@ export const SERVICES = [
     title: 'Enterprise SaaS',
     description: 'Multi-tenant platforms engineered for scale — security, compliance and performance from the first sprint.',
     deliverables: ['Multi-tenant architecture', 'SSO & RBAC', 'Audit trails', 'SLA design'],
-    differentiator: 'Golden Screens validated before build — reducing enterprise rework by 60%.',
+    differentiator: 'Golden Screens validated before build — aligning stakeholders before implementation.',
   },
   {
     id: 'internal-platforms',
@@ -39,7 +39,7 @@ export const SERVICES = [
     title: 'System Modernization',
     description: 'Migrate legacy systems to modern stacks without disrupting operations — phased, low-risk approach.',
     deliverables: ['Legacy audit', 'Migration plan', 'Parallel run', 'Team training'],
-    differentiator: 'Framework adoption accelerates migration 3x vs. greenfield rewrite.',
+    differentiator: 'Phased adoption supports controlled modernization.',
   },
   {
     id: 'architecture',
@@ -60,7 +60,7 @@ export const SERVICES = [
     title: 'Framework Adoption',
     description: 'Implement BuilderTudo Framework in your organization — design system, components and engineering standards.',
     deliverables: ['Framework setup', 'Golden Screens', 'Engine integration', 'Documentation'],
-    differentiator: '80+ components, 37 packages and 15 Golden Screens ready to deploy.',
+    differentiator: 'Reusable components and reference screens support implementation.',
   },
   {
     id: 'technical-consulting',

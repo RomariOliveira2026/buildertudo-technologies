@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { CONTACT } from '../../constants/contact'
-import { products } from '../../constants/products'
 import { LEGAL_ROUTES } from '../../constants/routes'
 import { getFooterLinks } from '../../i18n/content'
 import { useTranslation } from '../../i18n'
-import { buildWhatsAppUrl } from '../../lib/whatsapp'
+import { getWhatsAppCopy } from '../../i18n/commercial'
+import { buildWhatsAppUrl, trackWhatsAppClick } from '../../lib/whatsapp'
 
 export function Footer() {
   const { t } = useTranslation()
@@ -12,7 +12,7 @@ export function Footer() {
 
   return (
     <footer className="footer" role="contentinfo">
-      <div className="container footer__grid footer__grid--v3">
+      <div className="container footer__grid footer__grid--commercial">
         <div className="footer__brand">
           <img
             className="site-logo site-logo--footer"
@@ -39,10 +39,10 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="footer__heading">{t('footer.platform')}</h3>
+          <h3 className="footer__heading">{t('footer.resources')}</h3>
           <ul>
-            {links.platform.map((link) => (
-              <li key={link.label}>
+            {links.resources.map((link) => (
+              <li key={link.href}>
                 <Link to={link.href}>{link.label}</Link>
               </li>
             ))}
@@ -50,10 +50,12 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="footer__heading">{t('footer.products')}</h3>
+          <h3 className="footer__heading">{t('footer.platform')}</h3>
           <ul>
-            {products.slice(0, 6).map((product) => (
-              <li key={product.slug}>{product.name}</li>
+            {links.platform.map((link) => (
+              <li key={link.href}>
+                <Link to={link.href}>{link.label}</Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -62,25 +64,28 @@ export function Footer() {
           <h3 className="footer__heading">{t('footer.connect')}</h3>
           <ul>
             <li><Link to="/#contact">{t('footer.startProject')}</Link></li>
-            <li><a href={CONTACT.meeting}>{t('footer.bookCall')}</a></li>
+            <li>
+              <a
+                href={buildWhatsAppUrl(getWhatsAppCopy(t, 'default'))}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('default')}
+              >
+                {t('common.whatsapp')}
+              </a>
+            </li>
             <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
-            <li><a href={buildWhatsAppUrl(t('contact.whatsappDefault'))} target="_blank" rel="noopener noreferrer">{t('common.whatsapp')}</a></li>
-            <li><a href={CONTACT.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href={CONTACT.upwork} target="_blank" rel="noopener noreferrer">Upwork</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="footer__heading">{t('footer.resources')}</h3>
-          <ul>
-            {links.resources.map((link) => (
-              <li key={link.label}>
-                <Link to={link.href}>{link.label}</Link>
-              </li>
-            ))}
-            <li><Link to={LEGAL_ROUTES.privacy}>{t('footer.privacy')}</Link></li>
-            <li><Link to={LEGAL_ROUTES.terms}>{t('footer.terms')}</Link></li>
+            <li>
+              <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer">
+                {CONTACT.instagramHandle}
+              </a>
+            </li>
+            <li>
+              <a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </li>
+            <li>
+              <a href={CONTACT.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -88,6 +93,11 @@ export function Footer() {
       <div className="container footer__bottom">
         <p>© {new Date().getFullYear()} BuilderTudo Technologies. {t('common.allRightsReserved')}</p>
         <p className="footer__mission">{t('footer.mission')}</p>
+        <p className="footer__legal-links">
+          <Link to={LEGAL_ROUTES.privacy}>{t('footer.privacy')}</Link>
+          <span aria-hidden="true"> · </span>
+          <Link to={LEGAL_ROUTES.terms}>{t('footer.terms')}</Link>
+        </p>
       </div>
     </footer>
   )
