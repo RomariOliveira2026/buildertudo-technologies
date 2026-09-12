@@ -1,22 +1,22 @@
-import type { TranslateFn } from '../i18n'
+import type { Locale } from './config'
+import type { TranslateFn } from './translate'
+import { getCommercialContactTypes } from './commercial'
 
 export const NAV_IDS = [
-  'credibility',
-  'platform',
-  'business-os',
-  'products',
-  'process',
-  'services',
+  'solutions',
+  'plans',
+  'portfolio',
+  'method',
+  'care',
   'contact',
 ] as const
 
 const NAV_KEYS = {
-  credibility: 'navigation.credibility',
-  platform: 'navigation.platform',
-  'business-os': 'navigation.businessOs',
-  products: 'navigation.products',
-  process: 'navigation.method',
-  services: 'navigation.services',
+  solutions: 'navigation.solutions',
+  plans: 'navigation.plans',
+  portfolio: 'navigation.portfolio',
+  method: 'navigation.method',
+  care: 'navigation.care',
   contact: 'navigation.contact',
 } as const
 
@@ -171,44 +171,32 @@ export function getHomeServices(t: TranslateFn) {
   })
 }
 
-export function getContactServices(t: TranslateFn) {
-  return [
-    t('contact.servicePlatformEngineering'),
-    t('contact.serviceAiIntegration'),
-    t('contact.serviceSaas'),
-    t('contact.serviceWeb'),
-    t('contact.serviceMobile'),
-    t('contact.serviceAutomation'),
-    t('contact.serviceUx'),
-    t('contact.serviceConsulting'),
-    t('contact.serviceSquad'),
-    t('contact.serviceOther'),
-  ] as const
+export function getContactServices(_t: TranslateFn, locale: Locale) {
+  return getCommercialContactTypes(locale)
 }
 
 export function getFooterLinks(t: TranslateFn) {
   return {
     company: [
-      { label: t('footer.about'), href: '/#platform' },
-      { label: t('footer.framework'), href: '/framework' },
-      { label: t('footer.businessOs'), href: '/business-os' },
-      { label: t('footer.method'), href: '/method' },
+      { label: t('footer.about'), href: '/#differentials' },
+      { label: t('navigation.solutions'), href: '/#solutions' },
+      { label: t('navigation.plans'), href: '/#plans' },
+      { label: t('footer.method'), href: '/#method' },
       { label: t('footer.careers'), href: 'mailto:contato@buildertudo.com?subject=Careers' },
     ],
     platform: [
       { label: t('footer.framework'), href: '/framework' },
       { label: t('footer.businessOs'), href: '/business-os' },
-      { label: t('footer.aiPlatform'), href: '/#ai' },
-      { label: t('footer.showcase'), href: '/#showcase' },
+      { label: t('footer.method'), href: '/method' },
       { label: t('footer.liveStatus'), href: '/live' },
       { label: t('footer.frameworkHealth'), href: '/live#framework-health' },
     ],
     resources: [
+      { label: t('footer.faq'), href: '/#faq' },
+      { label: t('navigation.portfolio'), href: '/#portfolio' },
+      { label: t('navigation.care'), href: '/#care' },
       { label: t('footer.caseStudies'), href: '/cases' },
       { label: t('footer.labs'), href: '/labs' },
-      { label: t('footer.productsLink'), href: '/#products' },
-      { label: t('footer.methodLink'), href: '/#process' },
-      { label: t('footer.servicesLink'), href: '/#services' },
       { label: t('footer.liveStatus'), href: '/live' },
     ],
   }

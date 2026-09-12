@@ -1,7 +1,10 @@
 import { useState, type FormEvent } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { env, isFormBackendEnabled } from '../../config/env'
+import { PLAN_IDS, type PlanId } from '../../constants/commercial'
 import { getContactServices } from '../../i18n/content'
-import { useTranslation } from '../../i18n'
+import { commercialCopy } from '../../i18n/commercial'
+import { useTranslation, type Locale } from '../../i18n'
 import { trackEvent } from '../../lib/analytics'
 import {
   hasContactFormErrors,
@@ -21,14 +24,28 @@ const initialState: ContactFormData = {
   message: '',
 }
 
+function serviceFromPlan(plan: string | null, locale: Locale) {
+  if (!plan) return ''
+  if ((PLAN_IDS as readonly string[]).includes(plan)) {
+    return commercialCopy[locale].form.types[plan as PlanId]
+  }
+  if (plan === 'landing') return commercialCopy[locale].form.types.landing
+  if (plan === 'custom') return commercialCopy[locale].form.types.custom
+  return ''
+}
+
 type ContactFormProps = {
   id?: string
 }
 
 export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
-  const { t } = useTranslation()
-  const services = getContactServices(t)
-  const [form, setForm] = useState<ContactFormData>(initialState)
+  const { t, locale } = useTranslation()
+  const [searchParams] = useSearchParams()
+  const services = getContactServices(t, locale)
+  const [form, setForm] = useState<ContactFormData>(() => ({
+    ...initialState,
+    service: serviceFromPlan(searchParams.get('plan'), locale),
+  }))
   const [errors, setErrors] = useState<ContactFormErrors>({})
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [feedback, setFeedback] = useState('')
@@ -79,6 +96,11 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
         service: form.service,
         source: 'contact_form',
       })
+      trackEvent('submit_lead', {
+        service: form.service,
+        source: 'contact_form',
+        backend: Boolean(env.formEndpoint),
+      })
 
       const whatsappUrl = buildWhatsAppUrl(
         buildWhatsAppLeadMessage(form, {
@@ -94,7 +116,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 
       setStatus('success')
-      setFeedback(t('contact.formSuccess'))
+      setFeedback(env.formEndpoint ? t('contact.formSuccess') : t('contact.formWhatsappOpened'))
       setForm(initialState)
       setErrors({})
     } catch {
@@ -194,7 +216,7 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
           >
             <option value="">{t('contact.formSelectService')}</option>
             {services.map((service) => (
-              <option key={service} value={service}>
+              <option key={service} value={service} translate="no">
                 {service}
               </option>
             ))}
@@ -224,8 +246,15 @@ export function ContactForm({ id = 'contact-form' }: ContactFormProps) {
           className="contact-form__submit"
           aria-busy={status === 'submitting'}
         >
-          {status === 'submitting' ? t('contact.formSubmitting') : t('contact.formSubmit')}
+          {status === 'submitting'
+            ? t('contact.formSubmitting')
+            : isFormBackendEnabled
+              ? t('contact.formSubmit')
+              : t('contact.formSubmitWhatsapp')}
         </MotionSubmitButton>
+        {isFormBackendEnabled ? null : (
+          <p className="contact-form__hint">{t('contact.formWhatsappHint')}</p>
+        )}
       </div>
 
       <p

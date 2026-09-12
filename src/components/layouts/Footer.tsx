@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import { CONTACT } from '../../constants/contact'
+import { INSTAGRAM_HANDLE } from '../../constants/commercial'
 import { products } from '../../constants/products'
 import { LEGAL_ROUTES } from '../../constants/routes'
 import { getFooterLinks } from '../../i18n/content'
 import { useTranslation } from '../../i18n'
-import { buildWhatsAppUrl } from '../../lib/whatsapp'
+import { getWhatsAppHref, trackWhatsAppClick } from '../../lib/commercial-whatsapp'
 
 export function Footer() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
   const links = getFooterLinks(t)
 
   return (
@@ -53,7 +54,9 @@ export function Footer() {
           <h3 className="footer__heading">{t('footer.products')}</h3>
           <ul>
             {products.slice(0, 6).map((product) => (
-              <li key={product.slug}>{product.name}</li>
+              <li key={product.slug}>
+                <Link to={product.href ?? `/products/${product.slug}`}>{product.name}</Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -64,7 +67,21 @@ export function Footer() {
             <li><Link to="/#contact">{t('footer.startProject')}</Link></li>
             <li><a href={CONTACT.meeting}>{t('footer.bookCall')}</a></li>
             <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
-            <li><a href={buildWhatsAppUrl(t('contact.whatsappDefault'))} target="_blank" rel="noopener noreferrer">{t('common.whatsapp')}</a></li>
+            <li>
+              <a
+                href={getWhatsAppHref(locale)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick('default')}
+              >
+                {t('common.whatsapp')}
+              </a>
+            </li>
+            <li>
+              <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer">
+                Instagram {INSTAGRAM_HANDLE}
+              </a>
+            </li>
             <li><a href={CONTACT.github} target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
             <li><a href={CONTACT.upwork} target="_blank" rel="noopener noreferrer">Upwork</a></li>

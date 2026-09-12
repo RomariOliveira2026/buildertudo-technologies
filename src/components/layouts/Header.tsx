@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { getNavItems } from '../../i18n/content'
 import { useTranslation } from '../../i18n'
+import { trackQuoteClick } from '../../lib/commercial-whatsapp'
 import { MotionButton, MotionIconButton } from '../ui/Buttons'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import type { Theme } from '../../hooks/useTheme'
@@ -78,7 +79,7 @@ export function Header({ headerScrolled, activeSection, theme, onToggleTheme }: 
             {theme === 'dark' ? '☀' : '☾'}
           </MotionIconButton>
 
-          <MotionButton href="/#contact" className="header-cta-btn">
+          <MotionButton href="/#contact" className="header-cta-btn" onClick={() => trackQuoteClick()}>
             {t('common.startYourProject')}
           </MotionButton>
         </div>

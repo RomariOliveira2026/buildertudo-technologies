@@ -28,7 +28,7 @@ export function ProductPage() {
           <h1>Product not found</h1>
           <p>This product is not in the BuilderTudo official catalog.</p>
           <div className="section-cta-row">
-            <MotionButton href="/#products">View all products</MotionButton>
+            <MotionButton href="/#portfolio">View all products</MotionButton>
             <Link className="ghost-btn link-btn" to="/">← Back to home</Link>
           </div>
         </div>

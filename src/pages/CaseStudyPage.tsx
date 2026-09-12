@@ -32,7 +32,7 @@ export function CaseStudyPage() {
           <p>This case study is not in the BuilderTudo engineering library.</p>
           <div className="section-cta-row">
             <MotionButton href="/cases">Browse case studies</MotionButton>
-            <Link className="ghost-btn link-btn" to="/#products">View products</Link>
+            <Link className="ghost-btn link-btn" to="/#portfolio">View products</Link>
           </div>
         </div>
       </PageLayout>

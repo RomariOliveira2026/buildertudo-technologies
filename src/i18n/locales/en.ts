@@ -3,10 +3,10 @@ import type { MessageTree } from '../translate'
 export const en = {
   "common": {
     "skipToContent": "Skip to main content",
-    "startYourProject": "Start Your Project",
+    "startYourProject": "I want to create my site",
     "explorePlatform": "Explore Platform",
     "startAProject": "Start a project",
-    "bookDiscoveryCall": "Book a discovery call",
+    "bookDiscoveryCall": "Schedule a conversation",
     "exploreFramework": "Explore Framework",
     "exploreBusinessOS": "Explore Business OS",
     "viewProducts": "View products",
@@ -25,17 +25,21 @@ export const en = {
     "platformMetricsAria": "Platform metrics",
     "allRightsReserved": "All rights reserved.",
     "siteSlogan": "Technology that transforms businesses.",
-    "defaultDescription": "BuilderTudo Technologies — proprietary AI engineering platform. Framework, Business OS, AI-OS, Engine and 12 SaaS products. Enterprise-grade platform engineering for global clients.",
-    "homeTitle": "Proprietary AI engineering platform for global companies"
+    "defaultDescription": "BuilderTudo Technologies creates professional websites, landing pages and intelligent digital presence for companies that want to sell more.",
+    "homeTitle": "Professional websites and digital presence that help companies sell more"
   },
   "navigation": {
+    "solutions": "Solutions",
+    "plans": "Plans",
+    "portfolio": "Portfolio",
+    "method": "Method",
+    "care": "BuilderCare",
+    "contact": "Contact",
     "credibility": "Credibility",
     "platform": "Platform",
     "businessOs": "Business OS",
     "products": "Products",
-    "method": "Method",
-    "services": "Services",
-    "contact": "Contact"
+    "services": "Services"
   },
   "statusBar": {
     "aiEngineOnline": "AI Engine Online",
@@ -195,7 +199,7 @@ export const en = {
     "title": "Platform engineering, not programming",
     "description": "We sell engineering capability backed by a proprietary platform — every engagement inherits Framework, AI-OS and Business OS.",
     "ctaStart": "Start a project",
-    "ctaBook": "Book a discovery call",
+    "ctaBook": "Schedule a conversation",
     "ctaFramework": "Explore the Framework",
     "deliverablesAria": "{{title}} deliverables",
     "items": {
@@ -257,10 +261,10 @@ export const en = {
   },
   "contact": {
     "badge": "Let's build together",
-    "title": "Ready to ship your next platform?",
-    "body": "Tell us about your project — whether you're scaling on Upwork, launching a SaaS or modernizing enterprise operations. We respond within 24 hours.",
+    "title": "Tell us what your company needs.",
+    "body": "Share your objective and we will help turn it into a professional digital structure. WhatsApp is the fastest way to continue the conversation.",
     "ctaStart": "Start a project",
-    "ctaBook": "Book a discovery call",
+    "ctaBook": "Schedule a conversation",
     "ctaFramework": "Explore Framework",
     "ctaWhatsapp": "WhatsApp",
     "formName": "Name *",
@@ -274,11 +278,14 @@ export const en = {
     "formPlaceholderPhone": "+1 or +55 with area code",
     "formPlaceholderEmail": "you@company.com",
     "formPlaceholderMessage": "Tell us about your goals, timeline and constraints…",
-    "formSelectService": "Select a service",
+    "formSelectService": "Select an option",
     "formSubmit": "Send request",
+    "formSubmitWhatsapp": "Continue on WhatsApp",
     "formSubmitting": "Sending…",
     "formReviewFields": "Please review the highlighted fields.",
-    "formSuccess": "Request received! We opened WhatsApp so you can complete your message.",
+    "formSuccess": "We received your request and opened WhatsApp so you can complete your message.",
+    "formWhatsappHint": "When you submit, we open a WhatsApp conversation with the details you entered.",
+    "formWhatsappOpened": "We opened WhatsApp with your message. Send it to talk with BuilderTudo.",
     "formError": "Unable to send right now. Try again or contact us via WhatsApp.",
     "errName": "Please enter your full name.",
     "errCompany": "Please enter your company name.",
@@ -296,8 +303,8 @@ export const en = {
     "serviceConsulting": "Technology Consulting",
     "serviceSquad": "Dedicated Squad",
     "serviceOther": "Other",
-    "whatsappDefault": "Hello! I visited the BuilderTudo Technologies website and would like to request a quote.",
-    "whatsappLeadIntro": "Hello! I visited the BuilderTudo Technologies website and would like to request a quote.",
+    "whatsappDefault": "Hello! I found BuilderTudo through the website and would like to talk about creating a website for my company.",
+    "whatsappLeadIntro": "Hello! I found BuilderTudo through the website and would like to request a quote for a website.",
     "whatsappLeadName": "Name",
     "whatsappLeadCompany": "Company",
     "whatsappLeadPhone": "WhatsApp",
@@ -306,9 +313,9 @@ export const en = {
     "whatsappLeadMessage": "Message"
   },
   "footer": {
-    "tagline": "Digital product engineering platform.",
-    "description": "Framework, Business OS, AI-OS, Engine and 12 official products. Built in Brazil. Ready for the world.",
-    "mission": "Platform engineering · AI-native · Enterprise-ready",
+    "tagline": "Intelligent digital presence for companies that want to sell more.",
+    "description": "We create professional websites, landing pages and commercial digital structures. Internal products and the engineering platform remain available in the portfolio.",
+    "mission": "Design · Technology · Strategy · AI",
     "company": "Company",
     "platform": "Platform",
     "products": "Products",
@@ -328,9 +335,10 @@ export const en = {
     "productsLink": "Products",
     "methodLink": "Method",
     "servicesLink": "Services",
-    "startProject": "Start a Project",
-    "bookCall": "Book a Call",
+    "startProject": "Request a quote",
+    "bookCall": "Write to us",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Use"
+    "terms": "Terms of Use",
+    "faq": "FAQ"
   }
 } as const satisfies MessageTree

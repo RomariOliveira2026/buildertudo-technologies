@@ -5,6 +5,6 @@ export const CONTACT = {
   github: 'https://github.com/buildertudo',
   linkedin: 'https://linkedin.com/company/buildertudo',
   upwork: 'https://www.upwork.com/agencies/buildertudo',
-  instagram: 'https://instagram.com/buildertudo',
+  instagram: 'https://instagram.com/buildertudo.technologies',
   careers: 'mailto:contato@buildertudo.com?subject=Careers%20-%20BuilderTudo',
 } as const

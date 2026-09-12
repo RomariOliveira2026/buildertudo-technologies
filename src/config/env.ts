@@ -16,6 +16,5 @@ export const isAnalyticsEnabled = Boolean(
   env.ga4Id || env.gtmId || env.metaPixelId || env.clarityId,
 )
 
-export const isFormBackendEnabled = Boolean(
-  env.formEndpoint || (env.supabaseUrl && env.supabaseAnonKey) || env.resendApiUrl,
-)
+/** Form POST is used only when VITE_FORM_ENDPOINT is set. Supabase/Resend env vars are reserved and not wired. */
+export const isFormBackendEnabled = Boolean(env.formEndpoint)

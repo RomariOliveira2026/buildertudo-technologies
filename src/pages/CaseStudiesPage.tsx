@@ -51,7 +51,7 @@ export function CaseStudiesPage() {
 
           <Reveal>
             <div className="section-cta-row">
-              <MotionButton href="/#products">View product catalog</MotionButton>
+              <MotionButton href="/#portfolio">View product catalog</MotionButton>
               <MotionButton href="/#contact" variant="secondary">Start a project</MotionButton>
             </div>
           </Reveal>

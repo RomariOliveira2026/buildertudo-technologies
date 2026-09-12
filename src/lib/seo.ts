@@ -1,14 +1,14 @@
 import { env } from '../config/env'
 import { CONTACT } from '../constants/contact'
 import type { Locale } from '../i18n'
-import { LOCALE_META } from '../i18n'
+import { DEFAULT_LOCALE, LOCALE_META } from '../i18n'
 import type { ProductPageContent } from '../types/product-content'
 import { getProductStatusLabel } from '../types/product'
 
 export const SITE_NAME = 'BuilderTudo Technologies'
 export const SITE_SLOGAN = 'Technology that transforms businesses.'
 export const DEFAULT_DESCRIPTION =
-  'BuilderTudo Technologies — proprietary AI engineering platform. Framework, Business OS, AI-OS, Engine and 12 SaaS products. Enterprise-grade platform engineering for global clients.'
+  'Sites profissionais, landing pages e soluções digitais para empresas que querem fortalecer sua presença online e gerar novas oportunidades de negócio.'
 
 export const DEFAULT_OG_IMAGE = `${env.siteUrl}/logo-oficial.png`
 
@@ -44,7 +44,7 @@ export function getOrganizationSchema(description = DEFAULT_DESCRIPTION, slogan 
   }
 }
 
-export function getWebSiteSchema(description = DEFAULT_DESCRIPTION, locale: Locale = 'en') {
+export function getWebSiteSchema(description = DEFAULT_DESCRIPTION, locale: Locale = DEFAULT_LOCALE) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -72,11 +72,12 @@ export function getSoftwareCompanySchema(description = DEFAULT_DESCRIPTION, slog
     email: CONTACT.email,
     areaServed: 'Worldwide',
     knowsAbout: [
+      'Professional Websites',
+      'Landing Pages',
+      'Digital Presence',
+      'Web Design',
       'Artificial Intelligence',
       'SaaS Platforms',
-      'Product Engineering',
-      'Enterprise Software',
-      'Business Operating Systems',
     ],
   }
 }
@@ -84,7 +85,7 @@ export function getSoftwareCompanySchema(description = DEFAULT_DESCRIPTION, slog
 export function buildHomeStructuredData({
   description = DEFAULT_DESCRIPTION,
   slogan = SITE_SLOGAN,
-  locale = 'en' as Locale,
+  locale = DEFAULT_LOCALE,
 }: {
   description?: string
   slogan?: string
@@ -98,6 +99,21 @@ export function buildHomeStructuredData({
 }
 
 export const homeStructuredData = buildHomeStructuredData()
+
+export function getFaqSchema(items: ReadonlyArray<{ q: string; a: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  }
+}
 
 export function getBreadcrumbSchema(items: Array<{ name: string; path: string }>) {
   return {
@@ -142,7 +158,7 @@ export function getProductStructuredData(product: ProductPageContent, path: stri
     getProductSchema(product, path),
     getBreadcrumbSchema([
       { name: 'Home', path: '/' },
-      { name: 'Products', path: '/#products' },
+      { name: 'Products', path: '/#portfolio' },
       { name: product.name, path },
     ]),
     getOrganizationSchema(),

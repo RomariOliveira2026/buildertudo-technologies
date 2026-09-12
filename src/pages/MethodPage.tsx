@@ -52,7 +52,7 @@ export function MethodPage() {
           <div className="section-cta-row">
             <MotionButton href="/#contact">Start a Project</MotionButton>
             <MotionButton href="/framework" variant="secondary">Explore Framework</MotionButton>
-            <MotionButton href="/#business-os" variant="ghost">Explore Business OS</MotionButton>
+            <MotionButton href="/business-os" variant="ghost">Explore Business OS</MotionButton>
           </div>
         </div>
       </section>

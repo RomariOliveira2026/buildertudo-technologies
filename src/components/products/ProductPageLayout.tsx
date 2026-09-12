@@ -13,7 +13,7 @@ export function ProductBreadcrumbs({ product }: { product: ProductPageContent })
     <nav className="product-breadcrumbs" aria-label="Breadcrumb">
       <ol>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/#products">Products</Link></li>
+        <li><Link to="/#portfolio">Products</Link></li>
         <li aria-current="page">{product.name}</li>
       </ol>
     </nav>

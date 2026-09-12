@@ -40,6 +40,12 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   }, [locale])
 
   const setLocale = useCallback((next: Locale) => {
+    applyDocumentLocale(next)
+    try {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, next)
+    } catch {
+      /* ignore */
+    }
     setLocaleState(next)
   }, [])
 

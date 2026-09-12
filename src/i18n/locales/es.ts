@@ -3,10 +3,10 @@ import type { MessageTree } from '../translate'
 export const es = {
   "common": {
     "skipToContent": "Saltar al contenido principal",
-    "startYourProject": "Inicia tu proyecto",
+    "startYourProject": "Quiero crear mi sitio",
     "explorePlatform": "Explorar plataforma",
     "startAProject": "Iniciar un proyecto",
-    "bookDiscoveryCall": "Agendar discovery call",
+    "bookDiscoveryCall": "Agendar una conversación",
     "exploreFramework": "Explorar Framework",
     "exploreBusinessOS": "Explorar Business OS",
     "viewProducts": "Ver productos",
@@ -25,17 +25,21 @@ export const es = {
     "platformMetricsAria": "Métricas de la plataforma",
     "allRightsReserved": "Todos los derechos reservados.",
     "siteSlogan": "Tecnología que transforma negocios.",
-    "defaultDescription": "BuilderTudo Technologies — plataforma propietaria de ingeniería con IA. Framework, Business OS, AI-OS, Engine y 12 productos SaaS. Ingeniería enterprise para clientes globales.",
-    "homeTitle": "Plataforma propietaria de ingeniería con IA para empresas globales"
+    "defaultDescription": "BuilderTudo Technologies crea sitios profesionales, landing pages y presencia digital inteligente para empresas que quieren vender más.",
+    "homeTitle": "Sitios profesionales y presencia digital para empresas que quieren vender más"
   },
   "navigation": {
+    "solutions": "Soluciones",
+    "plans": "Planes",
+    "portfolio": "Portafolio",
+    "method": "Método",
+    "care": "BuilderCare",
+    "contact": "Contacto",
     "credibility": "Credibilidad",
     "platform": "Plataforma",
     "businessOs": "Business OS",
     "products": "Productos",
-    "method": "Método",
-    "services": "Servicios",
-    "contact": "Contacto"
+    "services": "Servicios"
   },
   "statusBar": {
     "aiEngineOnline": "AI Engine en línea",
@@ -195,7 +199,7 @@ export const es = {
     "title": "Platform engineering, no solo programación",
     "description": "Vendemos capacidad de ingeniería respaldada por una plataforma propietaria: cada engagement hereda Framework, AI-OS y Business OS.",
     "ctaStart": "Iniciar un proyecto",
-    "ctaBook": "Agendar discovery call",
+    "ctaBook": "Agendar una conversación",
     "ctaFramework": "Explorar el Framework",
     "deliverablesAria": "Entregables de {{title}}",
     "items": {
@@ -257,10 +261,10 @@ export const es = {
   },
   "contact": {
     "badge": "Construyamos juntos",
-    "title": "¿Listo para lanzar tu próxima plataforma?",
-    "body": "Cuéntanos sobre tu proyecto: ya sea que estés escalando en Upwork, lanzando un SaaS o modernizando operaciones enterprise. Respondemos en menos de 24 horas.",
+    "title": "Cuéntanos qué necesita tu empresa.",
+    "body": "Comparte el objetivo y te ayudamos a transformarlo en una estructura digital profesional. WhatsApp es el camino más directo para continuar la conversación.",
     "ctaStart": "Iniciar un proyecto",
-    "ctaBook": "Agendar discovery call",
+    "ctaBook": "Agendar una conversación",
     "ctaFramework": "Explore Framework",
     "ctaWhatsapp": "WhatsApp",
     "formName": "Nombre *",
@@ -274,11 +278,14 @@ export const es = {
     "formPlaceholderPhone": "+52, +57, +54 u otro con código de área",
     "formPlaceholderEmail": "tu@empresa.com",
     "formPlaceholderMessage": "Cuéntanos objetivos, timeline y restricciones…",
-    "formSelectService": "Selecciona un servicio",
+    "formSelectService": "Selecciona una opción",
     "formSubmit": "Enviar solicitud",
+    "formSubmitWhatsapp": "Continuar en WhatsApp",
     "formSubmitting": "Enviando…",
     "formReviewFields": "Revisa los campos resaltados.",
-    "formSuccess": "¡Solicitud recibida! Abrimos WhatsApp para que completes tu mensaje.",
+    "formSuccess": "Recibimos tu solicitud y abrimos WhatsApp para que completes el mensaje.",
+    "formWhatsappHint": "Al enviar, abrimos una conversación de WhatsApp con los datos que completaste.",
+    "formWhatsappOpened": "Abrimos WhatsApp con tu mensaje. Envíalo para hablar con BuilderTudo.",
     "formError": "No pudimos enviar ahora. Intenta de nuevo o contáctanos por WhatsApp.",
     "errName": "Ingresa tu nombre completo.",
     "errCompany": "Ingresa el nombre de tu empresa.",
@@ -296,8 +303,8 @@ export const es = {
     "serviceConsulting": "Consultoría tecnológica",
     "serviceSquad": "Squad dedicado",
     "serviceOther": "Otro",
-    "whatsappDefault": "¡Hola! Visité el sitio de BuilderTudo Technologies y me gustaría solicitar una cotización.",
-    "whatsappLeadIntro": "¡Hola! Visité el sitio de BuilderTudo Technologies y me gustaría solicitar una cotización.",
+    "whatsappDefault": "¡Hola! Conocí BuilderTudo por el sitio y me gustaría conversar sobre la creación de un sitio para mi empresa.",
+    "whatsappLeadIntro": "¡Hola! Conocí BuilderTudo por el sitio y me gustaría solicitar una cotización para un sitio.",
     "whatsappLeadName": "Nombre",
     "whatsappLeadCompany": "Empresa",
     "whatsappLeadPhone": "WhatsApp",
@@ -306,9 +313,9 @@ export const es = {
     "whatsappLeadMessage": "Mensaje"
   },
   "footer": {
-    "tagline": "Plataforma de ingeniería de productos digitales.",
-    "description": "Framework, Business OS, AI-OS, Engine y 12 productos oficiales. Hecho en Brasil. Listo para el mundo.",
-    "mission": "Platform engineering · AI-native · Enterprise-ready",
+    "tagline": "Presencia digital inteligente para empresas que quieren vender más.",
+    "description": "Creamos sitios profesionales, landing pages y estructuras digitales comerciales. Los productos internos y la plataforma de ingeniería siguen disponibles en el portafolio.",
+    "mission": "Diseño · Tecnología · Estrategia · IA",
     "company": "Empresa",
     "platform": "Plataforma",
     "products": "Productos",
@@ -323,14 +330,15 @@ export const es = {
     "showcase": "Showcase",
     "liveStatus": "Estado en vivo",
     "frameworkHealth": "Framework Health",
-    "caseStudies": "Case Studies",
+    "caseStudies": "Estudios de caso",
     "labs": "Labs",
     "productsLink": "Productos",
     "methodLink": "Método",
     "servicesLink": "Servicios",
-    "startProject": "Iniciar un proyecto",
-    "bookCall": "Agendar una llamada",
+    "startProject": "Solicitar cotización",
+    "bookCall": "Escríbenos",
     "privacy": "Política de privacidad",
-    "terms": "Términos de uso"
+    "terms": "Términos de uso",
+    "faq": "FAQ"
   }
 } as const satisfies MessageTree
