@@ -21,6 +21,7 @@ export const PAGE_ROUTES = {
   businessOs: '/business-os',
   cases: '/cases',
   products: '/products',
+  diagramafy: '/diagramafy',
 } as const
 
 export const LEGAL_ROUTES = {

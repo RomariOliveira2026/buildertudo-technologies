@@ -1,6 +1,6 @@
 import { PRODUCT_CATALOG } from '../content/products'
 import type { Product } from '../types/product'
-import type { ProductRouteKey } from './routes'
+import { PAGE_ROUTES, type ProductRouteKey } from './routes'
 
 const SLUG_TO_ROUTE: Record<string, ProductRouteKey> = {
   contentfy: 'contentfy',
@@ -40,7 +40,7 @@ function toProduct(entry: (typeof PRODUCT_CATALOG)[number]): Product {
     learnings: entry.benefits,
     routeKey: SLUG_TO_ROUTE[entry.slug],
     featured: entry.featured,
-    href: `/products/${entry.slug}`,
+    href: entry.slug === 'diagramafy' ? PAGE_ROUTES.diagramafy : `/products/${entry.slug}`,
   }
 }
 

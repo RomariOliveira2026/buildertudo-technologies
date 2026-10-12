@@ -18,6 +18,7 @@ import {
 } from '../components/case-studies'
 import { getCaseStudyStructuredData } from '../lib/seo'
 import { MotionButton } from '../components/ui/Buttons'
+import { StudioBanner } from '../components/diagramafy/StudioBanner'
 
 export function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -53,11 +54,14 @@ export function CaseStudyPage() {
       />
 
       <CaseStudyHero study={study} />
+      {study.slug === 'diagramafy' ? <StudioBanner /> : null}
       <CaseProblemSection problem={study.problem} />
       <CaseSolutionSection solution={study.solution} />
       <CaseArchitectureStackSection architecture={study.architecture} />
       <CaseTechnologyGridSection technologies={study.technologies} aiCapabilities={study.aiCapabilities} />
-      <CaseScreenshotsSection productName={study.name} slug={study.productSlug} screenshots={study.screenshots} />
+      {study.slug === 'diagramafy' ? null : (
+        <CaseScreenshotsSection productName={study.name} slug={study.productSlug} screenshots={study.screenshots} />
+      )}
       <CaseResultsSection results={study.results} status={study.status} />
       <CaseRoadmapSection roadmap={study.roadmap} />
       <CaseLearningsSection productName={study.name} learnings={study.learnings} tradeoffs={study.tradeoffs} />

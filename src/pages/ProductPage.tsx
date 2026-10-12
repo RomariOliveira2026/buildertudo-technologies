@@ -15,6 +15,7 @@ import { CTASection } from '../components/products/CTASection'
 import { getProductStructuredData } from '../lib/seo'
 import { MotionButton } from '../components/ui/Buttons'
 import { ProductPageLayout } from '../components/products/ProductPageLayout'
+import { StudioBanner } from '../components/diagramafy/StudioBanner'
 
 export function ProductPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -50,6 +51,7 @@ export function ProductPage() {
       />
 
       <ProductHero product={product} />
+      {product.slug === 'diagramafy' ? <StudioBanner /> : null}
 
       <div className="container product-case-link">
         <Link className="product-case-link__banner" to={getCaseStudyPath(product.slug)}>
@@ -61,7 +63,9 @@ export function ProductPage() {
       <ProblemSection problem={product.problem} />
       <SolutionSection solution={product.solution} features={product.features} />
       <ArchitectureSection summary={product.architectureSummary} layers={product.architectureLayers} />
-      <ScreenshotsSection productName={product.name} slug={product.slug} screenshots={product.screenshots} />
+      {product.slug === 'diagramafy' ? null : (
+        <ScreenshotsSection productName={product.name} slug={product.slug} screenshots={product.screenshots} />
+      )}
       <TechnologySection stack={product.stack} aiFeatures={product.aiFeatures} />
       <RoadmapSection roadmap={product.roadmap} />
       <BenefitsSection benefits={product.benefits} />

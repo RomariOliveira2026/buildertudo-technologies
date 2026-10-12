@@ -138,6 +138,7 @@ const en = {
       professoria: 'Personalized learning with adaptive AI tutoring, progress analytics and LMS integrations for education institutions.',
       voxcraft: 'API-first voice platform for text-to-speech, voice cloning and real-time streaming in digital products.',
       prevenpro: 'Automated compliance monitoring, critical process control and audit trails for regulated industries.',
+      diagramafy: 'Describe a flow in text, arrange the blocks and export Mermaid for docs and pull requests.',
     },
   },
   method: {
@@ -367,6 +368,7 @@ const es: CommercialCopy = {
       professoria: 'Aprendizaje personalizado con tutoría adaptativa, análisis de progreso e integraciones con entornos educativos.',
       voxcraft: 'Plataforma de voz por API para texto a voz, clonación de voz y transmisión en tiempo real en productos digitales.',
       prevenpro: 'Monitoreo automatizado de cumplimiento, control de procesos críticos y pistas de auditoría para sectores regulados.',
+      diagramafy: 'Describa un flujo en texto, organice los bloques y exporte Mermaid para documentación y pull requests.',
     },
   },
   method: {
@@ -588,6 +590,7 @@ const ptBR: CommercialCopy = {
       professoria: 'Aprendizagem personalizada com tutoria adaptativa, análise de progresso e integrações com ambientes de ensino.',
       voxcraft: 'Plataforma de voz via API para texto-fala, clonagem de voz e transmissão em tempo real em produtos digitais.',
       prevenpro: 'Monitoramento automatizado de conformidade, controle de processos críticos e trilhas de auditoria para setores regulados.',
+      diagramafy: 'Descreva um fluxo em texto, organize os blocos e exporte Mermaid para documentação e pull requests.',
     },
   },
   method: {

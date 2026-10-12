@@ -1,3 +1,4 @@
+import { PAGE_ROUTES } from '../constants/routes'
 import type { ProductPageContent, ProductArchitectureLayer, ProductRoadmapItem } from '../types/product-content'
 
 function layers(
@@ -314,32 +315,33 @@ export const PRODUCT_CATALOG: ProductPageContent[] = [
     logo: '📊',
     category: 'Developer Tools',
     status: 'beta',
-    version: '0.8.1',
+    version: '0.9.0',
     healthScore: 81,
     tagline: 'AI-assisted architecture documentation.',
-    description: 'Visual diagramming and architecture documentation with AI generation and Mermaid export for engineering teams.',
+    description: 'Browser studio that turns a written flow into an editable diagram, then exports Mermaid for docs and pull requests.',
     problem:
       'Architecture documentation is slow, inconsistent and often outdated. Engineers spend hours on diagrams that diverge from implementation within weeks.',
     solution:
-      'DiagramaFy accelerates documentation with AI-assisted diagram generation, auto-layout, Mermaid export and team collaboration — keeping architecture docs aligned with reality.',
-    architectureSummary: 'React canvas + AI-OS diagram generation with Mermaid export.',
+      'DiagramaFy turns plain language into an editable canvas, applies auto-layout and exports Mermaid — so architecture docs stay in the format engineers already review.',
+    architectureSummary: 'React canvas with local text-to-diagram parsing and Mermaid export.',
     architectureLayers: layers(
-      'React canvas editor with developer-tool Golden Screens.',
-      'Auto-diagram from text and architecture suggestions with structured output.',
+      'React canvas editor with a block palette and inspector.',
+      'Plain-language flow parsing that classifies people, services, data and queues.',
       ['Canvas Editor', 'Template Library', 'Export Panel'],
-      { engine: 'Diagram generation pipeline and export workflow automation.', runtime: 'Client-side canvas with server-side AI generation.' },
+      { engine: 'Auto-layout and Mermaid import/export pipeline.', runtime: 'Runs in the browser. Diagrams are saved locally on this device.' },
     ),
-    stack: ['React', 'TypeScript', 'OpenAI', 'AI-OS', 'Framework'],
-    features: ['Canvas editor', 'AI diagram generation', 'Mermaid export', 'Template library', 'Team collaboration'],
-    benefits: ['Hours saved per diagram', 'Mermaid compatibility', 'AI-generated from natural language', 'Architecture docs stay current'],
+    stack: ['React', 'TypeScript', 'Framework'],
+    features: ['Canvas editor', 'Text-to-diagram', 'Auto-layout', 'Mermaid export and import', 'Template library'],
+    benefits: ['Hours saved per diagram', 'Mermaid compatibility', 'Diagrams generated from natural language', 'Architecture docs stay in a diff-friendly format'],
     roadmap: roadmap([
-      ['Q1 2026', 'Auto-layout engine', 'in-progress'],
-      ['Q2 2026', 'Export to Mermaid', 'planned'],
+      ['Q1 2026', 'Auto-layout engine', 'done'],
+      ['Q2 2026', 'Mermaid export and import', 'done'],
       ['Q3 2026', 'Team collaboration', 'planned'],
     ]),
-    aiFeatures: ['Auto-diagram from text', 'Architecture suggestions'],
+    aiFeatures: ['Text-to-diagram', 'Block type detection'],
     screenshots: [{ id: 'canvas', label: 'Canvas Editor' }, { id: 'export', label: 'Export Panel' }],
-    cta: { primary: { label: 'Start a project', href: '/#contact' }, secondary: { label: 'Explore Framework', href: '/framework' } },
+    cta: { primary: { label: 'Open DiagramaFy', href: PAGE_ROUTES.diagramafy }, secondary: { label: 'Explore Framework', href: '/framework' } },
+    featured: true,
   },
   {
     slug: 'respondfy',
