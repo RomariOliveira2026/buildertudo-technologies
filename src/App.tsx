@@ -18,6 +18,7 @@ const BusinessOSPage = lazy(() => import('./pages/BusinessOSPage').then((m) => (
 const CaseStudiesPage = lazy(() => import('./pages/CaseStudiesPage').then((m) => ({ default: m.CaseStudiesPage })))
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage').then((m) => ({ default: m.CaseStudyPage })))
 const ProductPage = lazy(() => import('./pages/ProductPage').then((m) => ({ default: m.ProductPage })))
+const DiagramaFyPage = lazy(() => import('./pages/DiagramaFyPage').then((m) => ({ default: m.DiagramaFyPage })))
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -40,6 +41,7 @@ function AppRoutes() {
           <Route path={PAGE_ROUTES.method} element={<MethodPage />} />
           <Route path={PAGE_ROUTES.businessOs} element={<BusinessOSPage />} />
           <Route path={`${PAGE_ROUTES.products}/:slug`} element={<ProductPage />} />
+          <Route path={PAGE_ROUTES.diagramafy} element={<DiagramaFyPage />} />
           <Route path={PAGE_ROUTES.cases} element={<CaseStudiesPage />} />
           <Route path={`${PAGE_ROUTES.cases}/:slug`} element={<CaseStudyPage />} />
           <Route path={LEGAL_ROUTES.privacy} element={<PrivacyPolicyPage />} />
